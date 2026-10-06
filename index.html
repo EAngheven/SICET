@@ -537,6 +537,16 @@ table.calgrid thead th span{display:inline-block;max-width:80px;white-space:norm
 .sopcard{border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
 .sopcard h3{margin:0;font-size:calc(16px*var(--fs,1))}.sopcard h4{margin:4px 0 0;font-size:calc(14px*var(--fs,1))}.sopcard p,.sopcard ol{margin:0}
 .okline{color:var(--P);font-weight:600}
+/* calificaciones de docentes */
+.fillbar{height:9px;border-radius:6px;background:var(--soft,#eef1f4);overflow:hidden;margin:4px 0}
+.fillbar>i{display:block;height:100%;border-radius:6px;transition:width .3s}
+.fillbar>i.bF{background:var(--F,#c0392b)}.fillbar>i.bR{background:var(--R,#d4a017)}.fillbar>i.bP{background:var(--P,#2e8b57)}
+.mcgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-top:12px}
+.mccard{display:flex;flex-direction:column;gap:4px;text-align:left;padding:12px;border:1px solid var(--line,#dde2e7);border-radius:12px;background:var(--surf,#fff);color:inherit;font:inherit;cursor:pointer}
+.mccard span{font-size:13px;color:var(--mut,#5b6573)}.mccard.on{outline:2px solid var(--sx-main,#124b5c);border-color:transparent}
+.okbox{padding:10px 14px;border-radius:10px;background:color-mix(in srgb,var(--P,#2e8b57) 12%,transparent);border:1px solid color-mix(in srgb,var(--P,#2e8b57) 35%,transparent);margin:0 0 14px}
+.calgrid th.on{background:color-mix(in srgb,var(--sx-main,#124b5c) 12%,transparent)}
+@media (max-width:640px){#mcUnidad .otr,.modal .otr{display:none}#mcUnidad .calgrid td.l{white-space:normal}}
 
 </style>
 <style id="pagestyle"></style>
@@ -569,7 +579,7 @@ table.calgrid thead th span{display:inline-block;max-width:80px;white-space:norm
 <script type="text/plain" id="asx-app">
 'use strict';
 const EDITION='movil';
-const ASX_VERSION='4.2.1';
+const ASX_VERSION='4.3.0';
 const APP='SICET';
 const SXLOGO=(id,cls)=>'<svg class="sxlogo '+(cls||'')+'" viewBox="0 0 '+(id==='sx-icon'?'1280 1280':'1290 425')+'" role="img" aria-label="SICET"><use href="#'+id+'"/></svg>';
 /* ====== utilidades ====== */
@@ -862,7 +872,7 @@ function prims(op){
   return g;
 }
 function purgeMeta(all){
-  for(const k of [...META.keys()])if(/^[rbelximykgwqh]\|/.test(k)||(all&&/^a\|/.test(k)))META.delete(k);
+  for(const k of [...META.keys()])if(/^[rbelximykgwqhj]\|/.test(k)||(all&&/^a\|/.test(k)))META.delete(k);
   metaDirty=[];IDB.clear('meta').then(()=>IDB.putMany('meta',[...META.entries()])).catch(()=>{});
 }
 function commit(op,o){
@@ -890,7 +900,7 @@ function aplicarRemoto(o,dev){
   if(m&&(m.ts>o.ts||(m.ts===o.ts&&String(m.dev)>=String(dev))))return false;
   const ep=o.p.t==='newcycle'||o.p.t==='wipe';
   if(ep&&o.ts<=EPOCH)return false;
-  if(!ep&&EPOCH&&o.ts<=EPOCH&&/^[rbelximykgawqh]\|/.test(o.k))return false;
+  if(!ep&&EPOCH&&o.ts<=EPOCH&&/^[rbelximykgawqhj]\|/.test(o.k))return false;
   LAST_TS=Math.max(LAST_TS,o.ts);
   if(o.p.t==='upd'||o.p.t==='aviso'){META.set(o.k,{ts:o.ts,dev});metaDirty.push(o.k);(o.p.t==='upd'?updRecibirOp:avisosRecibirOp)(o.p);return true}
   applyOp(D,o.p);
@@ -1053,6 +1063,7 @@ function encolarTodo(){
   for(const id in D.per)add('w|'+id,{t:'per',id,rec:D.per[id]});
   for(const id in D.rsg)add('h|'+id,{t:'rsg',id,rec:D.rsg[id]});
   for(const al in D.cal)for(const s2 in D.cal[al])D.cal[al][s2].forEach((v,i)=>{if(v!=null)add('q|'+al+'|'+s2+'|'+(i+1),{t:'cal',al,s:s2,tr:i+1,v})});
+  for(const id in (D.cenv||{}))add('j|'+id,{t:'calEnv',id,rec:D.cenv[id]});
   SY.pend=OUT.length;
 }
 async function syncEnviar(){
@@ -2969,7 +2980,7 @@ function userModal(u){
    '<label>Cargo (plantilla de permisos)<select id="u_r">'+opts(rolOpts,u?u.rol:'docente')+'</select></label><label class="full">Contraseña temporal '+(u?'(déjala vacía para no cambiarla)':'')+'<div class="inrow"><input id="u_p" type="text" autocomplete="off" spellcheck="false"><button class="btn" type="button" id="u_gen">Generar</button></div><span class="note">La persona deberá crear su propia contraseña al entrar por primera vez.</span></label></div>'+
    '<h3 style="margin:14px 0 4px">Permisos</h3><p class="hint">Al elegir un cargo se marcan los permisos habituales; después puedes ajustarlos. Solo puedes otorgar permisos que tu cuenta tiene.</p><div class="pgrid" id="u_perms">'+perms+'</div>'+
    gruposBoxHTML(u)+
-   tecBoxHTML(u)+'<label class="chk-line" style="margin-top:10px"><input type="checkbox" id="u_mov" '+(u?(movilOk(u)?'checked':''):'checked')+(puedeCel()?'':' disabled')+'>Puede entrar desde el celular con su usuario y contraseña'+(puedeCel()?'':' <span class="note">(lo decide el Administrador, Dirección o Subdirección)</span>')+'</label>'+(u?'<label class="chk-line"><input type="checkbox" id="u_a" '+(u.activo!==false?'checked':'')+'>Cuenta activa</label>':'')+
+   tecBoxHTML(u)+asigBoxHTML(u)+'<label class="chk-line" style="margin-top:10px"><input type="checkbox" id="u_mov" '+(u?(movilOk(u)?'checked':''):'checked')+(puedeCel()?'':' disabled')+'>Puede entrar desde el celular con su usuario y contraseña'+(puedeCel()?'':' <span class="note">(lo decide el Administrador, Dirección o Subdirección)</span>')+'</label>'+(u?'<label class="chk-line"><input type="checkbox" id="u_a" '+(u.activo!==false?'checked':'')+'>Cuenta activa</label>':'')+
    '<div class="mfoot"><button class="btn" data-act="closemodal">Cancelar</button><button class="btn pri" id="mSave">Guardar</button></div>');
   const boxes=()=>[...document.querySelectorAll('#u_perms input[data-perm]')];
   const tg=()=>{const t=boxes().find(b=>b.dataset.perm==='todos_grupos');tgGrupos(!!(t&&t.checked))};
@@ -2990,7 +3001,7 @@ function userModal(u){
     const admins=Object.values(D.users).filter(x=>todosPermisos(x.rol)&&x.activo!==false&&(!u||x.id!==u.id)).length+(todosPermisos(rol)&&activo?1:0);
     if(!admins)return toast('Debe quedar al menos una cuenta activa de Dirección o de Administrador.','err');
     if(u&&u.id===ME.id&&(!activo||!permisos.includes('usuarios')))return toast('No puedes quitarte a ti mismo el acceso a usuarios ni desactivar tu cuenta.','err');
-    const rec=Object.assign({},u||{id:'us'+hexR(5),creado:Date.now()},{usuario,nombre,rol,permisos,grupos,tecs,activo,movil:rol!=='admin'&&($('#u_mov').disabled?(u?movilOk(u):['docente','docentetec','prefecto'].includes(rol)):$('#u_mov').checked)},pw?await newHash(pw):{},{cambiar:pw?(u&&u.id===ME.id?false:true):(u?!!u.cambiar:true)});
+    const rec=Object.assign({},u||{id:'us'+hexR(5),creado:Date.now()},{usuario,nombre,rol,permisos,grupos,tecs,asigs:[...document.querySelectorAll('#u_abox input:checked')].map(x=>x.value),activo,movil:rol!=='admin'&&($('#u_mov').disabled?(u?movilOk(u):['docente','docentetec','prefecto'].includes(rol)):$('#u_mov').checked)},pw?await newHash(pw):{},{cambiar:pw?(u&&u.id===ME.id?false:true):(u?!!u.cambiar:true)});
     if(!commit({t:'user',u:rec}))return;bitacora((u?'Usuario modificado: ':'Usuario creado: ')+rec.usuario+' ('+(ROL[rol]||rol)+')');
     closeModal();afterAjustes();if(pw&&!(u&&u.id===ME.id))credsModal(rec.usuario,pw);else toast('Guardado.');
   };
@@ -5878,13 +5889,242 @@ Object.assign(ACT,{
 });
 setTimeout(()=>{if(EDITION!=='movil')ghActualizarSiPublicado()},15000);
 
+/* ====== Calificaciones de los docentes: sus grupos y asignaturas, fecha límite, envío a Dirección y semáforo ====== */
+/* - Cada docente captura solo las asignaturas que imparte (Ajustes → Personal → «Asignaturas que imparte») y solo a sus alumnos.
+   - Dirección, Subdirección o el Administrador ponen la fecha y hora límite de cada trimestre. Una vez puesta, solo el Administrador la cambia.
+   - Al terminar, el docente pulsa «Enviar a Dirección»: se bloquea. Dirección o Subdirección pueden devolverla con prórroga. */
+const puedeCalLim=()=>esAdmGen()||(!!ME&&['admin','subdir'].includes(ME.rol));
+const esTecAsig=s=>/^tecnolog/i.test(String(s||''));
+const asigsU=u=>{if(!u)return [];const L=Array.isArray(u.asigs)?u.asigs.filter(Boolean):[];if(L.length)return L;return u.rol==='docentetec'?['Tecnología']:[]};
+const meU=()=>(ME&&D.users[ME.id])||ME;
+const calEsDoc=()=>!!ME&&!!ME.id&&(asigsU(meU()).length>0||['docente','docentetec'].includes(ME.rol));
+const tecDeU=(u,a)=>!!a.tec&&(u.tecs||[]).some(k=>k==='*|'+a.tec||k===String(a.gr)+'|'+a.tec);
+function calAlEnUnidad(u,a,s){
+  if(!a||a.baja||!asigDe(a.gr).includes(s))return false;
+  if(esTecAsig(s)&&(u.tecs||[]).length)return tecDeU(u,a);
+  return (u.grupos||[]).map(String).includes(String(a.gr)+a.gp);
+}
+function calUnidades(u){
+  const out=[];if(!u)return out;const base=Object.values(D.al).filter(a=>!a.baja);
+  for(const s of asigsU(u)){
+    const m=new Map();
+    for(const a of base)if(calAlEnUnidad(u,a,s)){const g=String(a.gr)+a.gp;if(!m.has(g))m.set(g,[]);m.get(g).push(a)}
+    [...m.keys()].sort((x,y)=>x.localeCompare(y,'es',{numeric:true})).forEach(g=>{const L=m.get(g).sort(cmpA);out.push({u:u.id,s,g,gr:L[0].gr,gp:L[0].gp,al:L})});
+  }
+  return out;
+}
+const envId=(tr,g,s)=>tr+'~'+g+'~'+s;
+const calLims=()=>Object.assign({},D.cfg.calLim||{});
+const limMs=tr=>{const v=calLims()[tr];if(!v)return 0;const t=new Date(v).getTime();return isNaN(t)?0:t};
+const limTxt=tr=>{const v=calLims()[tr];return v?fechaLarga(v).replace(/\.$/,''):''};
+/* ¿la unidad (tr, grupo, asignatura) está abierta para el docente en el momento ts? */
+function calVentana(tr,g,s,ts){
+  const env=(D.cenv||{})[envId(tr,g,s)];
+  if(env&&!env.dev)return 'Ya enviaste estas calificaciones a Dirección. Si necesitas corregir, pide que te las devuelvan.';
+  const lim=limMs(tr);
+  if(env&&env.dev&&env.hasta&&ts<=env.hasta)return '';
+  if(!lim)return 'Dirección todavía no abre la captura del '+calPer()[tr-1]+'.';
+  if(ts>lim)return 'La captura del '+calPer()[tr-1]+' se cerró el '+limTxt(tr)+'.';
+  return '';
+}
+function calDocPuedeU(u,al,s,tr,ts){
+  if(!u)return 'Tu cuenta no puede capturar calificaciones.';
+  const a=D.al[al];if(!a)return 'Alumno no encontrado.';
+  if(!asigsU(u).includes(s))return 'No tienes asignada la asignatura «'+s+'». Pide a Dirección que la agregue en tu cuenta.';
+  if(!calAlEnUnidad(u,a,s))return 'Ese alumno no está en tus grupos.';
+  return calVentana(Number(tr),String(a.gr)+a.gp,s,ts||Date.now());
+}
+/* --- permisos (se suman a los existentes) --- */
+const _guardCD=guardOp;
+guardOp=function(op){
+  if(op.t==='cal'&&!editOculto('calif'))return calDocPuedeU(meU(),op.al,op.s,op.tr,Date.now());
+  if(op.t==='calEnv'){
+    if(op.rec&&!op.rec.dev){
+      if(op.rec.u!==ME.id)return 'Solo el docente puede enviar sus calificaciones.';
+      const un=calUnidades(meU()).find(x=>x.s===op.rec.s&&x.g===op.rec.g);if(!un)return 'Esa asignatura o grupo no está asignado a tu cuenta.';
+      return calVentana(op.rec.tr,op.rec.g,op.rec.s,Date.now());
+    }
+    return puedeCalLim()?'':'Solo Dirección, Subdirección o el Administrador pueden devolver calificaciones.';
+  }
+  if(op.t==='cfg'&&op.k==='calLim'){
+    if(!puedeCalLim())return 'Solo Dirección, Subdirección o el Administrador ponen la fecha límite.';
+    const cur=calLims(),nv=op.v||{};
+    for(const tr of ['1','2','3'])if(cur[tr]&&cur[tr]!==nv[tr]&&!esAdministrador())return 'La fecha límite del '+calPer()[tr-1]+' ya está puesta. Solo el Administrador puede cambiarla.';
+    return '';
+  }
+  return _guardCD(op);
+};
+/* --- datos: envíos (colección cenv, clave j|…) --- */
+if(!COLS.includes('cenv'))COLS.push('cenv');
+const _applyCD=applyOp;
+applyOp=function(S0,op){
+  if(op.t==='calEnv'){S0.cenv=S0.cenv||{};if(op.rec)S0.cenv[op.id]=op.rec;else delete S0.cenv[op.id];return}
+  _applyCD(S0,op);
+  if(op.t==='newcycle'||op.t==='wipe')S0.cenv={};
+};
+const _primsCD=prims;
+prims=function(op){if(op.t==='calEnv')return [{k:'j|'+op.id,p:op,del:!op.rec}];return _primsCD(op)};
+['calLim','calAsig','calPer','calMin','calAlerta','calMax'].forEach(k=>{if(!CFG_MOV.includes(k))CFG_MOV.push(k)});
+/* --- nube: el celular del docente envía sus calificaciones; la computadora solo comparte las de grupos con docente asignado --- */
+function calQAsignada(al,s){const a=D.al[al];if(!a)return false;return Object.values(D.users).some(u=>u.activo!==false&&movilOk(u)&&asigsU(u).includes(s)&&calAlEnUnidad(u,a,s))}
+const _clPermCD=clPermitido;
+clPermitido=function(k){
+  const t=k[0];
+  if(t==='j')return true;
+  if(t==='q'){if(EDITION==='movil')return true;const p=k.split('|');return !!calLims()[p[p.length-1]]&&calQAsignada(p[1],p.slice(2,-1).join('|'))}
+  return _clPermCD(k);
+};
+const _clAcCD=clAcepta;
+clAcepta=function(o){
+  if(o&&typeof o.k==='string'&&o.p&&(o.k[0]==='q'||o.k[0]==='j')){
+    if(EDITION==='movil')return o.p.t==='cal'||o.p.t==='calEnv';
+    const u=Object.values(D.users).find(x=>x.usuario===o.by);if(!u||u.activo===false)return false;
+    if(o.p.t==='cal')return calDocPuedeU(u,o.p.al,o.p.s,o.p.tr,o.ts||Date.now())==='';
+    if(o.p.t==='calEnv'){const r=o.p.rec;if(!r||r.dev||r.u!==u.id)return false;return calUnidades(u).some(x=>x.s===r.s&&x.g===r.g)}
+    return false;
+  }
+  return _clAcCD(o);
+};
+const _clPayCD=clPayload;
+clPayload=function(k,p){const r=_clPayCD(k,p);if(r&&k[0]==='u'&&r.t==='user'&&p.u&&r.u.movil)r.u.asigs=Array.isArray(p.u.asigs)?p.u.asigs:[];return r};
+function calEncolarQ(){
+  if(!CL.on||EDITION==='movil')return;const by=(ME&&ME.usuario)||'',ts0=k=>(META.get(k)&&META.get(k).ts)||1;
+  for(const al in D.cal)for(const s in D.cal[al])D.cal[al][s].forEach((v,i)=>{if(v!=null){const k='q|'+al+'|'+s+'|'+(i+1);clEnqueue(k,ts0(k),by,{t:'cal',al,s,tr:i+1,v})}});
+  for(const id in (D.cenv||{})){const k='j|'+id;clEnqueue(k,ts0(k),by,{t:'calEnv',id,rec:D.cenv[id]})}
+}
+const _encCD=encolarNube;
+encolarNube=function(){_encCD();calEncolarQ()};
+const _commitCD=commit;
+commit=function(op,o){const r=_commitCD(op,o);if(r&&op&&((op.t==='cfg'&&op.k==='calLim')||op.t==='user'))setTimeout(()=>{try{calEncolarQ()}catch(e){}},300);return r};
+/* --- pestañas --- */
+const _tabsCD=tabsFor;
+tabsFor=function(){const t=_tabsCD();if(ME&&ME.id){const ins=x=>{if(t.some(y=>y[0]===x[0]))return;const i=t.findIndex(y=>y[0]==='ajustes');if(i<0)t.push(x);else t.splice(i,0,x)};if(calEsDoc())ins(['miscal','Mis calificaciones']);if(EDITION!=='movil'&&puedeCalLim())ins(['entregas','Entrega de calificaciones'])}return t};
+U.mc={tr:0,un:''};U.en={tr:0,q:''};
+const _initCD=initU;initU=function(){_initCD();U.mc={tr:0,un:''};U.en={tr:0,q:''}};
+const trAbierto=()=>{const now=Date.now();for(const t of [1,2,3]){const l=limMs(t);if(l&&now<=l)return t}let best=1;for(const t of [1,2,3])if(limMs(t))best=t;return best};
+/* --- control por alumno: semáforo de su asignatura, reportes y bitácora --- */
+function calControlMaps(){
+  const rep={},bit={};
+  for(const k in (D.cond||{})){const r=D.cond[k];if(r&&r.al)rep[r.al]=(rep[r.al]||0)+1}
+  for(const k in (D.bd||{})){const r=D.bd[k];if(r&&r.al)bit[r.al]=(bit[r.al]||0)+1}
+  for(const al in (D.bit||{}))bit[al]=(bit[al]||0)+(D.bit[al]||[]).length;
+  return {rep,bit};
+}
+function calControlChips(a,s,tr,M){
+  const v=calVals(a,s),cur=v[tr-1],p=avg(v),ch=[];
+  const proyV=(v[2]==null&&v[0]!=null&&v[1]!=null)?avg([v[0],v[1],clamp(v[1]+(v[1]-v[0])*0.5,calMinV()-1,calMaxV())]):p;
+  if(cur!=null&&cur<calMinV())ch.push('<span class="chip F">No aprueba</span>');
+  else if(proyV!=null&&proyV<calMinV())ch.push('<span class="chip F">Podría reprobar</span>');
+  else if((cur!=null&&cur<calAlertaV())||(p!=null&&p<calAlertaV()))ch.push('<span class="chip R">Próximo a reprobar</span>');
+  const r=M.rep[a.id]||0,b=M.bit[a.id]||0;
+  if(r)ch.push('<span class="chip '+(r>=3?'F':r>=2?'R':'N')+'" title="Reportes de conducta">'+r+' reporte'+(r===1?'':'s')+'</span>');
+  if(b)ch.push('<span class="chip '+(b>=3?'R':'N')+'" title="Anotaciones de bitácora">'+b+' en bitácora</span>');
+  return ch.join(' ')||'<span class="note">—</span>';
+}
+const llenado=(un,tr)=>{const cap=un.al.filter(a=>calVals(a,un.s)[tr-1]!=null).length;return {cap,tot:un.al.length,pct:un.al.length?Math.round(cap/un.al.length*100):0}};
+const semCls=p=>p>=100?'P':p>=50?'R':'F';
+const semTxt=p=>p>=100?'Completo':p>0?'Incompleto':'Sin capturar';
+const fillBar=(p)=>'<div class="fillbar" role="img" aria-label="'+p+'% capturado"><i class="b'+semCls(p)+'" style="width:'+Math.max(p,p?3:0)+'%"></i></div>';
+function envEstado(tr,un){
+  const e=(D.cenv||{})[envId(tr,un.g,un.s)];
+  if(!e)return {c:'N',t:'Sin enviar'};
+  if(e.dev)return {c:'R',t:'Devuelta para corregir'+(e.hasta?' (hasta '+fechaLarga(new Date(e.hasta).toISOString())+')':'')};
+  return {c:'P',t:'Enviada '+fechaLarga(new Date(e.f).toISOString())};
+}
+function ventanaBox(tr){
+  const l=limMs(tr),now=Date.now();
+  if(!l)return '<div class="warnbox">Dirección todavía no pone la fecha límite del <b>'+esc(calPer()[tr-1])+'</b>. Cuando la ponga, aquí podrás capturar.</div>';
+  if(now>l)return '<div class="warnbox alerta">La captura del <b>'+esc(calPer()[tr-1])+'</b> se cerró el '+esc(limTxt(tr))+'.</div>';
+  const h=(l-now)/36e5;
+  return '<div class="'+(h<48?'warnbox':'okbox')+'"><b>Captura abierta</b> hasta el '+esc(limTxt(tr))+' · '+(h<1?'menos de 1 hora':h<48?'faltan '+Math.floor(h)+' horas':'faltan '+Math.floor(h/24)+' días')+'.</div>';
+}
+/* --- vista del docente --- */
+VIEWS.miscal=()=>{
+  const u=meU(),o=U.mc;if(!o.tr)o.tr=trAbierto();const tr=o.tr,uns=calUnidades(u);
+  let h='<div class="head"><div><h2>Mis calificaciones</h2><p>Captura las calificaciones de tus alumnos y, al terminar, envíalas a Dirección.</p></div><div class="segtabs" role="tablist">'+calPer().map((p,i)=>'<button class="'+(tr===i+1?'on':'')+'" data-act="mcTr" data-v="'+(i+1)+'">'+esc(p)+'</button>').join('')+'</div></div>';
+  if(!asigsU(u).length)return h+'<div class="empty"><b>Todavía no tienes asignaturas asignadas.</b><br>Pide a Dirección que las marque en tu cuenta: Ajustes → Personal con acceso → Editar → «Asignaturas que imparte».</div>';
+  if(!uns.length)return h+'<div class="empty"><b>No hay alumnos en tus grupos para tus asignaturas.</b><br>Revisa con Dirección tus grupos'+(esTecAsig(asigsU(u)[0])?' o tecnologías':'')+'.</div>';
+  h+=ventanaBox(tr);
+  const tot=uns.reduce((n,x)=>n+x.al.length,0),cap=uns.reduce((n,x)=>n+llenado(x,tr).cap,0),env=uns.filter(x=>envEstado(tr,x).c==='P').length,pg=tot?Math.round(cap/tot*100):0;
+  h+='<div class="panel"><h3>Semáforo de llenado <span class="chip '+semCls(pg)+'">'+pg+'%</span></h3><p class="sub">'+cap+' de '+tot+' calificaciones · '+env+' de '+uns.length+' enviadas a Dirección. <span class="chip F">Rojo</span> menos de la mitad · <span class="chip R">Amarillo</span> incompleto · <span class="chip P">Verde</span> completo.</p><div class="body">'+fillBar(pg)+'<div class="mcgrid">'+
+   uns.map(x=>{const f=llenado(x,tr),e=envEstado(tr,x),k=x.s+'|'+x.g;return '<button class="mccard'+(o.un===k?' on':'')+'" data-act="mcUn" data-k="'+esc(k)+'"><b>'+esc(x.s)+'</b><span>'+esc(gTxt(x.g))+' · '+f.tot+' alumnos</span>'+fillBar(f.pct)+'<span><span class="chip '+semCls(f.pct)+'">'+f.cap+'/'+f.tot+' · '+semTxt(f.pct)+'</span> <span class="chip '+e.c+'">'+(e.c==='P'?'Enviada':e.c==='R'?'Devuelta':'Sin enviar')+'</span></span></button>'}).join('')+'</div></div></div>';
+  const un=uns.find(x=>x.s+'|'+x.g===o.un)||(uns.length===1?uns[0]:null);
+  if(un)h+=calUnidadPanel(un,tr,true);else h+='<p class="note">Toca una asignatura y grupo para capturar.</p>';
+  if(EDITION==='movil')h+='<p class="note">Las calificaciones que captures aquí llegan a Dirección por la nube.</p>';
+  return h;
+};
+function calUnidadPanel(un,tr,docente){
+  const err=docente?calVentana(tr,un.g,un.s,Date.now()):'x',edit=!err,M=calControlMaps(),f=llenado(un,tr),e=envEstado(tr,un);
+  const cel=(a,t)=>{const v=calVals(a,un.s)[t-1];if(edit&&t===tr)return '<input class="calin '+(v==null?'':calEst(v))+'" type="number" inputmode="decimal" step="0.1" min="0" max="'+calMaxV()+'" data-cal="'+a.id+'|'+esc(un.s)+'|'+t+'" value="'+(v==null?'':v)+'" aria-label="'+esc(fullName(a)+' · '+un.s+' · '+calPer()[t-1])+'">';return v==null?'<span class="note">—</span>':'<b class="c'+calEst(v)+'">'+f1(v)+'</b>'};
+  return '<div class="panel" id="mcUnidad"><h3>'+esc(un.s)+' · '+esc(gTxt(un.g))+' <span class="chip '+e.c+'">'+esc(e.t)+'</span></h3><p class="sub">'+(edit?'Escribe la calificación y pasa a la siguiente con Enter: se guarda al instante. Escala de 0 a '+f1(calMaxV())+', mínimo aprobatorio '+f1(calMinV())+'.':(docente?esc(err):'Solo lectura.'))+'</p>'+
+   '<div class="body"><div id="mcProg">'+progHTML(un,tr)+'</div></div>'+
+   '<div class="twrap"><table class="calgrid"><thead><tr><th>No.</th><th class="l">Alumno</th>'+calPer().map((p,i)=>'<th class="'+(i+1===tr?'on':'otr')+'">'+esc(p)+'</th>').join('')+'<th>Promedio</th><th class="l">Control</th></tr></thead><tbody>'+
+   un.al.map((a,i)=>{const p=avg(calVals(a,un.s));return '<tr><td>'+(i+1)+'</td><td class="l">'+esc(fullName(a))+'</td>'+[1,2,3].map(t=>'<td'+(t===tr?'':' class="otr"')+'>'+cel(a,t)+'</td>').join('')+'<td><b class="c'+calEst(p)+'">'+f1(p)+'</b></td><td class="l" style="white-space:normal">'+calControlChips(a,un.s,tr,M)+'</td></tr>'}).join('')+'</tbody></table></div>'+
+   (docente?'<div class="actions" style="padding:12px 14px">'+(edit?'<button class="btn pri" data-act="mcEnviar" data-k="'+esc(un.s+'|'+un.g)+'">Enviar a Dirección / Subdirección</button>':'')+'<button class="btn" data-act="mcRep" data-k="'+esc(un.s+'|'+un.g)+'">Lista con calificaciones (PDF o Excel)</button></div>':'')+'</div>';
+}
+const progHTML=(un,tr)=>{const f=llenado(un,tr);return fillBar(f.pct)+'<p class="note" style="margin:6px 0 0"><span class="chip '+semCls(f.pct)+'">'+f.cap+' de '+f.tot+' · '+semTxt(f.pct)+'</span>'+(f.tot-f.cap?' Faltan '+(f.tot-f.cap)+'.':'')+'</p>'};
+document.addEventListener('change',e=>{const t=e.target;if(!t||!t.dataset||!t.dataset.cal||U.tab!=='miscal')return;setTimeout(()=>{const u=meU(),[k1,k2]=(U.mc.un||'').split('|'),un=calUnidades(u).find(x=>x.s===k1&&x.g===k2)||calUnidades(u)[0];const b=$('#mcProg');if(b&&un)b.innerHTML=progHTML(un,U.mc.tr);const [al,s]=t.dataset.cal.split('|'),a=D.al[al],row=t.closest('tr');if(a&&row){const p=avg(calVals(a,s)),c=row.children;c[c.length-2].innerHTML='<b class="c'+calEst(p)+'">'+f1(p)+'</b>';c[c.length-1].innerHTML=calControlChips(a,s,U.mc.tr,calControlMaps())}},30)});
+function calRepUnidad(un,tr){
+  return {id:'calun',title:'Calificaciones · '+un.s,lines:['Grupo '+gTxt(un.g)+' · '+calPer()[tr-1],'Docente: '+((D.users[un.u]||{}).nombre||'')],sheets:[{name:(un.g+' '+un.s).slice(0,31),title:un.s+' · '+gTxt(un.g),cols:[C('No.',.5,'c','n'),C('Alumno',3.4),...calPer().map(p=>C(p,1.1,'c','n')),C('Promedio',1,'c','n')],rows:un.al.map((a,i)=>{const v=calVals(a,un.s),p=avg(v);return [i+1,fullName(a),...v.map(x=>x==null?'':x),p==null?'':Math.round(p*10)/10]}),foots:[]}],firmas:[['Docente',(D.users[un.u]||{}).nombre||''],['Vo. Bo. Dirección',D.cfg.resp||'']]};
+}
+/* --- vista de Dirección / Subdirección / Administrador --- */
+VIEWS.entregas=()=>{
+  if(!puedeCalLim())return '<div class="empty">No tienes acceso a esta sección.</div>';
+  const o=U.en;if(!o.tr)o.tr=trAbierto();const tr=o.tr,lims=calLims();
+  let h='<div class="head"><div><h2>Entrega de calificaciones</h2><p>Fecha límite para los docentes y semáforo de llenado por docente, asignatura y grupo.</p></div><div class="segtabs" role="tablist">'+calPer().map((p,i)=>'<button class="'+(tr===i+1?'on':'')+'" data-act="enTr" data-v="'+(i+1)+'">'+esc(p)+'</button>').join('')+'</div></div>';
+  h+='<div class="panel"><h3>Fecha y hora límite para subir calificaciones</h3><p class="sub">La ponen Dirección, Subdirección o el Administrador. Una vez puesta, <b>solo el Administrador puede cambiarla</b> (si la escuela lo pide).</p><div class="body form">'+
+   calPer().map((p,i)=>{const v=lims[i+1]||'',fijo=!!v&&!esAdministrador();return '<label>'+esc(p)+'<input type="datetime-local" data-callim="'+(i+1)+'" value="'+esc(v)+'"'+(fijo?' disabled title="Solo el Administrador puede cambiarla"':'')+'>'+(v?'<span class="note">'+(Date.now()>limMs(i+1)?'Cerrada':'Abierta')+' · '+esc(limTxt(i+1))+'</span>':'<span class="note">Sin fecha: los docentes no pueden capturar.</span>')+'</label>'}).join('')+
+   '</div><div class="actions" style="padding:0 14px 14px"><button class="btn pri" data-act="calLimGuardar">Guardar fechas</button></div></div>';
+  const docs=Object.values(D.users).filter(u=>u.activo!==false&&asigsU(u).length);
+  const R=[];docs.forEach(u=>calUnidades(u).forEach(un=>R.push({u,un,f:llenado(un,tr),e:envEstado(tr,un)})));
+  const q=(o.q||'').toLowerCase(),RF=R.filter(x=>!q||(x.u.nombre+' '+x.un.s+' '+x.un.g).toLowerCase().includes(q));
+  const env=R.filter(x=>x.e.c==='P').length,comp=R.filter(x=>x.f.pct>=100).length,cap=R.reduce((n,x)=>n+x.f.cap,0),tot=R.reduce((n,x)=>n+x.f.tot,0),pg=tot?Math.round(cap/tot*100):0;
+  const sinAsig=Object.values(D.users).filter(u=>u.activo!==false&&u.rol==='docente'&&!asigsU(u).length);
+  h+='<div class="stats"><div class="stat big"><span>Llenado general</span><b class="c'+semCls(pg)+'">'+pg+'%</b><small>'+cap+' de '+tot+' calificaciones</small></div><div class="stat"><span>Enviadas</span><b class="cP">'+env+'</b><small>de '+R.length+' listas</small></div><div class="stat"><span>Completas sin enviar</span><b class="cR">'+R.filter(x=>x.f.pct>=100&&x.e.c!=='P').length+'</b></div><div class="stat"><span>Incompletas</span><b class="cF">'+(R.length-comp)+'</b></div></div>'+
+   (sinAsig.length?'<div class="warnbox">'+sinAsig.length+' docente'+(sinAsig.length===1?'':'s')+' sin asignaturas: '+esc(sinAsig.slice(0,6).map(u=>u.nombre).join(', '))+(sinAsig.length>6?'…':'')+'. Márcalas en Ajustes → Personal con acceso → Editar → «Asignaturas que imparte».</div>':'');
+  h+='<div class="panel"><h3>Semáforo de entrega · '+esc(calPer()[tr-1])+'</h3><div class="body"><input data-b="en.q" data-live placeholder="Buscar docente, asignatura o grupo" value="'+esc(o.q||'')+'" style="width:100%;max-width:420px"></div>'+
+   (R.length?'<div class="twrap"><table><thead><tr><th class="l">Docente</th><th class="l">Asignatura</th><th>Grupo</th><th class="l" style="min-width:150px">Llenado</th><th class="l">Estado</th><th></th></tr></thead><tbody>'+
+   RF.sort((a,b)=>a.u.nombre.localeCompare(b.u.nombre)||a.un.s.localeCompare(b.un.s)||a.un.g.localeCompare(b.un.g)).map(x=>{const k=esc(x.u.id+'|'+x.un.s+'|'+x.un.g);return '<tr><td class="l">'+esc(x.u.nombre)+'</td><td class="l">'+esc(x.un.s)+'</td><td>'+esc(gTxt(x.un.g))+'</td><td class="l">'+fillBar(x.f.pct)+'<span class="note">'+x.f.cap+'/'+x.f.tot+' · '+semTxt(x.f.pct)+'</span></td><td class="l"><span class="chip '+x.e.c+'">'+esc(x.e.t)+'</span></td><td style="white-space:nowrap"><button class="btn sm" data-act="enVer" data-k="'+k+'">Ver</button>'+(x.e.c==='P'?' <button class="btn sm" data-act="enDev" data-k="'+k+'">Devolver</button>':'')+'</td></tr>'}).join('')+'</tbody></table></div>':'<div class="empty" style="padding:16px">Ningún docente tiene asignaturas todavía.</div>')+'</div>';
+  return h;
+};
+const enUnidad=k=>{const [uid,...r]=k.split('|'),g=r.pop(),s=r.join('|'),u=D.users[uid];return u?calUnidades(u).find(x=>x.s===s&&x.g===g):null};
+Object.assign(ACT,{
+  mcTr:t=>{U.mc.tr=Number(t.dataset.v);render()},
+  mcUn:t=>{U.mc.un=t.dataset.k;render();setTimeout(()=>{const e=document.getElementById('mcUnidad');if(e)e.scrollIntoView({behavior:'smooth',block:'start'})},60)},
+  mcEnviar:t=>{
+    const [s,g]=t.dataset.k.split('|'),tr=U.mc.tr,un=calUnidades(meU()).find(x=>x.s===s&&x.g===g);if(!un)return;const f=llenado(un,tr);
+    openModal('<h2>Enviar a Dirección / Subdirección</h2><p><b>'+esc(s)+' · '+esc(gTxt(g))+' · '+esc(calPer()[tr-1])+'</b></p>'+(f.cap<f.tot?'<div class="warnbox">Faltan <b>'+(f.tot-f.cap)+'</b> calificaciones. Puedes enviarlas así, pero quedarán incompletas.</div>':'<p class="okline">✓ Completo: '+f.cap+' de '+f.tot+' alumnos.</p>')+'<p class="note">Después de enviarlas ya no podrás modificarlas. Si necesitas corregir, Dirección o Subdirección te las pueden devolver.</p><div class="mfoot"><button class="btn" data-act="closemodal">Cancelar</button><button class="btn pri" id="mOk">Enviar</button></div>');
+    $('#mOk').onclick=()=>{if(commit({t:'calEnv',id:envId(tr,g,s),rec:{u:ME.id,n:ME.nombre,tr,g,s,f:Date.now(),cap:f.cap,tot:f.tot}})){bitacora('Envió calificaciones: '+s+' '+g+' ('+calPer()[tr-1]+')');closeModal();toast('Enviadas a Dirección.');render()}};
+  },
+  mcRep:t=>{const [s,g]=t.dataset.k.split('|'),un=calUnidades(meU()).find(x=>x.s===s&&x.g===g);if(un)reportModal(calRepUnidad(un,U.mc.tr))},
+  enTr:t=>{U.en.tr=Number(t.dataset.v);render()},
+  calLimGuardar:()=>{
+    const cur=calLims(),nv=Object.assign({},cur);document.querySelectorAll('[data-callim]').forEach(x=>{const k=x.dataset.callim,v=x.value;if(v)nv[k]=v.slice(0,16);else if(esAdministrador())delete nv[k]});
+    if(JSON.stringify(nv)===JSON.stringify(cur))return toast('Sin cambios.');
+    if(commit({t:'cfg',k:'calLim',v:nv},{sys:false})){bitacora('Fechas límite de calificaciones: '+JSON.stringify(nv));toast('Fechas guardadas.');render()}
+  },
+  enVer:t=>{const un=enUnidad(t.dataset.k);if(!un)return;openModal(calUnidadPanel(un,U.en.tr,false).replace('id="mcUnidad"','')+'<div class="mfoot"><button class="btn" data-act="enRep" data-k="'+esc(t.dataset.k)+'">PDF o Excel</button><button class="btn pri" data-act="closemodal">Cerrar</button></div>',true)},
+  enRep:t=>{const un=enUnidad(t.dataset.k);if(un){closeModal();reportModal(calRepUnidad(un,U.en.tr))}},
+  enDev:t=>{
+    const un=enUnidad(t.dataset.k);if(!un)return;const tr=U.en.tr,id=envId(tr,un.g,un.s),cur=(D.cenv||{})[id];if(!cur)return;
+    const d0=new Date(Math.max(Date.now(),limMs(tr)||0)+864e5),pad=n=>String(n).padStart(2,'0'),v0=d0.getFullYear()+'-'+pad(d0.getMonth()+1)+'-'+pad(d0.getDate())+'T'+pad(d0.getHours())+':'+pad(d0.getMinutes());
+    openModal('<h2>Devolver para corregir</h2><p>'+esc((D.users[un.u]||{}).nombre||'')+' · <b>'+esc(un.s)+' · '+esc(gTxt(un.g))+'</b></p><div class="form"><label class="full">Puede corregir hasta<input type="datetime-local" id="dv_h" value="'+v0+'"></label><label class="full">Motivo (opcional)<input id="dv_m" maxlength="140"></label></div><div class="mfoot"><button class="btn" data-act="closemodal">Cancelar</button><button class="btn pri" id="mOk">Devolver</button></div>');
+    $('#mOk').onclick=()=>{const h=new Date($('#dv_h').value).getTime();if(!(h>Date.now()))return toast('Elige una fecha y hora futura.','err');if(commit({t:'calEnv',id,rec:Object.assign({},cur,{dev:true,hasta:h,devPor:ME.nombre,devM:$('#dv_m').value.trim(),devF:Date.now()})})){bitacora('Devolvió calificaciones: '+un.s+' '+un.g);closeModal();toast('Devuelta al docente.');render()}};
+  }
+});
+/* --- en la cuenta de cada persona: asignaturas que imparte --- */
+function asigBoxHTML(u){
+  const todas=[...new Set(D.cfg.grados.flatMap(g=>asigDe(g)))],cur=new Set(u&&Array.isArray(u.asigs)?u.asigs:[]);
+  return '<div id="u_abox" style="margin-top:10px"><span class="note">Asignaturas que imparte (para capturar calificaciones de sus grupos'+(tecList().length?'; «Tecnología» usa las tecnologías marcadas arriba':'')+')</span><div class="chips">'+todas.map(s=>'<label class="chk"><input type="checkbox" value="'+esc(s)+'"'+(cur.has(s)?' checked':'')+'>'+esc(s)+'</label>').join('')+'</div></div>';
+}
+
 /* ====== inicio ====== */
 boot();
 
 </script>
 <script>
 (function(){
- var EMB='4.2.1',ED='movil';
+ var EMB='4.3.0',ED='movil';
  function cmp(a,b){a=String(a).split('.').map(Number);b=String(b).split('.').map(Number);for(var i=0;i<3;i++){var d=(a[i]||0)-(b[i]||0);if(d)return d>0?1:-1}return 0}
  function exec(id){var n=document.getElementById(id);if(!n)return;var s=document.createElement('script');s.textContent=n.textContent;document.head.appendChild(s)}
  function run(){['asx-qr','asx-app'].forEach(exec)}
