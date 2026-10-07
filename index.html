@@ -680,7 +680,7 @@ table.calgrid thead th span{display:inline-block;max-width:80px;white-space:norm
 <script type="text/plain" id="asx-app">
 'use strict';
 const EDITION='movil';
-const ASX_VERSION='4.6.5';
+const ASX_VERSION='4.6.7';
 const APP='SICET';
 const SXLOGO=(id,cls)=>'<svg class="sxlogo '+(cls||'')+'" viewBox="0 0 '+(id==='sx-icon'?'1280 1280':'1290 425')+'" role="img" aria-label="SICET"><use href="#'+id+'"/></svg>';
 /* ====== utilidades ====== */
@@ -5158,7 +5158,7 @@ function iconoSVG(size,mask){
   return '<svg xmlns="http://www.w3.org/2000/svg" width="'+size+'" height="'+size+'" viewBox="0 0 '+size+' '+size+'"><rect width="'+size+'" height="'+size+'" rx="'+(mask?0:size*.22)+'" fill="#0F4D5C"/><g transform="translate('+off+' '+off+') scale('+s+')">'+inner+'</g></svg>';
 }
 function svgPng(svg,size){return new Promise((res,rej)=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=c.height=size;c.getContext('2d').drawImage(im,0,0,size,size);c.toBlob(b=>b?b.arrayBuffer().then(x=>res(new Uint8Array(x))):rej(new Error('png')),'image/png')};im.onerror=()=>rej(new Error('svg'));im.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg)})}
-const SW_TXT="// SICET Móvil: guarda solo la aplicación (HTML, íconos y el lector de QR). Nunca guarda datos de alumnos.\nconst C='sicet-movil-v41';\nconst SHELL=['./','index.html','manifest.webmanifest','icon-192.png','icon-512.png','apple-touch-icon.png'];\nself.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(SHELL).catch(()=>{})).then(()=>self.skipWaiting()))});\nself.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});\nself.addEventListener('fetch',e=>{\n  const r=e.request,u=new URL(r.url);\n  if(r.method!=='GET')return;\n  const mismo=u.origin===self.location.origin,jsqr=u.hostname==='cdnjs.cloudflare.com';\n  if(!mismo&&!jsqr)return;\n  if(/event-stream/.test(r.headers.get('accept')||'')||/\\.json$/.test(u.pathname))return;\n  e.respondWith(fetch(r).then(res=>{if(res.ok){const cp=res.clone();caches.open(C).then(c=>c.put(r,cp))}return res}).catch(()=>caches.match(r).then(m=>m||(r.mode==='navigate'?caches.match('index.html'):undefined))));\n});\n";
+const SW_TXT="// SICET Móvil: guarda solo la aplicación (HTML, íconos y el lector de QR). Nunca guarda datos de alumnos.\nconst C='sicet-movil-v42';\nconst SHELL=['./','index.html','manifest.webmanifest','icon-192.png','icon-512.png','apple-touch-icon.png'];\nself.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(SHELL).catch(()=>{})).then(()=>self.skipWaiting()))});\nself.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});\nself.addEventListener('fetch',e=>{\n  const r=e.request,u=new URL(r.url);\n  if(r.method!=='GET')return;\n  const mismo=u.origin===self.location.origin,jsqr=u.hostname==='cdnjs.cloudflare.com';\n  if(!mismo&&!jsqr)return;\n  if(/event-stream/.test(r.headers.get('accept')||'')||/\\.(json|mobileconfig)$/.test(u.pathname)||/iphone\\.html$/.test(u.pathname))return;\n  e.respondWith(fetch(r).then(res=>{if(res.ok){const cp=res.clone();caches.open(C).then(c=>c.put(r,cp))}return res}).catch(()=>caches.match(r).then(m=>m||(r.mode==='navigate'?caches.match('index.html'):undefined))));\n});\n";
 const MANIF=()=>JSON.stringify({name:'SICET Móvil',short_name:'SICET',description:'SICET · Sistema Integral de Control Escolar Técnico: entrada con QR, listas en el aula y conducta',lang:'es',start_url:'./',scope:'./',display:'standalone',orientation:'portrait',background_color:'#fafbfc',theme_color:'#0F4D5C',icons:[{src:'icon-192.png',sizes:'192x192',type:'image/png',purpose:'any'},{src:'icon-512.png',sizes:'512x512',type:'image/png',purpose:'any'},{src:'icon-maskable-512.png',sizes:'512x512',type:'image/png',purpose:'maskable'}]});
 const LEEME_WEB='SICET MÓVIL · VERSIÓN WEB (iPhone, iPad, Mac, Android y cualquier computadora)\r\n=====================================================================\r\n\r\nEsta carpeta es la app del celular lista para publicarse en internet con una dirección (https://...).\r\nAsí funciona en iPhone y iPad (Safari), en Mac y en Android. Se hace UNA sola vez.\r\nLa carpeta NO contiene datos de alumnos ni claves: los datos viajan cifrados por la nube de la escuela.\r\n\r\nOPCIÓN 1 · NETLIFY (la más fácil, gratis)\r\n1. Entra a app.netlify.com/drop desde la computadora.\r\n2. Arrastra ESTE archivo ZIP (o la carpeta descomprimida) al recuadro.\r\n3. Crea tu cuenta gratuita cuando te lo pida (o pulsa «Claim»): si no, la dirección se borra.\r\n4. Copia la dirección que te da (por ejemplo https://sicet-mi-escuela.netlify.app).\r\n   En «Site configuration» puedes cambiarle el nombre.\r\n5. En SICET (computadora): Ajustes > Celulares y nube > pega la dirección y pulsa «Guardar dirección».\r\n\r\nOPCIÓN 2 · GITHUB PAGES (gratis)\r\nCrea un repositorio público, sube estos archivos, activa Settings > Pages (rama main) y usa la dirección que te da.\r\n\r\nDESPUÉS, PARA CADA PERSONA\r\nEn SICET: Ajustes > Personal con acceso > botón «Celular» junto a su nombre.\r\nLa persona escanea el código QR con la cámara de su celular: se abre la app ya conectada a la escuela.\r\nEn iPhone: toca Compartir > «Agregar a pantalla de inicio» para tenerla como app.\r\n\r\nACTUALIZACIONES\r\nLa app se actualiza sola cuando Dirección autoriza una versión nueva. No hace falta volver a publicar.\r\nSi publicas una versión nueva de este paquete, arrástralo otra vez al mismo sitio de Netlify (en «Deploys»).\r\n';
 async function paqueteWeb(){
@@ -7150,13 +7150,123 @@ setTimeout(()=>{loadJsQR().catch(()=>{})},2500);
 const _movArchX=movilArchivoTxt;
 movilArchivoTxt=async function(){const t=await _movArchX();const u=(D&&D.cfg&&D.cfg.movilUrl)||'';return t&&u&&/^https:\/\//.test(u)?t.split('https://eangheven.github.io/SICET/').join(u.replace(/"/g,'')):t};
 
+/* ====== Instalador exclusivo para iPhone y iPad (.mobileconfig) ======
+   Un archivo de configuración de Apple que pone el ícono de SICET en la pantalla de inicio.
+   Al tocarlo se abre SICET como app (pantalla completa) desde la dirección web segura (https),
+   donde funcionan la cámara, la nube y las actualizaciones. No contiene datos ni contraseñas. */
+const xmlEsc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const uuid4=()=>{const h=hexR(16).split('');h[12]='4';h[16]='89ab'[parseInt(h[16],16)&3];const s=h.join('').toUpperCase();return s.slice(0,8)+'-'+s.slice(8,12)+'-'+s.slice(12,16)+'-'+s.slice(16,20)+'-'+s.slice(20)};
+function mobileconfigTxt(url,escuela,iconB64){
+  const u1=uuid4(),u2=uuid4(),id='mx.sicet.'+(slug(escuela||'escuela').replace(/[^a-z0-9]/g,'')||'escuela').slice(0,30);
+  return '<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n<plist version="1.0">\n<dict>\n'+
+  '\t<key>PayloadContent</key>\n\t<array>\n\t\t<dict>\n'+
+  '\t\t\t<key>FullScreen</key>\n\t\t\t<true/>\n'+
+  (iconB64?'\t\t\t<key>Icon</key>\n\t\t\t<data>'+iconB64+'</data>\n':'')+
+  '\t\t\t<key>IsRemovable</key>\n\t\t\t<true/>\n'+
+  '\t\t\t<key>Label</key>\n\t\t\t<string>SICET</string>\n'+
+  '\t\t\t<key>PayloadDescription</key>\n\t\t\t<string>Ícono de SICET en la pantalla de inicio</string>\n'+
+  '\t\t\t<key>PayloadDisplayName</key>\n\t\t\t<string>SICET (pantalla de inicio)</string>\n'+
+  '\t\t\t<key>PayloadIdentifier</key>\n\t\t\t<string>'+id+'.webclip.'+u1+'</string>\n'+
+  '\t\t\t<key>PayloadType</key>\n\t\t\t<string>com.apple.webClip.managed</string>\n'+
+  '\t\t\t<key>PayloadUUID</key>\n\t\t\t<string>'+u1+'</string>\n'+
+  '\t\t\t<key>PayloadVersion</key>\n\t\t\t<integer>1</integer>\n'+
+  '\t\t\t<key>Precomposed</key>\n\t\t\t<true/>\n'+
+  '\t\t\t<key>URL</key>\n\t\t\t<string>'+xmlEsc(url)+'</string>\n'+
+  '\t\t</dict>\n\t</array>\n'+
+  '\t<key>PayloadDescription</key>\n\t<string>Agrega SICET (Sistema Integral de Control Escolar Técnico)'+(escuela?' de '+xmlEsc(escuela):'')+' a la pantalla de inicio. No contiene datos de alumnos ni contraseñas.</string>\n'+
+  '\t<key>PayloadDisplayName</key>\n\t<string>SICET'+(escuela?' · '+xmlEsc(String(escuela).slice(0,60)):'')+'</string>\n'+
+  '\t<key>PayloadIdentifier</key>\n\t<string>'+id+'.'+u2+'</string>\n'+
+  '\t<key>PayloadOrganization</key>\n\t<string>SICET</string>\n'+
+  '\t<key>PayloadRemovalDisallowed</key>\n\t<false/>\n'+
+  '\t<key>PayloadType</key>\n\t<string>Configuration</string>\n'+
+  '\t<key>PayloadUUID</key>\n\t<string>'+u2+'</string>\n'+
+  '\t<key>PayloadVersion</key>\n\t<integer>1</integer>\n'+
+  '</dict>\n</plist>\n';
+}
+async function iconoIOS(){try{return b64(await svgPng(iconoSVG(180,true),180))}catch(e){return ''}}
+async function iphoneCfgEscuela(){
+  const link=(typeof enlaceEsc==='function'&&enlaceEsc())||movilUrl()||'';
+  if(!/^https:\/\//.test(link))throw new Error('Primero publica la app del celular (Ajustes → Celulares → «Publicar ahora»): el iPhone necesita una dirección https.');
+  return mobileconfigTxt(link,D.cfg.escuela||'',await iconoIOS());
+}
+/* Página de instalación para iPhone (se publica en el Portal: …/iphone.html). Un .mobileconfig enviado por
+   WhatsApp o abierto en una vista previa muestra solo «código» (XML): iOS solo lo instala si se descarga en Safari.
+   Por eso se comparte un ENLACE (QR) que se abre en Safari y ahí se instala con un toque. */
+function iphonePaginaHTML(){
+  return '<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Instalar SICET en iPhone</title><link rel="apple-touch-icon" href="apple-touch-icon.png"><style>'+
+  ':root{--bg:#f4f6fa;--card:#fff;--tx:#1b2433;--mu:#5b6576;--pri:#1f5fbf;--ok:#1d7a46;--bd:#dfe4ec}@media (prefers-color-scheme:dark){:root{--bg:#10141b;--card:#1a212c;--tx:#e8edf5;--mu:#9aa6b8;--pri:#5b9cff;--ok:#4cc38a;--bd:#2c3644}}'+
+  '*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.45 -apple-system,system-ui,sans-serif;padding:max(16px,env(safe-area-inset-top)) 16px 32px}main{max-width:560px;margin:0 auto}'+
+  'header{display:flex;gap:12px;align-items:center;margin:4px 0 16px}header img{width:56px;height:56px;border-radius:13px}h1{font-size:21px;margin:0}header p{margin:2px 0 0;color:var(--mu);font-size:14px}'+
+  '.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px;margin:0 0 14px}.card h2{font-size:17px;margin:0 0 6px}.tag{display:inline-block;font-size:12px;font-weight:600;color:var(--ok);border:1px solid var(--ok);border-radius:99px;padding:1px 8px;margin-left:6px;vertical-align:2px}'+
+  'ol{margin:8px 0 0;padding-left:22px}li{margin:6px 0}.btn{display:block;width:100%;text-align:center;text-decoration:none;font-weight:600;font-size:17px;padding:14px;border-radius:12px;border:0;background:var(--pri);color:#fff;margin:10px 0 4px;cursor:pointer}.btn.sec{background:transparent;color:var(--pri);border:1.5px solid var(--pri)}'+
+  '.cod{font-size:22px;font-weight:700;letter-spacing:2px}.note{color:var(--mu);font-size:14px}.warn{border-color:#d08a00;background:rgba(208,138,0,.08)}[hidden]{display:none!important}'+
+  '</style></head><body><main><header><img src="apple-touch-icon.png" alt="" onerror="this.style.visibility=\x27hidden\x27"><div><h1>SICET en iPhone y iPad</h1><p>Portal Académico · instalación</p></div></header>'+
+  '<div class="card warn" id="noSafari" hidden><h2>Abre esta página en Safari</h2><p>Estás en otro navegador o dentro de una app (WhatsApp, Facebook…). El iPhone solo instala SICET desde <b>Safari</b>.</p><ol><li>Toca <b>Copiar enlace</b>.</li><li>Abre <b>Safari</b>, toca la barra de dirección, <b>pega</b> y abre.</li></ol><button class="btn" id="cp">Copiar enlace</button><p class="note">En WhatsApp también puedes mantener presionado el enlace y elegir «Abrir en Safari».</p></div>'+
+  '<div class="card" id="noIOS" hidden><h2>Esta página es para iPhone y iPad</h2><p>En Android abre el Portal Académico en Chrome y usa el menú ⋮ → <b>Instalar app</b>.</p><a class="btn sec" id="ir2" href="./">Abrir el Portal Académico</a></div>'+
+  '<div class="card" id="codBox" hidden><p class="note" style="margin:0">Código de tu escuela (te lo pedirá al entrar):</p><div class="cod" id="cod"></div></div>'+
+  '<div class="card"><h2>Opción 1 · Agregar a la pantalla de inicio <span class="tag">Recomendada</span></h2><ol><li>Toca <b>Abrir SICET</b> (aquí abajo).</li><li>Ya en SICET, toca <b>Compartir</b> (el cuadro con la flecha ↑; en iOS 26 está en <b>⋯</b>).</li><li>Baja y toca <b>«Agregar a pantalla de inicio»</b> → <b>Agregar</b>.</li><li>Abre SICET desde su ícono y entra con tu <b>usuario y contraseña</b>.</li></ol><a class="btn" id="ir" href="./">Abrir SICET</a></div>'+
+  '<div class="card"><h2>Opción 2 · Instalar con perfil de Apple</h2><ol><li>Toca <b>Instalar perfil</b>. Si Safari pregunta, toca <b>Permitir</b> (o <b>Descargar</b>) y luego <b>Cerrar</b>.</li><li>Abre <b>Ajustes</b> → arriba aparece <b>Perfil descargado</b> → <b>Instalar</b> → escribe el código del iPhone → <b>Instalar</b>.</li><li>Si no aparece en Ajustes: abre la app <b>Archivos</b> → <b>Descargas</b> → toca <b>SICET-iPhone</b> y repite el paso 2.</li></ol><a class="btn sec" href="SICET-iPhone.mobileconfig" download>Instalar perfil</a><p class="note">Dirá «No verificado» porque no está firmado por Apple; es normal. Solo agrega el ícono: no tiene datos ni contraseñas. Se quita en Ajustes → General → VPN y gestión de dispositivos.</p></div>'+
+  '<p class="note">La cámara para leer QR funciona en SICET abierto desde su ícono o desde Safari. Si pide permiso, toca <b>Permitir</b>.</p></main>'+
+  '<script>(function(){var ua=navigator.userAgent||"",ios=/iPhone|iPad|iPod/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1);'+
+  'var otro=/CriOS|FxiOS|EdgiOS|OPiOS|OPT\\/|DuckDuckGo|Brave|YaBrowser|FBAN|FBAV|FB_IAB|Instagram|Line\\/|WhatsApp|GSA\\/|Snapchat|Twitter|LinkedInApp|TikTok|Messenger|MicroMessenger|Telegram/i.test(ua);'+
+  'var h=location.hash.replace(/^#/,""),k=(new URLSearchParams(location.search)).get("k")||((h.match(/(?:^|&)k=([^&]+)/)||[])[1]||"");'+
+  'var app="./"+(h?"#"+h:"");document.getElementById("ir").href=app;document.getElementById("ir2").href=app;'+
+  'if(k){document.getElementById("cod").textContent=decodeURIComponent(k);document.getElementById("codBox").hidden=false}'+
+  'if(!ios)document.getElementById("noIOS").hidden=false;else if(otro)document.getElementById("noSafari").hidden=false;'+
+  'document.getElementById("cp").onclick=function(){var u=location.href;try{navigator.clipboard.writeText(u).then(function(){alert("Enlace copiado. Ábrelo en Safari.")},function(){prompt("Copia este enlace y ábrelo en Safari:",u)})}catch(e){prompt("Copia este enlace y ábrelo en Safari:",u)}};'+
+  '})()</'+'script></body></html>';
+}
+/* dirección de la página de instalación de ESTA escuela (lleva el punto de conexión y el código, como el QR del celular) */
+function iphoneLink(){
+  const w=movilUrl();if(!/^https:\/\//.test(w))return '';
+  const base=w.replace(/#.*$/,'').replace(/\?.*$/,'').replace(/index\.html$/,'').replace(/\/?$/,'/');
+  const l=(typeof enlaceEsc==='function'&&enlaceEsc())||'',h=l.includes('#')?l.slice(l.indexOf('#')):'';
+  return base+'iphone.html'+h;
+}
+ACT.iphoneCfg=()=>{
+  const l=iphoneLink();
+  if(!l){toast('Primero publica la app del celular (Ajustes → Celulares → «Publicar ahora»): el iPhone necesita una dirección https.','err');return}
+  openModal('<h2>Instalar SICET en iPhone y iPad</h2>'+
+   '<p>El iPhone <b>no instala</b> archivos que llegan por WhatsApp o correo (solo muestra «código»). Se instala desde <b>Safari</b> con este enlace:</p>'+
+   '<div class="celqr"><div class="qrbox">'+qrSVG(l)+'</div><ol class="pasos-sync">'+
+   '<li>En el iPhone abre la app <b>Cámara</b> y apunta a este código → toca el aviso amarillo (se abre en Safari).</li>'+
+   '<li>En la página toca <b>Abrir SICET</b> → Compartir ↑ → <b>«Agregar a pantalla de inicio»</b> (recomendado), o toca <b>Instalar perfil</b>.</li>'+
+   '<li>Abre SICET desde su ícono y entra con tu <b>usuario y contraseña</b>'+(D.cfg.codigoEsc?' (código de escuela: <b>'+esc(D.cfg.codigoEsc)+'</b>)':'')+'.</li></ol></div>'+
+   '<p class="note">¿Lo vas a mandar por WhatsApp? Manda el <b>enlace</b> y que lo abra con «Abrir en Safari» (mantener presionado el enlace).</p>'+
+   '<div class="mfoot"><button class="btn" data-act="camCopiar" data-u="'+esc(l)+'">Copiar enlace</button><button class="btn" data-act="iphoneArch">Descargar archivo</button><button class="btn" data-act="print">Imprimir</button><button class="btn pri" data-act="closemodal">Cerrar</button></div>');
+};
+/* alternativa: el archivo .mobileconfig (debe abrirse desde la app Archivos, nunca dentro de WhatsApp) */
+ACT.iphoneArch=async()=>{
+  try{const t=await iphoneCfgEscuela();saveFile('SICET-iPhone-'+((slug(D.cfg.escuela||'escuela').slice(0,24))||'escuela')+'.mobileconfig',new Blob([t],{type:'application/x-apple-aspen-config'}));
+    openModal('<h2>Archivo para iPhone</h2><p>Se descargó el archivo <b>.mobileconfig</b>. Importante: si se abre <b>dentro de WhatsApp</b> o en una vista previa solo se ven <b>códigos</b>. Así sí se instala:</p><ol class="pasos-sync"><li>En el iPhone, en WhatsApp toca el archivo → botón <b>Compartir</b> ↑ → <b>«Guardar en Archivos»</b> → Guardar.</li><li>Abre la app <b>Archivos</b> (ícono de carpeta azul) y toca el archivo. Aparece «Perfil descargado».</li><li>Abre <b>Ajustes</b> → <b>Perfil descargado</b> (arriba) → <b>Instalar</b> → código del iPhone → <b>Instalar</b>.</li></ol><p class="note">Más fácil: usa el <b>código QR</b> (Ajustes → Celulares → «Instalador para iPhone») y ábrelo en Safari.</p><div class="mfoot"><button class="btn pri" data-act="closemodal">Entendido</button></div>');
+  }catch(e){toast(e.message||String(e),'err')}
+};
+/* botón en Ajustes → Celulares y en la ventana del celular de cada persona */
+const _nubePanelY=nubePanel;
+nubePanel=function(){const h=_nubePanelY();const a='data-act="celQR">Mostrar QR</button>';return h.includes(a)?h.replace(a,a+'<button class="btn" data-act="iphoneCfg">Instalador para iPhone</button>'):h};
+const _celUserY=celUserModal;
+celUserModal=function(u){_celUserY(u);const f=document.querySelector('#sheet .mfoot');if(f&&CL.on&&movilUrl()&&!f.querySelector('[data-act=iphoneCfg]'))f.insertAdjacentHTML('afterbegin','<button class="btn" data-act="iphoneCfg">Instalador para iPhone</button>')};
+/* el Portal Académico también lo publica: https://…/SICET-iPhone.mobileconfig */
+const _ghPubY=ghPublicar;
+ghPublicar=async function(o,aviso){
+  const url=await _ghPubY(o,aviso);
+  try{(aviso||(()=>{}))('Subiendo la página e instalador para iPhone…');const own=o.own.trim(),rep=(o.rep||'SICET').trim(),tok=o.tok.trim(),n='SICET-iPhone.mobileconfig';
+    const r=await ghReq(tok,'GET','/repos/'+own+'/'+rep);const rama=(r.j&&r.j.default_branch)||'main';
+    const g=await ghReq(tok,'GET','/repos/'+own+'/'+rep+'/contents/'+n+'?ref='+rama),sha=g.ok&&g.j&&g.j.sha?g.j.sha:undefined;
+    await ghReq(tok,'PUT','/repos/'+own+'/'+rep+'/contents/'+n,Object.assign({message:'SICET '+ASX_VERSION+': '+n,content:b64txt(mobileconfigTxt(url,'',await iconoIOS())),branch:rama},sha?{sha}:{}));
+    const n2='iphone.html',g2=await ghReq(tok,'GET','/repos/'+own+'/'+rep+'/contents/'+n2+'?ref='+rama),sha2=g2.ok&&g2.j&&g2.j.sha?g2.j.sha:undefined;
+    await ghReq(tok,'PUT','/repos/'+own+'/'+rep+'/contents/'+n2,Object.assign({message:'SICET '+ASX_VERSION+': '+n2,content:b64txt(iphonePaginaHTML()),branch:rama},sha2?{sha:sha2}:{}));
+  }catch(e){/* opcional */}
+  return url;
+};
+
 /* ====== inicio ====== */
 boot();
 
 </script>
 <script>
 (function(){
- var EMB='4.6.5',ED='movil';
+ var EMB='4.6.7',ED='movil';
  function cmp(a,b){a=String(a).split('.').map(Number);b=String(b).split('.').map(Number);for(var i=0;i<3;i++){var d=(a[i]||0)-(b[i]||0);if(d)return d>0?1:-1}return 0}
  function exec(id){var n=document.getElementById(id);if(!n)return;var s=document.createElement('script');s.textContent=n.textContent;document.head.appendChild(s)}
  function run(){['asx-qr','asx-app'].forEach(exec)}
