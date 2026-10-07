@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>FullScreen</key>
+			<true/>
+			<key>Icon</key>
+			<data>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</data>
+			<key>IsRemovable</key>
+			<true/>
+			<key>Label</key>
+			<string>SICET</string>
+			<key>PayloadDescription</key>
+			<string>Ícono de SICET en la pantalla de inicio</string>
+			<key>PayloadDisplayName</key>
+			<string>SICET (pantalla de inicio)</string>
+			<key>PayloadIdentifier</key>
+			<string>mx.sicet.escuela.webclip.E1593552-998C-41C2-801D-3DDCE6663546</string>
+			<key>PayloadType</key>
+			<string>com.apple.webClip.managed</string>
+			<key>PayloadUUID</key>
+			<string>E1593552-998C-41C2-801D-3DDCE6663546</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>Precomposed</key>
+			<true/>
+			<key>URL</key>
+			<string>https://eangheven.github.io/SICET/</string>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>Agrega SICET (Sistema Integral de Control Escolar Técnico) a la pantalla de inicio. No contiene datos de alumnos ni contraseñas.</string>
+	<key>PayloadDisplayName</key>
+	<string>SICET</string>
+	<key>PayloadIdentifier</key>
+	<string>mx.sicet.escuela.964115D2-C013-49E5-8F63-F959B05F4ABC</string>
+	<key>PayloadOrganization</key>
+	<string>SICET</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>964115D2-C013-49E5-8F63-F959B05F4ABC</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>
