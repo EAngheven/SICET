@@ -580,11 +580,11 @@ table.calgrid thead th span{display:inline-block;max-width:80px;white-space:norm
 @media print{body.print-rcf .rcf-bar{display:none!important}body.print-rcf .rcf{border:0;max-width:none;padding:0}body.print-rcf .sheet>h2{display:none}
  body.print-rcf .rcf *{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 /* ====== tableros KPI ====== */
-.kpi{--k-bg:transparent;--k-card:var(--surf);--k-ink:var(--ink);--k-mut:var(--mut);--k-line:var(--line);--k1:var(--s1);--k2:var(--s2);--k3:var(--s3);--k4:#eda100;--k5:#e87ba4;color:var(--k-ink);margin:14px 0}
+.kpi{--k-bg:transparent;--k-card:var(--surf);--k-ink:var(--ink);--k-mut:var(--mut);--k-line:var(--line);--k1:var(--brand);--k2:var(--s2);--k3:var(--s3);--k4:#eda100;--k5:#e87ba4;color:var(--k-ink);margin:14px 0}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .kpi{--k4:#c98500;--k5:#d55181}}
 :root[data-theme="dark"] .kpi{--k4:#c98500;--k5:#d55181}
 .kpi.oscuro{--k-bg:#0e1a2b;--k-card:#15233a;--k-ink:#ffffff;--k-mut:#b9c4d4;--k-line:#2a3a55;--k1:#3987e5;--k2:#d95926;--k3:#199e70;--k4:#c98500;--k5:#d55181;--P:#2fbf8f;--R:#e0a12a;--F:#ef6b6b;background:var(--k-bg);border-radius:16px;padding:16px;color-scheme:dark}
-.kgrid6{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:12px}
+.kgrid6{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:12px;margin-bottom:12px}
 .kgrid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
 .kgrid2 .kwide{grid-column:1/-1}
 .kcard{background:var(--k-card);border:1px solid var(--k-line);border-radius:14px;padding:14px;display:flex;gap:12px;align-items:center;min-width:0}
@@ -629,6 +629,19 @@ table.calgrid thead th span{display:inline-block;max-width:80px;white-space:norm
   .kgrid6{grid-template-columns:repeat(3,1fr)}.kgrid2{grid-template-columns:1fr 1fr}
 }
 
+.kc-b{flex:1}.kc-v{font-size:clamp(20px,2vw,26px);white-space:nowrap}.kc-t{line-height:1.25}
+.kring{width:56px;height:56px}
+.kpi .ktab tr:hover td,.kpi .ktab tr:hover th{background:color-mix(in srgb,var(--k-line) 55%,transparent)!important;color:var(--k-ink)!important}
+.kpi .ktab td,.kpi .ktab th{background:transparent;color:var(--k-ink)}
+
+.kcard,.kpanel{box-shadow:var(--shadow,none)}
+.kpanel h3{text-transform:none;letter-spacing:0;font-size:15px}
+.kc-t{text-transform:none;letter-spacing:0;font-size:12.5px}
+.kgrid6{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:1050px){.kgrid6{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.kgrid6{grid-template-columns:1fr}}
+.klegend{max-width:440px}
+
 </style>
 <style id="pagestyle"></style>
 </head>
@@ -661,7 +674,7 @@ table.calgrid thead th span{display:inline-block;max-width:80px;white-space:norm
 <script type="text/plain" id="asx-app">
 'use strict';
 const EDITION='movil';
-const ASX_VERSION='4.6.0';
+const ASX_VERSION='4.6.3';
 const APP='SICET';
 const SXLOGO=(id,cls)=>'<svg class="sxlogo '+(cls||'')+'" viewBox="0 0 '+(id==='sx-icon'?'1280 1280':'1290 425')+'" role="img" aria-label="SICET"><use href="#'+id+'"/></svg>';
 /* ====== utilidades ====== */
@@ -912,6 +925,7 @@ function guardOp(op){
   if(op.t==='rsg'){if(!editOculto('riesgo'))return 'Tu cuenta no puede modificar el seguimiento de alumnos en riesgo.';return ''}
   if(op.t==='cal'||op.t==='calMany'){if(!editOculto('calif'))return 'Tu cuenta no puede capturar calificaciones.';return ''}
   if(op.t==='cfg'&&CFG_ADM.includes(op.k))return esAdministrador()?'':'Solo el Administrador puede cambiar esta configuración.';
+  if(op.t==='cfg'&&op.k==='soporte'&&!esAdministrador()){const nv=new Set((op.v||[]).map(k=>k.kid));if((D.cfg.soporte||[]).some(k=>!nv.has(k.kid)))return 'El acceso del Administrador del sistema es permanente: no se puede retirar.';if((op.v||[]).some(k=>k.datos&&k.datos!=='total'))return 'El Administrador del sistema tiene todos los permisos: no se pueden reducir.'}
   if(op.t==='cfg'&&['soporte','updAuto','updAprobada','updDesde','updRech','updAprobadoPor','migPerm'].includes(op.k))return can('actualizar')||(op.k==='migPerm'&&can('usuarios'))?'':'Tu cuenta no puede autorizar actualizaciones.';
   if(op.t==='cfg'){if(op.k!=='elabora'&&!can('ajustes'))return 'Tu cuenta no puede cambiar los ajustes.';return ''}
   const need=PRIV[op.t];if(need&&!can(need))return 'Tu cuenta no tiene permiso para hacer este cambio.';
@@ -3254,7 +3268,7 @@ async function clFlush(){
     while(CL.out.length){
       const lote=CL.out.slice(0,60),por={};
       for(const o of lote){(por[clArea(o.k)]||(por[clArea(o.k)]={}))[k64(o.k)]={t:o.ts,d:DEV,c:b64(await cifrar(_te.encode(JSON.stringify(o)),CL.key))}}
-      for(const [area,obj] of Object.entries(por)){const r=await fetchT(clDUrl(area),{method:'PATCH',body:JSON.stringify(obj)});if(!r.ok)throw new Error('La nube respondió '+r.status+'. Revisa las reglas de Firebase.')}
+      for(const [area,obj] of Object.entries(por)){const r=await fetchT(clDUrl(area),{method:'PATCH',body:JSON.stringify(obj)});if(!r.ok)throw new Error('La nube respondió '+r.status+'. Revisa las reglas de la Nube de SICET.')}
       CL.out=CL.out.slice(lote.length);await IDB.put('kv','clout',CL.out);
     }
     CL.ult=Date.now();CL.err='';
@@ -3318,7 +3332,7 @@ function clStart(){
 }
 async function clIniciar(url,esc,pass,crear){
   url=String(url||'').trim().replace(/\/+$/,'');
-  if(!(/^https:\/\/[^\s]+$/.test(url)||/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?(\/[A-Za-z0-9_-]*)?$/.test(url)))throw new Error('La dirección debe empezar con https:// (la que aparece en la pestaña Data de Firebase).');
+  if(!(/^https:\/\/[^\s]+$/.test(url)||/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?(\/[A-Za-z0-9_-]*)?$/.test(url)))throw new Error('La dirección debe empezar con https:// (la de la Nube de SICET: pestaña Data de la consola).');
   /* v2: los datos viven en una ruta secreta que solo se puede calcular con la clave de la nube */
   const sec=await clSec(pass,esc);let v2=false,base=url+'/e/'+esc,meta=null;
   try{const r=await fetchT(url+'/s/'+sec+'/meta.json');if(r.ok){meta=await r.json();if(meta&&meta.rev)meta=null;v2=true;base=url+'/s/'+sec}}catch(e){/* sin internet: se intenta abajo */}
@@ -3337,7 +3351,7 @@ async function clIniciar(url,esc,pass,crear){
     const salt=b64(crypto.getRandomValues(new Uint8Array(16)));key=await claveSync(pass,salt,210000);
     meta={app:'AsisteMX',v:v2?2:1,salt,iter:210000,prueba:b64(await cifrar(_te.encode('AsisteMX'),key)),creado:new Date().toISOString()};
     const r=await fetchT(base+'/meta.json',{method:'PUT',body:JSON.stringify(meta)});
-    if(!r.ok)throw new Error('La nube rechazó la escritura ('+r.status+'). Revisa las reglas de Firebase.');
+    if(!r.ok)throw new Error('La nube rechazó la escritura ('+r.status+'). Revisa las reglas de la Nube de SICET.');
   }
   CL.cfg={url,esc,pass:EDITION==='movil'?'':pass,sec:v2?sec:'',v2,salt:meta.salt};CL.key=key;CL.on=true;
   await IDB.put('kv','nube',{url,esc,pass:CL.cfg.pass,key,sec:CL.cfg.sec,v2,salt:meta.salt});
@@ -3817,7 +3831,8 @@ const hex8=u8=>Array.from(u8,b=>b.toString(16).padStart(2,'0')).join('');
 const sha256hex=async u8=>hex8(new Uint8Array(await crypto.subtle.digest('SHA-256',u8)));
 async function gzip(u8){const cs=new CompressionStream('gzip'),w=cs.writable.getWriter();w.write(u8).catch(()=>{});w.close().catch(()=>{});return new Uint8Array(await new Response(cs.readable).arrayBuffer())}
 async function gunzip(u8){if(typeof DecompressionStream==='undefined'&&window.pako)return window.pako.ungzip(u8);const ds=new DecompressionStream('gzip'),w=ds.writable.getWriter();w.write(u8).catch(()=>{});w.close().catch(()=>{});return new Uint8Array(await new Response(ds.readable).arrayBuffer())}
-const keyVigente=k=>!k.hasta||Date.now()<Date.parse(k.hasta);
+/* el Administrador del sistema conserva el acceso a las escuelas de forma permanente */
+const keyVigente=k=>true;
 const trustList=()=>EDITION==='movil'?TRUST:(D.cfg.soporte||[]).filter(keyVigente);
 const rechazada=v=>(D.cfg.updRech||[]).includes(v);
 const offline=()=>typeof navigator!=='undefined'&&navigator.onLine===false;
@@ -3979,10 +3994,10 @@ function updDecidirModal(){
   openModal('<h2>Solicitud del Administrador del sistema</h2><p><b>'+esc(x.n||'Administrador')+'</b> pide permiso para actualizar SICET a la versión <b>'+esc(x.ver)+'</b>.</p>'+
    '<p class="note">Llave del Administrador: <code>'+esc(x.kid)+'</code>'+(nueva||!ya?' · <b>aún no tiene acceso</b>: al autorizar se le da acceso para publicar actualizaciones en esta escuela.':'')+'</p>'+
    '<div class="prev" style="white-space:pre-wrap;padding:12px;border:1px solid var(--line);border-radius:10px;max-height:160px;overflow:auto">'+esc(x.notas||'Sin notas.')+'</div>'+
-   '<div class="form"><label class="full">Acceso del Administrador a los datos de la escuela<select id="ud_datos">'+['','lectura','total'].map(v=>'<option value="'+v+'"'+((()=>{const cur=((D.cfg.soporte||[]).find(k=>k.kid===x.kid)||{}).datos;return (cur===undefined?'total':cur)===v})()?' selected':'')+'>'+esc(DAT_N[v])+'</option>').join('')+'</select></label><p class="note full" style="margin:0">Los datos incluyen información de menores. Por omisión el Administrador tiene acceso a todo para poder dar soporte; puedes reducirlo o retirarlo cuando quieras.</p>'+
+   '<div class="form"><input type="hidden" id="ud_datos" value="total"><p class="note full" style="margin:0">El Administrador del sistema tiene <b>todos los permisos</b> en la escuela para dar soporte. Cada vez que entra a los datos queda registrado.</p>'+
    '<label class="full">Cuándo se instala<select id="ud_cuando"><option value="ahora">En cuanto se descargue en cada equipo y celular</option><option value="fecha"'+(x.ventana?' selected':'')+'>A partir de una fecha y hora</option></select></label>'+
    '<label class="full" id="ud_fw" style="display:'+(x.ventana?'':'none')+'">Instalar a partir de<input type="datetime-local" id="ud_fecha" value="'+esc(x.ventana||'')+'"></label>'+
-   '<label class="full">Acceso del Administrador<select id="ud_dur"><option value="1">Solo hoy (24 horas)</option><option value="7" selected>7 días</option><option value="30">30 días</option><option value="0">Hasta que se retire</option></select></label>'+
+   '<input type="hidden" id="ud_dur" value="0"><p class="note full" style="margin:0">El Administrador del sistema conserva el acceso a la escuela de forma permanente (lo necesita para dar soporte y publicar actualizaciones).</p>'+
    (respaldoConfigurado()?'<label class="chk-line full"><input type="checkbox" id="ud_resp" checked>Hacer un respaldo en la carpeta de respaldos antes de autorizar</label>':'<div class="warnbox full">No hay carpeta de respaldos elegida (Ajustes → Respaldo automático). Se recomienda elegirla antes de actualizar.</div>')+'</div>'+
    '<p class="note">Decides como <b>'+esc(ME.nombre)+'</b> ('+esc(rolTxt(ME.rol))+'). Quedará registrado.</p>'+
    '<div class="mfoot"><button class="btn danger" id="ud_no">Rechazar</button><button class="btn" data-act="closemodal">Decidir después</button><button class="btn pri" id="mOk">Autorizar</button></div>');
@@ -4020,8 +4035,8 @@ function updPanel(){
    (!s&&c&&verCmp(c.ver,ASX_VERSION)>0&&!(p&&verCmp(p.ver,c.ver)>=0)?'<div class="warnbox"><b>Solicitud de actualización: '+esc(c.ver)+'</b> (de '+esc(c.n||'el Administrador')+'). <button class="btn sm" data-act="updVer">Ver novedades</button> <button class="btn sm pri" data-act="updDecidir">Ver y decidir</button></div>':'')+
    '<p class="note">El Administrador del sistema es una <b>cuenta independiente</b>: no se crea ni se edita en «Personal con acceso», no ve datos de alumnos y no usa la contraseña de Dirección. Para actualizar necesita que <b>Dirección o Subdirección</b> autoricen su solicitud.</p>'+
    '<h3 style="margin-top:6px">Administrador con acceso</h3>'+
-   (sop.length?'<div class="twrap"><table><thead><tr><th class="l">Nombre</th><th class="l">Llave</th><th class="l">Desde</th><th class="l">Acceso hasta</th><th class="l">Acceso a los datos</th><th></th></tr></thead><tbody>'+sop.map(k=>'<tr><td class="l">'+esc(k.n||'')+'</td><td class="l"><code>'+esc(k.kid)+'</code></td><td class="l">'+esc(k.f||'')+'</td><td class="l">'+(k.hasta?(keyVigente(k)?esc(String(k.hasta).slice(0,10)):'<span class="chip F">vencido</span>'):'sin límite')+'</td><td class="l"><select data-datosk="'+esc(k.kid)+'" style="min-width:170px">'+['','lectura','total'].map(v=>'<option value="'+v+'"'+((k.datos||'')===v?' selected':'')+'>'+esc(DAT_CORTO[v])+'</option>').join('')+'</select></td><td><button class="btn sm danger" data-act="updQuitar" data-kid="'+esc(k.kid)+'">Retirar acceso</button></td></tr>').join('')+'</tbody></table></div>':'<div class="warnbox">Ningún Administrador tiene acceso todavía. Cuando publique su primera actualización llegará aquí una solicitud para que la autorices.</div>')+
-   '<p class="note">«Acceso a los datos» permite al Administrador ver (solo lectura, a distancia) o ver y cambiar todo (en las computadoras de la escuela). Son datos de menores: da este acceso solo si hace falta para dar soporte. Queda registrado abajo y puedes retirarlo cuando quieras.</p><h3 style="margin-top:10px">Accesos del Administrador a los datos</h3><div id="datLog"></div>'+
+   (sop.length?'<div class="twrap"><table><thead><tr><th class="l">Nombre</th><th class="l">Llave</th><th class="l">Desde</th><th class="l">Acceso</th><th class="l">Permisos</th></tr></thead><tbody>'+sop.map(k=>'<tr><td class="l">'+esc(k.n||'')+'</td><td class="l"><code>'+esc(k.kid)+'</code></td><td class="l">'+esc(k.f||'')+'</td><td class="l"><span class="chip P">Permanente</span></td><td class="l"><span class="chip P">Todos los permisos</span></td></tr>').join('')+'</tbody></table></div>':'<div class="warnbox">Ningún Administrador tiene acceso todavía. Cuando publique su primera actualización llegará aquí una solicitud para que la autorices.</div>')+
+   '<p class="note">El Administrador del sistema tiene siempre <b>todos los permisos</b> (ver y cambiar todo, también a distancia en solo lectura) para dar soporte. Son datos de menores: cada acceso queda registrado abajo.</p><h3 style="margin-top:10px">Accesos del Administrador a los datos</h3><div id="datLog"></div>'+
    (ap?'<p class="note">Última autorización: versión '+esc(ap.ver)+' por <b>'+esc(ap.n)+'</b> ('+esc(ap.rol)+') el '+esc(new Date(ap.ts).toLocaleString('es-MX'))+'.</p>':'')+
    '<details style="margin-top:8px"><summary>Autorizar con un código (si el Administrador te lo manda)</summary><div class="form" style="margin-top:8px"><label class="full">Código de autorización (SICETK1…)<textarea id="updKey" rows="2" placeholder="SICETK1.…"></textarea></label></div><div class="actions" style="margin-top:6px"><button class="btn" data-act="updAutorizar">Autorizar soporte técnico</button></div></details>'+
    '<h3 style="margin-top:14px">Cómo se instalan</h3><div class="form"><label class="full">Al llegar una actualización firmada<select data-updmode><option value="aprobar"'+(D.cfg.updAuto!==true?' selected':'')+'>Pedir autorización a Dirección o Subdirección (recomendado)</option><option value="auto"'+(D.cfg.updAuto===true?' selected':'')+'>Instalar automáticamente en todos los equipos y celulares</option></select></label></div>'+
@@ -4182,7 +4197,7 @@ function sopConsolaAvanzada(msg){
    '<div class="form"><label>Día<input type="date" id="sc_ad"></label><label>Hora<input type="time" id="sc_ah"></label><label>Duración aproximada (min)<input type="number" id="sc_adur" min="5" max="480" value="30"></label></div>'+
    '<label>Mensaje (se escribe solo; puedes cambiarlo)<textarea id="sc_atx" rows="3" maxlength="400"></textarea></label>'+
    '<div class="actions"><button class="btn pri" id="sc_av" type="button">Enviar aviso a las escuelas marcadas</button></div><div id="sc_aout" class="note" role="status"></div><div id="sc_alist"></div>'+
-   '<h3 style="margin:12px 0 0">4. Ver los datos de la escuela</h3><p class="note" style="margin:0">Solo si Dirección o Subdirección te dieron «acceso a los datos». A distancia ves una copia de <b>solo lectura</b> (viaja cifrada: solo tu llave la abre). En una computadora de la escuela, con acceso total, puedes ver y cambiar todo.</p><div id="sc_dat"></div>'+
+   '<h3 style="margin:12px 0 0">4. Ver los datos de la escuela</h3><p class="note" style="margin:0">Como Administrador del sistema tienes todos los permisos en cada escuela. A distancia ves una copia de <b>solo lectura</b> (viaja cifrada: solo tu llave la abre). En una computadora de la escuela, con acceso total, puedes ver y cambiar todo.</p><div id="sc_dat"></div>'+
    '<h3 style="margin:12px 0 0">5. Tu llave</h3><p class="note" style="margin:0">Entrega este código solo si una escuela prefiere autorizarte con código:</p><textarea id="sc_cod" rows="2" readonly>'+esc(sopCodigoAut())+'</textarea><div class="actions"><button class="btn sm" id="sc_cp" type="button">Copiar código</button><button class="btn sm pri" id="sc_zip" type="button">Descargar llave en archivo comprimido (.zip)</button><button class="btn sm" id="sc_bk" type="button">Solo el archivo .sicetkey</button></div><div class="actions"><button class="btn sm" id="sc_kpw" type="button">Cambiar mi frase de acceso</button><button class="btn sm" id="sc_knew" type="button">Generar una llave nueva</button></div><div id="sc_kf"></div>'+
    '<button class="link" id="sc_x" type="button">Cerrar sesión del Administrador</button>',{nosop:true,wide:true});
   sopPintarEsc();sopPintarAvisos();sopPintarDatos();
@@ -4299,7 +4314,7 @@ Object.assign(ACT,{
     });
   },
   updQuitar:t=>{
-    if(!can('actualizar'))return;const k=(D.cfg.soporte||[]).find(x=>x.kid===t.dataset.kid);if(!k)return;
+    return toast('El acceso del Administrador del sistema es permanente.','err');const k=(D.cfg.soporte||[]).find(x=>x.kid===t.dataset.kid);if(!k)return;
     confirmDlg('Retirar acceso','«'+(k.n||k.kid)+'» ya no podrá publicar actualizaciones ni avisos en esta escuela.','Retirar acceso',()=>{commit({t:'cfg',k:'soporte',v:(D.cfg.soporte||[]).filter(x=>x.kid!==k.kid)});bitacora('Acceso del Administrador retirado: '+(k.n||k.kid));toast('Acceso retirado.');render()},true);
   },
   updDev:()=>updDispositivos(),
@@ -4385,7 +4400,8 @@ function sopFormClave(modo){
 const REVIEW={on:false,t:''};
 const DAT_N={'':'Sin acceso a los datos (solo actualizar la aplicación)',lectura:'Ver todos los datos (solo lectura, también a distancia)',total:'Todos los permisos (en una computadora de la escuela)'};
 const DAT_CORTO={'':'Sin acceso',lectura:'Solo lectura',total:'Todos los permisos'};
-const datosGrant=kid=>(D.cfg.soporte||[]).find(x=>x.kid===kid&&keyVigente(x))||null;
+/* el Administrador del sistema siempre tiene todos los permisos sobre los datos */
+const datosGrant=kid=>{const k=(D.cfg.soporte||[]).find(x=>x.kid===kid);return k?Object.assign({},k,{datos:'total'}):null};
 async function datosLogGet(){return (await IDB.get('kv','datosLog'))||[]}
 async function datosLogAdd(e){const L=await datosLogGet();L.unshift(Object.assign({t:Date.now()},e));await IDB.put('kv','datosLog',L.slice(0,40))}
 async function datosLogPintar(){
@@ -5152,7 +5168,7 @@ function nubePanel(){
   let h='<div class="panel" id="pCel"><h3>Celulares y nube (Prefectura y docentes)</h3><div class="body">'+
    '<div class="steps" style="margin:0 0 14px"><ol>'+celPaso(CL.on,'1. Activar la nube de la escuela','Una sola vez. Los datos viajan cifrados: la nube solo guarda texto ilegible.')+celPaso(!!url,'2. Publicar la app con una dirección web (recomendado)','Necesario para iPhone, iPad y Mac; también facilita Android. Una sola vez.')+celPaso(CL.on&&nU>0,'3. Conectar el celular de cada persona','Botón «Celular» en Personal con acceso: la persona escanea un código QR y listo. '+nU+' persona'+(nU===1?'':'s')+' con permiso de celular.')+'</ol></div>';
   if(!CL.on&&D.cfg.nubeCentral&&can('ajustes')){
-    h+='<div class="sopcard" style="margin-bottom:12px"><h3>Nube de SICET disponible</h3><p class="note">El Administrador del sistema ya preparó una nube para las escuelas. Actívala con un clic: no hay que crear cuentas ni claves.</p><div class="actions"><button class="btn pri" data-act="nubeCentralOn">Activar la nube de SICET</button></div></div><details><summary class="note">Prefiero usar una nube propia de la escuela (Firebase)</summary>';
+    h+='<div class="sopcard" style="margin-bottom:12px"><h3>Nube de SICET disponible</h3><p class="note">El Administrador del sistema ya preparó una nube para las escuelas. Actívala con un clic: no hay que crear cuentas ni claves.</p><div class="actions"><button class="btn pri" data-act="nubeCentralOn">Activar la nube de SICET</button></div></div><details><summary class="note">Prefiero usar una Nube de SICET propia de la escuela</summary>';
   }
   if(!CL.on){
     h+='<p>Permite que <b>Prefectura y los docentes usen su celular</b> para escanear la entrada, pasar lista y hacer reportes de conducta; sus cambios llegan aquí al momento por internet. Al celular solo llegan nombre, grado, grupo y tecnología de los alumnos (sin teléfonos, domicilio ni datos de salud).</p>'+
@@ -5285,8 +5301,8 @@ function ocultosPanel(){
   const chk=(k,t,u)=>{const fijo=u.rol==='administrador';const on=fijo||(oc(k)[t]||[]).includes(u.id);return '<label class="chk"><input type="checkbox" data-oc="'+k+'|'+t+'|'+u.id+'"'+(on?' checked':'')+(fijo?' disabled':'')+'>'+(t==='u'?'Ver':(k==='calif'?'Capturar':'Editar'))+'</label>'};
   const indTxt=c=>rsgInd().filter(x=>x.c===c).map(x=>x.n+(x.p&&x.p!==1?' | '+x.p:'')).join('\n');
   const um=rsgUmb(),per=calPer();
-  return '<div class="panel ocultos" id="pOcultos"><h3>Pestañas ocultas <span class="chip J">Solo Administrador</span></h3><p class="sub"><b>Alerta temprana</b> (seguimiento de alumnos propensos a reprobar o abandonar) y <b>Calificaciones</b> (3 trimestres) solo las ven el Administrador y las personas que elijas. Son datos sensibles de menores: dalas solo a quien las necesita.</p><div class="body">'+
-   '<div class="twrap"><table><thead><tr><th class="l">Persona</th><th class="l">Cargo</th><th class="l">Alerta temprana</th><th class="l">Calificaciones</th></tr></thead><tbody>'+U0.map(u=>'<tr><td class="l">'+esc(u.nombre)+'</td><td class="l">'+esc(ROL[u.rol]||u.rol)+'</td><td class="l"><div class="chips" style="margin:0">'+chk('riesgo','u',u)+chk('riesgo','e',u)+'</div></td><td class="l"><div class="chips" style="margin:0">'+chk('calif','u',u)+chk('calif','e',u)+'</div></td></tr>').join('')+'</tbody></table></div>'+
+  return '<div class="panel ocultos" id="pOcultos"><h3>Pestañas ocultas <span class="chip J">Solo Administrador</span></h3><p class="sub"><b>Alerta temprana</b> (seguimiento de alumnos propensos a reprobar o abandonar) <b>Calificaciones</b> (3 trimestres), <b>KPI de calificaciones</b> y <b>KPI Global</b> (concentrado de toda la escuela) solo las ven el Administrador y las personas que elijas. Son datos sensibles de menores: dalas solo a quien las necesita.</p><div class="body">'+
+   '<div class="twrap"><table><thead><tr><th class="l">Persona</th><th class="l">Cargo</th><th class="l">Alerta temprana</th><th class="l">Calificaciones</th><th class="l">KPI de calificaciones</th><th class="l">KPI Global</th></tr></thead><tbody>'+U0.map(u=>'<tr><td class="l">'+esc(u.nombre)+'</td><td class="l">'+esc(ROL[u.rol]||u.rol)+'</td><td class="l"><div class="chips" style="margin:0">'+chk('riesgo','u',u)+chk('riesgo','e',u)+'</div></td><td class="l"><div class="chips" style="margin:0">'+chk('calif','u',u)+chk('calif','e',u)+'</div></td><td class="l"><div class="chips" style="margin:0">'+chk('kpical','u',u)+'</div></td><td class="l"><div class="chips" style="margin:0">'+chk('kpiglob','u',u)+'</div></td></tr>').join('')+'</tbody></table></div>'+
    '<p class="note">«Editar» y «Capturar» incluyen «Ver». Las cuentas con cargo de Administrador siempre las ven.</p>'+
    '<h3 style="margin:16px 0 4px">Indicadores de Alerta temprana</h3><p class="note" style="margin:0 0 6px">Uno por renglón. Puedes agregar « | 2» o « | 3» al final para darle más peso (1 = leve, 3 = grave). Además, SICET calcula solo los indicadores de asistencia, calificaciones, conducta y permanencia en el aula.</p>'+
    '<div class="form">'+Object.entries(RSG_CAT).map(([c,n])=>'<label>'+n+'<textarea rows="9" data-rsgcat="'+c+'">'+esc(indTxt(c))+'</textarea></label>').join('')+
@@ -5615,9 +5631,9 @@ async function sopConsola(msg){
     h+='<div class="sopcard"><h3>Esta computadora no tiene datos de una escuela</h3><p class="note">Lo más fácil es <b>ir a la computadora de la escuela</b>, abrir SICET, pulsar «Administrador del sistema» e importar tu llave (.zip): ahí instalas la versión nueva con la contraseña de Dirección, sin códigos.'+(NUBE?' Para actualizar <b>a distancia</b> las escuelas que ya usan la nube de SICET: «Opciones avanzadas» → paso 2 (ya aparecen en la lista).':' Para trabajar a distancia usa «Opciones avanzadas».')+'</p></div>';
   }
   h+='<div class="sopcard"><h3>Nube de SICET (una sola cuenta para todas tus escuelas)</h3>'+(NUBE?'<p class="okline">✓ Configurada: '+esc(NUBE)+'</p><p class="note">Escuelas que ya la usan: <b>'+SOP.esc.filter(e=>e.u===NUBE).length+'</b>'+(SOP.esc.filter(e=>e.u===NUBE).length?' ('+esc(SOP.esc.filter(e=>e.u===NUBE).map(e=>e.n).join(', '))+')':'')+'. Cada escuela aparece sola cuando instalas o autorizas en su computadora con la casilla de la nube marcada.</p><div class="actions"><button class="btn sm" id="sn_ref" type="button">Actualizar lista</button><button class="btn sm" id="sn_cam" type="button">Cambiar dirección</button></div>':
-   '<p class="note">Crea <b>una sola vez</b> una base de datos gratuita en Firebase con tu cuenta de Google y pega aquí su dirección. Después, cada escuela la activa con un clic: nadie más tiene que crear cuentas ni claves.</p><ol class="pasos-sync"><li>Entra a <b>console.firebase.google.com</b> y crea un proyecto llamado, por ejemplo, «SICET».</li><li><b>Build → Realtime Database → Create database</b>, «Start in <b>locked mode</b>».</li><li>Pestaña <b>Rules</b>: borra todo, pega esto y pulsa <b>Publish</b>:<textarea readonly rows="7" id="sn_rules" style="margin-top:6px">'+esc(RULES_FB)+'</textarea></li><li>Pestaña <b>Data</b>: copia la dirección (https://….firebaseio.com o …firebasedatabase.app) y pégala aquí.</li></ol>')+
+   '<p class="note">Crea <b>una sola vez</b> la Nube de SICET (gratuita, con tu cuenta de Google) y pega aquí su dirección. Después, cada escuela la activa con un clic: nadie más tiene que crear cuentas ni claves.</p><ol class="pasos-sync"><li>Entra a <b>console.firebase.google.com</b> y crea un proyecto llamado, por ejemplo, «SICET».</li><li><b>Build → Realtime Database → Create database</b>, «Start in <b>locked mode</b>».</li><li>Pestaña <b>Rules</b>: borra todo, pega esto y pulsa <b>Publish</b>:<textarea readonly rows="7" id="sn_rules" style="margin-top:6px">'+esc(RULES_FB)+'</textarea></li><li>Pestaña <b>Data</b>: copia la dirección (https://….firebaseio.com o …firebasedatabase.app) y pégala aquí.</li></ol>')+
    '<div id="sn_form"'+(NUBE?' hidden':'')+'><label class="note">Dirección de la nube de SICET<input id="sn_url" value="'+esc(NUBE)+'" placeholder="https://sicet-xxxx-default-rtdb.firebaseio.com" style="width:100%;margin-top:4px"></label><div class="actions" style="margin-top:6px"><button class="btn pri" id="sn_save" type="button">Guardar</button></div></div>'+
-   '<p class="note">Cada escuela queda en su propio espacio, cifrado con su propia clave: ni tú ni otras escuelas pueden leer sus datos (salvo que Dirección te dé acceso). El plan gratuito de Firebase admite hasta 100 conexiones al mismo tiempo (cada celular abierto cuenta); con muchas escuelas activa el plan de pago por uso (Blaze).</p></div>';
+   '<p class="note">Cada escuela queda en su propio espacio, cifrado con su propia clave: otras escuelas no pueden leer sus datos; tú, como Administrador del sistema, tienes todos los permisos para dar soporte. El plan gratuito de la Nube de SICET admite hasta 100 conexiones al mismo tiempo (cada celular abierto cuenta); con muchas escuelas activa el plan de pago por uso (Blaze).</p></div>';
   h+='<div class="sopcard"><h3>Tu llave</h3><p class="note">Guárdala en tu USB o en tu nube personal: con ella entras en cualquier computadora.</p><div class="actions"><button class="btn sm pri" id="sc_zip" type="button">Descargar mi llave (.zip)</button><button class="btn sm" id="sc_kpw" type="button">Cambiar mi frase de acceso</button></div><div id="sc_kf"></div></div>'+
    '<div class="actions" style="justify-content:space-between"><button class="btn" id="sp_av" type="button">Opciones avanzadas (otras escuelas, avisos)</button><button class="link" id="sc_x" type="button">Cerrar sesión del Administrador</button></div>';
   overlay(h,{nosop:true,wide:true});
@@ -5700,7 +5716,7 @@ Object.assign(ACT,{
 async function sopNubeGet(){return (await IDB.get('kv','sopNube'))||''}
 async function sopNubeProbar(url){
   url=String(url||'').trim().replace(/\/+$/,'');
-  if(!/^https:\/\/[^\s]+$/.test(url)&&!/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(url))throw new Error('La dirección debe empezar con https:// (la que aparece en la pestaña Data de Firebase).');
+  if(!/^https:\/\/[^\s]+$/.test(url)&&!/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(url))throw new Error('La dirección debe empezar con https:// (la de la Nube de SICET: pestaña Data de la consola).');
   let r;try{r=await fetchT(url+'/dir/'+SOP.rec.kid+'.json?shallow=true',null,12000)}catch(e){throw new Error('No se pudo conectar con esa dirección. Revisa internet y la dirección.')}
   if(r.status===401||r.status===403)throw new Error('La nube bloqueó la lectura: pega las reglas de abajo en la pestaña Rules y pulsa Publish.');
   if(!r.ok)throw new Error('La nube respondió '+r.status+'.');
@@ -5965,7 +5981,7 @@ nubePanel=function(){
   return '<div class="panel" id="pCel"><h3>Celulares (Prefectura, docentes y demás personal)</h3><div class="body">'+
    '<p><b>Cada persona entra con su mismo usuario y contraseña.</b> No hay que mandar códigos secretos ni escanear nada. <span class="'+e.cls+'">● '+esc(e.txt)+'</span></p>'+
    '<div class="celgrid"><div class="celcard"><h4>1. '+PORTAL_N+'</h4>'+(url?'<p class="okline">✓ <a href="'+esc(url)+'" target="_blank" rel="noopener">'+esc(url)+'</a></p><p class="note">Con esta dirección (https) la cámara funciona en Android y iPhone.</p>':'<p class="note">Publícalo <b>una sola vez</b> en GitHub (repositorio propio de SICET). Así la cámara funciona en Android y iPhone.</p>')+'<div class="actions">'+(url?'<button class="btn pri" data-act="ghActualizar">Actualizar la app del portal</button>':'<button class="btn pri" data-act="ghPub">Publicar ahora</button>')+'<a class="btn" target="_blank" rel="noopener" href="'+(GH_CFG_C&&GH_CFG_C.own?'https://github.com/'+esc(GH_CFG_C.own)+'/'+esc(GH_CFG_C.rep||GH_REP0):'https://github.com/'+GH_OWN0+'/'+GH_REP0)+'">Ir a GitHub</a>'+(url?'<button class="btn" data-act="ghPub">Publicar ahora</button>':'')+'</div><p class="note" id="ghAv" role="status"></p></div>'+
-   '<div class="celcard"><h4>2. Código de la escuela</h4>'+(cod?'<div class="codigo" style="font-size:26px">'+esc(cod)+'</div><p class="note">Las personas lo escriben una sola vez en la app junto con su usuario y contraseña.</p>':(COD_REGLAS?'<p class="note">Para usar código hay que actualizar las <b>reglas</b> de la base en Firebase (una sola vez): Firebase → Realtime Database → Rules → pega las reglas nuevas → Publish. Mientras tanto, <b>el enlace del paso 3 funciona igual</b>.</p><textarea readonly rows="3" id="celRules">'+esc(RULES_FB)+'</textarea><div class="actions"><button class="btn sm" data-act="copytxt2" data-t="celRules">Copiar reglas</button><button class="btn sm" data-act="accForzar">Ya las actualicé</button></div>':'<p class="note">Generando el código… (necesita internet)</p>'))+'</div>'+
+   '<div class="celcard"><h4>2. Código de la escuela</h4>'+(cod?'<div class="codigo" style="font-size:26px">'+esc(cod)+'</div><p class="note">Las personas lo escriben una sola vez en la app junto con su usuario y contraseña.</p>':(COD_REGLAS?'<p class="note">Para usar código hay que actualizar las <b>reglas</b> de la Nube de SICET (una sola vez): consola de la nube (console.firebase.google.com) → Realtime Database → Rules → pega las reglas nuevas → Publish. Mientras tanto, <b>el enlace del paso 3 funciona igual</b>.</p><textarea readonly rows="3" id="celRules">'+esc(RULES_FB)+'</textarea><div class="actions"><button class="btn sm" data-act="copytxt2" data-t="celRules">Copiar reglas</button><button class="btn sm" data-act="accForzar">Ya las actualicé</button></div>':'<p class="note">Generando el código… (necesita internet)</p>'))+'</div>'+
    '<div class="celcard"><h4>3. Mandar el enlace</h4><p class="note">'+nU+' persona'+(nU===1?'':'s')+' con permiso de celular. Manda el enlace por WhatsApp al grupo del personal: no es secreto (sin contraseña no entra nadie).</p>'+(link?'<div class="actions"><a class="btn pri" target="_blank" rel="noopener" href="https://wa.me/?text='+encodeURIComponent('SICET en tu celular:\n1) Abre este enlace: '+link+'\n2) Entra con tu usuario y contraseña de SICET.\n3) Para tenerla como app: en iPhone Compartir → «Agregar a pantalla de inicio»; en Android menú ⋮ → «Instalar app».'+(cod?'\nCódigo de la escuela: '+cod:''))+'">Enviar por WhatsApp</a><button class="btn" data-act="celQR">Mostrar QR</button></div>':'<p class="note">Primero publica la app (paso 1).</p>')+'</div></div>'+
    (link?'<label class="note" style="display:block;margin-top:10px">Enlace de la app para esta escuela<textarea id="celLink" rows="2" readonly style="margin-top:4px">'+esc(link)+'</textarea></label><div class="actions" style="margin-top:6px"><button class="btn sm" data-act="copytxt2" data-t="celLink">Copiar enlace</button></div>':'')+
    '<p class="note" style="margin-top:10px">Quién puede entrar desde el celular se marca en cada persona (Ajustes → Personal con acceso → Editar → «Puede entrar desde el celular»). Si alguien cambia su contraseña, la nueva sirve en el celular en unos minutos.</p>'+
@@ -6413,17 +6429,17 @@ function segPanel(){
    fila(true,'Bloqueo por intentos fallidos','5 intentos → espera de 30 s que crece hasta 15 min, en la computadora, al desbloquear y en el celular.')+
    fila(true,'Bloqueo por inactividad','La sesión se bloquea sola tras '+Math.round(idleMs()/60000)+' minutos sin uso (se cambia en Ajustes).')+
    fila(true,'Actualizaciones firmadas','Solo se instalan versiones firmadas con la llave del Administrador y autorizadas por Dirección.')+
-   fila(true,'Datos cifrados al viajar','Lo que va a la nube y a la carpeta compartida va cifrado (AES-256): Google/Firebase solo ve texto ilegible.')+
-   fila(true,'Protección contra fuga de datos','La aplicación solo puede conectarse con Firebase y GitHub. Si alguien lograra meter código, le sería mucho más difícil sacar datos hacia otro sitio.')+
+   fila(true,'Datos cifrados al viajar','Lo que va a la nube y a la carpeta compartida va cifrado (AES-256): la Nube de SICET solo guarda texto ilegible.')+
+   fila(true,'Protección contra fuga de datos','La aplicación solo puede conectarse con la Nube de SICET y GitHub. Si alguien lograra meter código, le sería mucho más difícil sacar datos hacia otro sitio.')+
    (CL.on?(v2?fila(true,'Nube reforzada (v2)','Los datos están en una ruta secreta: con el enlace o el código de la escuela nadie puede leerlos, copiarlos ni borrarlos.'):
-     fila(false,'Actualiza las reglas de Firebase (una sola vez)','Hoy cualquiera con el enlace de la escuela podría descargar los datos cifrados o borrarlos. Firebase → Realtime Database → Rules → borra todo, pega las reglas nuevas → Publish → aquí pulsa «Ya las actualicé».<br><b>Si varias escuelas usan la misma nube, primero actualiza SICET en todas.</b>')+
+     fila(false,'Actualiza las reglas de la Nube de SICET (una sola vez)','Hoy cualquiera con el enlace de la escuela podría descargar los datos cifrados o borrarlos. Consola de la nube (console.firebase.google.com) → Realtime Database → Rules → borra todo, pega las reglas nuevas → Publish → aquí pulsa «Ya las actualicé».<br><b>Si varias escuelas usan la misma nube, primero actualiza SICET en todas.</b>')+
      (v2?'':'<textarea readonly rows="4" id="segRules" style="width:100%;margin:6px 0">'+esc(RULES_FB)+'</textarea><div class="actions"><button class="btn sm" data-act="copytxt2" data-t="segRules">Copiar reglas</button><button class="btn sm pri" data-act="segRevisar">Ya las actualicé</button></div>')):fila(null,'Nube de la escuela','No está activada; los datos solo están en las computadoras.'))+
    fila(null,'Si alguien deja la escuela','Desactiva su cuenta (Ajustes → Personal → Editar → «Cuenta activa»). Si tenía la app en su celular o conoce la clave de la nube, pulsa «Renovar la clave de la nube»: se desconectan todos los celulares y cada quien vuelve a entrar con su usuario y contraseña.')+
    '</ul>'+
    (v2&&CL.cfg.pass&&esAdmGen()?'<div class="actions" style="margin:6px 0 12px"><button class="btn danger" data-act="segRenovar">Renovar la clave de la nube</button></div>':'')+
    '<h4 style="margin:10px 0 4px">Lo que depende de la escuela</h4><ul class="seglist">'+
    fila(null,'Cuentas de Windows con contraseña','Que cada computadora tenga contraseña de Windows y que los alumnos no usen la sesión del personal. Activa BitLocker (Windows Pro) o el cifrado del dispositivo.')+
-   fila(null,'Verificación en dos pasos','Actívala en la cuenta de Google de Firebase y en la cuenta de GitHub del Portal Académico.')+
+   fila(null,'Verificación en dos pasos','Actívala en la cuenta de Google de la Nube de SICET y en la cuenta de GitHub del Portal Académico.')+
    fila(null,'Contraseñas personales','Que nadie comparta su usuario. Cada quien debe usar contraseñas de 10 o más caracteres.')+
    fila(null,'Respaldos cifrados','Descarga el respaldo con contraseña y guárdalo fuera de la computadora.')+
    fila(null,'Windows y Chrome actualizados','Las actualizaciones del sistema y del navegador cierran agujeros de seguridad.')+
@@ -6436,7 +6452,7 @@ function segPanel(){
 const _ajustesS=VIEWS.ajustes;
 VIEWS.ajustes=function(){const h=_ajustesS();const p=segPanel();if(!p)return h;const i=h.indexOf('<div class="panel" id="pCel">');return i>=0?h.slice(0,i)+p+h.slice(i):h+p};
 Object.assign(ACT,{
-  segRevisar:async()=>{toast('Revisando la nube…');try{await clV2Revisar()}catch(e){}if(CL.cfg&&CL.cfg.v2){toast('Listo: la nube quedó reforzada.')}else toast(CL_REGLAS==='viejas'?'Firebase todavía tiene las reglas anteriores. Pega las nuevas y pulsa Publish.':'No se pudo comprobar. Revisa internet.','err');render()},
+  segRevisar:async()=>{toast('Revisando la nube…');try{await clV2Revisar()}catch(e){}if(CL.cfg&&CL.cfg.v2){toast('Listo: la nube quedó reforzada.')}else toast(CL_REGLAS==='viejas'?'La Nube de SICET todavía tiene las reglas anteriores. Pega las nuevas y pulsa Publish.':'No se pudo comprobar. Revisa internet.','err');render()},
   segRenovar:()=>{
     openModal('<h2>Renovar la clave de la nube</h2><div class="warnbox">Se desconectan <b>todos los celulares</b> y las demás computadoras conectadas a la nube. Cada persona vuelve a entrar con su usuario y contraseña; las otras computadoras se conectan con la clave nueva.</div><div class="form"><label class="full">Clave nueva (mínimo 12 caracteres, con letras y números)<input id="rn1" type="password" autocomplete="new-password"></label><label class="full">Repítela<input id="rn2" type="password" autocomplete="new-password"></label></div><p class="note">Guárdala en un lugar seguro: la necesitarás para conectar otras computadoras.</p><p class="note" id="rnAv"></p><div class="mfoot"><button class="btn" data-act="closemodal">Cancelar</button><button class="btn danger" id="mOk">Renovar</button></div>');
     $('#mOk').onclick=async()=>{const a=$('#rn1').value;if(a.length<12||!/[A-Za-z]/.test(a)||!/\d/.test(a))return toast('Mínimo 12 caracteres, con letras y números.','err');if(a!==$('#rn2').value)return toast('Las claves no coinciden.','err');
@@ -6826,9 +6842,10 @@ ACT.alRepetidos=()=>{
    estado (aprobado / en riesgo / reprobado) usa los colores de estado de la escuela y siempre va con texto. */
 Object.assign(PREF0,{kpiEstilo:'kpi',kpiTema:'oscuro',kpiGraf:'barras',kpiDia:'lineas',kpiTablas:true});
 const kp=k=>PREF[k]!==undefined&&PREF[k]!==''?PREF[k]:PREF0[k];
-const KPI_CAT=['var(--k1)','var(--k2)','var(--k3)','var(--k4)','var(--k5)'];
+const KPI_CAT=['var(--s1)','var(--s2)','var(--s3)','var(--k4)','var(--k5)'];
 const pct1=v=>v==null||isNaN(v)?'—':(Math.round(v*10)/10).toFixed(1)+'%';
-const kWrap=(h)=>'<div class="kpi '+(kp('kpiTema')==='oscuro'?'oscuro':'')+'">'+h+'</div>';
+/* los tableros siguen el tema y los colores que cada usuario eligió (claro, oscuro, esquema y color de la escuela) */
+const kWrap=(h)=>'<div class="kpi">'+h+'</div>';
 /* anillo de avance: pct 0-100; est P/R/F (estado) o '' (serie 1) */
 function vzRing(pct,est){
   const r=25,C=2*Math.PI*r,p=Math.max(0,Math.min(100,pct||0)),col=est?'var(--'+est+')':'var(--k1)';
@@ -6898,7 +6915,7 @@ VIEWS.panel=function(){
 };
 /* --- Dashboard KPI de calificaciones --- */
 U.kc={tr:'F',gr:'',gp:'',sx:'',tec:'',s:''};const _initV=initU;initU=function(){_initV();U.kc={tr:'F',gr:'',gp:'',sx:'',tec:'',s:''}};
-const verKpiCal=()=>EDITION!=='movil'&&!!ME&&!!ME.id&&(verOculto('calif')||puedeCalLim());
+const verKpiCal=()=>EDITION!=='movil'&&!!ME&&!!ME.id&&verOculto('kpical');
 const _tabsV=tabsFor;
 tabsFor=function(){const t=_tabsV();if(verKpiCal()&&!t.some(x=>x[0]==='kpical')){const i=t.findIndex(y=>y[0]==='ajustes');const x=['kpical','KPI de calificaciones'];if(i<0)t.push(x);else t.splice(i,0,x)}return t};
 VIEWS.kpical=()=>{
@@ -6953,9 +6970,8 @@ ACT.kcRep=()=>{
 const _prefV=prefPanel;
 prefPanel=function(){
   const sel=(k,L)=>'<select data-pref="'+k+'">'+L.map(([v,t])=>'<option value="'+v+'"'+(String(kp(k))===v?' selected':'')+'>'+t+'</option>').join('')+'</select>';
-  return _prefV()+'<div class="panel" id="pKpiAp"><h3>Apariencia de los tableros (Panel y KPI)</h3><p class="sub">Elige cómo se ven el Panel de asistencia y el KPI de calificaciones en este equipo.</p><div class="body form">'+
+  return _prefV()+'<div class="panel" id="pKpiAp"><h3>Apariencia de los tableros (Panel y KPI)</h3><p class="sub">Elige cómo se ven el Panel de asistencia y los KPI en este equipo. Los colores siguen el tema de arriba (claro u oscuro) y el color de la escuela.</p><div class="body form">'+
    '<label>Estilo del Panel'+sel('kpiEstilo',[['kpi','Moderno (tarjetas KPI y gráficas)'],['clasico','Clásico (tablas)']])+'</label>'+
-   '<label>Fondo de los tableros'+sel('kpiTema',[['oscuro','Oscuro (tipo tablero)'],['app','Igual que la aplicación']])+'</label>'+
    '<label>Gráficas por grado, grupo y sexo'+sel('kpiGraf',[['barras','Barras horizontales'],['columnas','Columnas'],['pastel','Pastel'],['dona','Dona']])+'</label>'+
    '<label>Asistencia por día'+sel('kpiDia',[['lineas','Línea de tendencia'],['columnas','Columnas']])+'</label>'+
    '<label>Tablas debajo del Panel'+sel('kpiTablas',[['true','Mostrar (plegadas)'],['no','Ocultar']])+'</label>'+
@@ -6967,13 +6983,85 @@ let _detPrint=[];
 window.addEventListener('beforeprint',()=>{_detPrint=[...document.querySelectorAll('main details:not([open])')];_detPrint.forEach(d=>d.open=true)});
 window.addEventListener('afterprint',()=>{_detPrint.forEach(d=>d.open=false);_detPrint=[]});
 
+/* ====== KPI Global: concentrado de toda la escuela (pestaña oculta) ====== */
+const verKpiGlob=()=>EDITION!=='movil'&&!!ME&&!!ME.id&&verOculto('kpiglob');
+const _tabsW=tabsFor;
+tabsFor=function(){const t=_tabsW();if(verKpiGlob()&&!t.some(x=>x[0]==='kpiglob')){const i=t.findIndex(y=>y[0]==='ajustes');const x=['kpiglob','KPI Global'];if(i<0)t.push(x);else t.splice(i,0,x)}return t};
+const MESC=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+function kpiGlobalDatos(){
+  const c=D.cfg,hoy=todayISO(),ini=c.inicio,fin=hoy<c.fin?hoy:c.fin,mn=calMinV();
+  const al=Object.values(D.al).filter(a=>!a.baja),bajas=Object.values(D.al).filter(a=>a.baja).length,ids=new Set(al.map(a=>a.id));
+  const {S,T}=compute(ini,fin,a=>ids.has(a.id)),tA=sumO(Object.values(S));
+  /* asistencia por mes */
+  const M=new Map();Object.keys(T).sort().forEach(d=>{const k=d.slice(0,7);if(!M.has(k))M.set(k,{P:0,R:0,F:0,J:0});const o=M.get(k),x=T[d];o.P+=x.P;o.R+=x.R;o.F+=x.F;o.J+=x.J});
+  const meses=[...M.entries()].map(([k,o])=>({l:MESC[Number(k.slice(5))-1]+' '+k.slice(2,4),v:pctO(o),tip:'<b>'+MESC[Number(k.slice(5))-1]+' '+k.slice(0,4)+'</b><br>Asistencia '+pct1(pctO(o))+'<br>'+(o.F+o.J)+' faltas · '+o.R+' retardos'}));
+  /* calificaciones (anual con lo capturado) */
+  const CA=new Map();al.forEach(a=>{const r=calAlumno(a,'F');if(r.prom!=null)CA.set(a.id,r)});
+  const conCal=[...CA.values()],repr=conCal.filter(r=>r.prom<mn).length,prom=avg(conCal.map(r=>r.prom));
+  /* conducta y seguimiento */
+  const cond=Object.values(D.cond||{}).filter(r=>r&&r.d>=ini&&r.d<=fin),condAl={};cond.forEach(r=>{condAl[r.al]=(condAl[r.al]||0)+1});
+  const CM=new Map();cond.forEach(r=>{const k=r.d.slice(0,7);CM.set(k,(CM.get(k)||0)+1)});
+  const condMes=[...CM.entries()].sort().map(([k,n])=>({l:MESC[Number(k.slice(5))-1],v:n,tip:'<b>'+MESC[Number(k.slice(5))-1]+' '+k.slice(0,4)+'</b><br>'+n+' reportes'}));
+  const rsgAct=Object.entries(D.rsg||{}).filter(([id,r])=>ids.has(id)&&r&&r.est!=='cer'&&r.est!=='cerrado');
+  /* entrega de calificaciones del periodo abierto */
+  const trA=typeof trAbierto==='function'?trAbierto():1;let listas=0,env=0,aut=0;
+  Object.values(D.users).filter(u=>u.activo!==false&&asigsU(u).length).forEach(u=>calUnidades(u).forEach(un=>{listas++;const e=(D.cenv||{})[envId(trA,un.g,un.s)];if(e&&!e.dev)env++;if(e&&e.aut)aut++}));
+  /* personal */
+  const per=Object.values(D.users).filter(u=>u.activo!==false&&u.rol!=='administrador'),ausHoy=Object.values(D.per||{}).filter(r=>r&&r.a<=hoy&&(r.b||r.a)>=hoy).length;
+  /* por grupo */
+  const G=new Map();al.forEach(a=>{const k=String(a.gr)+a.gp;if(!G.has(k))G.set(k,{k,l:grp(a),gr:a.gr,n:0,H:0,M:0,P:0,R:0,F:0,J:0,cal:0,rep:0,sum:0,cond:0,rsg:0});const g=G.get(k);g.n++;g[a.sx==='H'?'H':'M']++;const s=S[a.id];if(s){g.P+=s.P;g.R+=s.R;g.F+=s.F;g.J+=s.J}
+    const r=CA.get(a.id);if(r){g.cal++;g.sum+=r.prom;if(r.prom<mn)g.rep++}g.cond+=condAl[a.id]||0;if((D.rsg||{})[a.id]&&D.rsg[a.id].est!=='cer'&&D.rsg[a.id].est!=='cerrado')g.rsg++});
+  const grupos=[...G.values()].sort((a,b)=>a.k.localeCompare(b.k,'es',{numeric:true})).map(g=>Object.assign(g,{asis:pctO(g),prom:g.cal?g.sum/g.cal:null,prep:g.cal?g.rep/g.cal*100:null}));
+  return {al,bajas,tA,meses,conCal,repr,prom,cond,condAl,condMes,rsgAct,trA,listas,env,aut,per,ausHoy,grupos,hab:schoolDays(ini,fin).length,dias:Object.keys(T).length,ini,fin};
+}
+VIEWS.kpiglob=()=>{
+  if(!verKpiGlob())return '<div class="empty">No tienes acceso a esta sección.</div>';
+  const K=kpiGlobalDatos(),c=D.cfg,mn=calMinV(),asis=pctO(K.tA),punt=K.tA.P+K.tA.R?K.tA.P/(K.tA.P+K.tA.R)*100:null,pRep=K.conCal.length?K.repr/K.conCal.length*100:null;
+  const estA=v=>v==null?'':v<c.umbralPct?'F':v<Math.min(99,c.umbralPct+5)?'R':'P',estR=v=>v==null?'':v>=15?'F':v>=5?'R':'P';
+  const share=['pastel','dona'].includes(kp('kpiGraf'));
+  const H=K.al.filter(a=>a.sx==='H').length,Mu=K.al.length-H;
+  const porGrado=D.cfg.grados.map(g=>{const L=K.al.filter(a=>String(a.gr)===String(g));return {l:g+'°',v:L.length,n:L.length,tip:'<b>'+g+'° grado</b><br>'+L.length+' alumnos · '+L.filter(a=>a.sx==='H').length+' H · '+L.filter(a=>a.sx==='M').length+' M'}}).filter(x=>x.v);
+  const repGrado=D.cfg.grados.map(g=>{const L=K.grupos.filter(x=>String(x.gr)===String(g)),cal=L.reduce((t,x)=>t+x.cal,0),rep=L.reduce((t,x)=>t+x.rep,0);return {l:g+'°',v:cal?rep/cal*100:0,n:rep,est:estR(cal?rep/cal*100:null),tip:'<b>'+g+'° grado</b><br>'+(cal?pct1(rep/cal*100)+' reprobados ('+rep+' de '+cal+')':'Sin calificaciones')}}).filter(x=>x.tip.indexOf('Sin')<0);
+  const asisGrado=D.cfg.grados.map(g=>{const L=K.grupos.filter(x=>String(x.gr)===String(g)),o=sumO(L);const v=pctO(o);return {l:g+'°',v:v||0,n:o.F+o.J,est:estA(v),tip:'<b>'+g+'° grado</b><br>Asistencia '+pct1(v)}}).filter(x=>x.v);
+  const atender=K.grupos.map(g=>{let s=0;if(g.asis!=null&&g.asis<c.umbralPct)s+=2;if(g.prep!=null&&g.prep>=15)s+=2;else if(g.prep!=null&&g.prep>=5)s++;if(g.cond>=g.n*0.3)s++;return Object.assign({},g,{s})}).sort((a,b)=>b.s-a.s||(b.prep||0)-(a.prep||0));
+  const tabla='<table class="ktab"><thead><tr><th class="l">Grupo</th><th>Alumnos</th><th>H / M</th><th>Asistencia</th><th>Promedio</th><th>Reprobación</th><th>Reportes</th><th>Seguimiento</th></tr></thead><tbody>'+
+   atender.map(g=>'<tr><td class="l"><b>'+esc(g.l)+'</b></td><td>'+g.n+'</td><td>'+g.H+' / '+g.M+'</td><td>'+(g.asis==null?'—':'<span class="chip '+estA(g.asis)+'">'+pct1(g.asis)+'</span>')+'</td><td>'+(g.prom==null?'—':'<b class="c'+calEst(g.prom)+'">'+f1(g.prom)+'</b>')+'</td><td>'+(g.prep==null?'—':'<span class="chip '+estR(g.prep)+'">'+pct1(g.prep)+'</span>')+'</td><td>'+g.cond+'</td><td>'+g.rsg+'</td></tr>').join('')+'</tbody></table>';
+  return '<div class="head"><div><h2>KPI Global <span class="chip J">Confidencial</span></h2><p>Concentrado de toda la escuela · ciclo '+esc(c.ciclo||'')+' · del '+esc(fd(K.ini))+' al '+esc(fd(K.fin))+'. Los grupos aparecen ordenados del que más necesita atención al que menos.</p></div><div class="actions"><button class="btn" data-act="kgRep">Descargar concentrado (PDF o Excel)</button></div></div>'+
+   kWrap('<div class="kgrid6">'+
+    kCard({t:'Matrícula',v:K.al.length,sub:H+' H · '+Mu+' M'+(K.bajas?' · '+K.bajas+' bajas':'')})+
+    kCard({t:'Asistencia del ciclo',v:pct1(asis),sub:K.dias+' de '+K.hab+' días con lista',ring:asis,est:estA(asis)})+
+    kCard({t:'Puntualidad',v:pct1(punt),sub:K.tA.R+' retardos',ring:punt,est:punt==null?'':punt<85?'F':punt<93?'R':'P'})+
+    kCard({t:'Aprobación',v:pRep==null?'—':pct1(100-pRep),sub:K.conCal.length?K.repr+' de '+K.conCal.length+' reprobados':'sin calificaciones',ring:pRep==null?undefined:100-pRep,est:estR(pRep)})+
+    kCard({t:'Promedio general',v:f1(K.prom),sub:'anual (lo capturado)',est:K.prom==null?'':calEst(K.prom)})+
+    kCard({t:'Reportes de conducta',v:K.cond.length,sub:(n3=>n3+(n3===1?' alumno':' alumnos')+' con 3 o más')(Object.values(K.condAl).filter(n=>n>=3).length),est:K.cond.length?'R':''})+
+    kCard({t:'Alerta temprana',v:K.rsgAct.length,sub:K.rsgAct.length===1?'alumno en seguimiento':'alumnos en seguimiento',est:K.rsgAct.length?'R':''})+
+    kCard({t:'Entrega de calificaciones',v:K.listas?Math.round(K.env/K.listas*100)+'%':'—',sub:esc(calPer()[K.trA-1])+': '+K.env+' de '+K.listas+' enviadas · '+K.aut+' autorizadas',ring:K.listas?K.env/K.listas*100:undefined})+
+    kCard({t:'Personal',v:K.per.length,sub:K.ausHoy?K.ausHoy+' con permiso hoy':'nadie con permiso hoy'})+'</div>'+
+   '<div class="kgrid2">'+
+    kPanel('Asistencia por mes','% de asistencia de cada mes del ciclo.',K.meses.length?vzChart(K.meses,{tipo:'lineas',W:1000,H:240,fmt:pct1,min:Math.max(0,Math.floor(Math.min(...K.meses.map(x=>x.v||0))/10)*10-10),max:100,axf:v=>Math.round(v)+'%'}):'<div class="empty">Aún no hay listas en el ciclo.</div>',' kwide')+
+    kPanel('Matrícula por grado','Alumnos activos.',vzChart(porGrado,{fmt:v=>String(v),share:true,u:'alumnos'}))+
+    kPanel('Matrícula por sexo','Alumnos activos.',vzChart([{l:'Hombres',v:H,n:H},{l:'Mujeres',v:Mu,n:Mu}],{fmt:v=>String(v),share:true,u:'alumnos'}))+
+    kPanel('Asistencia por grado',share?'Reparto de las faltas.':'% de asistencia.',vzChart(asisGrado,{fmt:pct1,max:100,share,u:'faltas'}))+
+    kPanel('Reprobación por grado',share?'Reparto de los reprobados.':'% de alumnos reprobados.',vzChart(repGrado,{fmt:pct1,max:100,share,u:'reprobados',vacio:'Nadie reprobado.'}))+
+    kPanel('Reportes de conducta por mes','Cantidad de reportes.',K.condMes.length?vzChart(K.condMes,{tipo:'columnas',fmt:v=>String(v)}):'<div class="empty">Sin reportes en el ciclo.</div>')+
+    kPanel('Concentrado por grupo','Asistencia, calificaciones, conducta y alumnos en seguimiento.',tabla,' kwide')+
+   '</div>');
+};
+ACT.kgRep=()=>{
+  const K=kpiGlobalDatos(),asis=pctO(K.tA),r1=v=>v==null?'':Math.round(v*10)/10;
+  reportModal({id:'kpiglob',title:'KPI Global de la escuela',lines:['Ciclo '+(D.cfg.ciclo||'')+' · del '+fd(K.ini)+' al '+fd(K.fin),'Confidencial: uso interno de la escuela'],sheets:[
+    {name:'Resumen',title:'Indicadores generales',cols:[C('Indicador',3),C('Valor',1.6,'c')],rows:[['Matrícula activa',K.al.length],['Bajas',K.bajas],['Asistencia del ciclo (%)',r1(asis)],['Retardos',K.tA.R],['Faltas (incluye justificadas)',K.tA.F+K.tA.J],['Alumnos con calificaciones',K.conCal.length],['Alumnos reprobados (promedio < '+f1(calMinV())+')',K.repr],['Promedio general',r1(K.prom)],['Reportes de conducta',K.cond.length],['Alumnos en alerta temprana',K.rsgAct.length],['Listas de calificaciones enviadas ('+calPer()[K.trA-1]+')',K.env+' de '+K.listas],['Listas autorizadas',K.aut],['Personal activo',K.per.length]],foots:[]},
+    {name:'Por grupo',title:'Concentrado por grupo',cols:[C('Grupo',1,'c'),C('Alumnos',1,'c','n'),C('Hombres',1,'c','n'),C('Mujeres',1,'c','n'),C('Asistencia %',1.2,'c','n'),C('Promedio',1,'c','n'),C('Reprobación %',1.3,'c','n'),C('Reportes',1,'c','n'),C('Seguimiento',1.1,'c','n')],
+     rows:K.grupos.map(g=>[g.l,g.n,g.H,g.M,r1(g.asis),r1(g.prom),r1(g.prep),g.cond,g.rsg]),foots:[]}]});
+};
+
 /* ====== inicio ====== */
 boot();
 
 </script>
 <script>
 (function(){
- var EMB='4.6.0',ED='movil';
+ var EMB='4.6.3',ED='movil';
  function cmp(a,b){a=String(a).split('.').map(Number);b=String(b).split('.').map(Number);for(var i=0;i<3;i++){var d=(a[i]||0)-(b[i]||0);if(d)return d>0?1:-1}return 0}
  function exec(id){var n=document.getElementById(id);if(!n)return;var s=document.createElement('script');s.textContent=n.textContent;document.head.appendChild(s)}
  function run(){['asx-qr','asx-app'].forEach(exec)}
