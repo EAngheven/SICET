@@ -644,6 +644,13 @@ table.calgrid thead th span{display:inline-block;max-width:80px;white-space:norm
 .campasos{margin:6px 0 8px;padding-left:20px;display:flex;flex-direction:column;gap:4px}
 
 .sxios{max-width:440px;margin:6px auto;padding:14px 16px;border:2px solid #b9840f;border-radius:12px;background:#fff7e0;color:#2a2111;font-size:16px;line-height:1.5;text-align:center}.sxios a{font-weight:700;color:#0F4D5C;word-break:break-all}.sxios small{display:block;margin-top:6px;color:#5b4a2a}
+/* sesión del Administrador del sistema en una escuela */
+.admbar{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--Js,#fff6e0);border:1px solid var(--J,#d9a400);border-radius:12px;padding:10px 14px;margin:0 0 12px}
+.admbar-t{flex:1;min-width:220px;line-height:1.35}.admbar-b{display:flex;gap:8px;flex-wrap:wrap}
+.admlist{display:flex;flex-direction:column;gap:2px;margin:6px 0}
+.admrow{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line,#e3e7ee)}.admrow:last-child{border-bottom:0}
+.admrow-t{flex:1;min-width:0}.admrow-t small{color:var(--mut)}
+@media print{.admbar{display:none}}
 
 </style>
 <style id="pagestyle"></style>
@@ -680,7 +687,7 @@ table.calgrid thead th span{display:inline-block;max-width:80px;white-space:norm
 <script type="text/plain" id="asx-app">
 'use strict';
 const EDITION='movil';
-const ASX_VERSION='4.6.7';
+const ASX_VERSION='4.7.0';
 const APP='SICET';
 const SXLOGO=(id,cls)=>'<svg class="sxlogo '+(cls||'')+'" viewBox="0 0 '+(id==='sx-icon'?'1280 1280':'1290 425')+'" role="img" aria-label="SICET"><use href="#'+id+'"/></svg>';
 /* ====== utilidades ====== */
@@ -7260,13 +7267,188 @@ ghPublicar=async function(o,aviso){
   return url;
 };
 
+/* ====== El Administrador del sistema entra a CUALQUIER escuela dada de alta y hace cambios a distancia ======
+   1. Al iniciar sesión (Administrador del sistema → frase) aparece la lista de escuelas: «Entrar».
+   2. La escuela entrega una copia cifrada para la llave del Administrador (como antes), pero ahora la sesión
+      tiene TODOS los permisos: Ajustes, personal, alumnos, etc.
+   3. Cada cambio se envía a la escuela FIRMADO con la llave del Administrador y CIFRADO con la clave de esa sesión
+      (nadie más puede leerlo ni falsificarlo). Una computadora de la escuela con internet lo aplica en segundos
+      y confirma «aplicado». No se envían contraseñas: la escuela conserva las suyas. */
+const ADMR_OPS_INFO='SICET ops v1';
+let ADMR=null;
+async function opsAes(bits,salt,usos){
+  const k=await crypto.subtle.importKey('raw',bits,'HKDF',false,['deriveKey']);
+  return crypto.subtle.deriveKey({name:'HKDF',hash:'SHA-256',salt,info:_te.encode(ADMR_OPS_INFO)},k,{name:'AES-GCM',length:256},false,usos);
+}
+const opsMsg=m=>['SICETOPS1',m.kid,String(m.ts),m.ex,m.ey,m.s,m.iv,m.h].join('\n');
+
+/* --- la copia deja una clave de sesión compartida (escuela ↔ Administrador) --- */
+const _datCifZ=datosCifrar;
+datosCifrar=async function(u8,ex,ey){
+  if(!datosCifrar.capt)return _datCifZ(u8,ex,ey);
+  const eph=await crypto.subtle.generateKey({name:'ECDH',namedCurve:'P-256'},true,['deriveBits']),pubj=await crypto.subtle.exportKey('jwk',eph.publicKey);
+  const bits=await crypto.subtle.deriveBits({name:'ECDH',public:await impEcdhPub(ex,ey)},eph.privateKey,256);
+  const salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12));
+  const ct=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv},await hkdfAes(bits,salt,['encrypt']),u8));
+  datosCifrar.ult={bits:new Uint8Array(bits),salt:b64(salt),ex,ey};
+  return {x:pubj.x,y:pubj.y,salt:b64(salt),iv:b64(iv),ct};
+};
+const _datDesZ=datosDescifrar;
+datosDescifrar=async function(m,ct){
+  const r=await _datDesZ(m,ct);
+  try{datosDescifrar.ult={bits:new Uint8Array(await crypto.subtle.deriveBits({name:'ECDH',public:await impEcdhPub(m.x,m.y)},SOP.encPriv,256)),salt:m.salt}}catch(e){}
+  return r;
+};
+const _datAtZ=datosAtender;
+datosAtender=async function(){
+  datosCifrar.capt=true;datosCifrar.ult=null;
+  try{await _datAtZ()}finally{datosCifrar.capt=false}
+  const u=datosCifrar.ult;datosCifrar.ult=null;
+  if(u)await IDB.put('kv','opsKey|'+u.ex+'|'+u.ey,{b:b64(u.bits),s:u.salt,t:Date.now()});
+};
+
+/* --- lado de la escuela: aplica los cambios firmados del Administrador --- */
+let opsOcupado=false;
+async function opsAtender(){
+  if(EDITION==='movil'||!CL.on||offline()||REVIEW.on||opsOcupado||!(D.cfg.soporte||[]).length)return;
+  opsOcupado=true;
+  try{
+    const r=await fetchT(clUrl('/datos/ops'),null,10000);if(!r.ok)return;const j=await r.json();if(!j||typeof j!=='object')return;
+    for(const kid of Object.keys(j)){
+      const k=datosGrant(kid);if(!k)continue;
+      const L=Object.values(j[kid]||{}).filter(m=>m&&m.kid===kid&&m.ts>0&&m.sig&&m.ct&&m.iv&&m.ex&&m.ey).sort((a,b)=>a.ts-b.ts);
+      let ult=(await IDB.get('kv','opsUlt_'+kid))||0,aplicados=0,ultTs=0;
+      for(const m of L){
+        const borrar=()=>fetchT(clUrl('/datos/ops/'+kid+'/'+m.ts),{method:'DELETE'},10000).catch(()=>{});
+        if(m.ts<=ult){await borrar();continue}
+        const ct=unb64(m.ct);
+        if(m.h!==await sha256hex(ct))continue;
+        let ok=false;try{ok=await crypto.subtle.verify({name:'ECDSA',hash:'SHA-256'},await importPub(k),unb64(m.sig),_te.encode(opsMsg(m)))}catch(e){}
+        if(!ok)continue;
+        const ses=await IDB.get('kv','opsKey|'+m.ex+'|'+m.ey);if(!ses||ses.s!==m.s)continue;
+        let p;try{p=JSON.parse(_td.decode(await gunzip(new Uint8Array(await crypto.subtle.decrypt({name:'AES-GCM',iv:unb64(m.iv)},await opsAes(unb64(ses.b),unb64(ses.s),['decrypt']),ct)))))}catch(e){continue}
+        let n=0;
+        for(const op of (p.ops||[])){
+          if(!op||!op.t||op.t==='wipe'||op.t==='newcycle'||(op.t==='user'&&op.u&&String(op.u.id).startsWith('__'))||(op.t==='userDel'&&String(op.id).startsWith('__')))continue;
+          if(op.t==='user'&&op.u&&op.u.id){const cur=D.users[op.u.id];if(cur&&!op.u.hash){op.u=Object.assign({},op.u,{hash:cur.hash,salt:cur.salt,iter:cur.iter})}if(!op.u.hash&&!cur)continue}
+          try{if(commit(op,{sys:true}))n++}catch(e){}
+        }
+        ult=m.ts;ultTs=m.ts;aplicados+=n;await IDB.put('kv','opsUlt_'+kid,ult);await borrar();
+        bitacora('El Administrador del sistema '+(k.n||kid)+' hizo '+n+' cambio'+(n===1?'':'s')+' a distancia'+(p.res?': '+String(p.res).slice(0,200):''));
+      }
+      if(ultTs){
+        await fetchT(clUrl('/datos/opsok/'+kid),{method:'PUT',body:JSON.stringify({ts:ultTs,t:Date.now(),n:aplicados})},10000).catch(()=>{});
+        await datosLogAdd({tipo:'aplicó '+aplicados+' cambio'+(aplicados===1?'':'s')+' hechos a distancia',n:k.n||kid,niv:'total'});
+        await saveNow();
+        UPD.msg='El Administrador del sistema '+(k.n||kid)+' hizo cambios a distancia ('+aplicados+').';
+        try{if(!locked&&!document.querySelector('#sheet:not([hidden]) input:focus'))refresh();else updPintar()}catch(e){}
+      }
+    }
+  }catch(e){}finally{opsOcupado=false}
+}
+setTimeout(()=>{opsAtender()},4000);
+setInterval(()=>{opsAtender();datosAtender()},20000);
+
+/* --- lado del Administrador --- */
+const OP_TXT={cfg:'ajuste',user:'personal',userDel:'personal eliminado',al:'alumno',alMany:'alumnos',alDel:'alumno eliminado',per:'permiso del personal',cond:'conducta',bd:'bitácora',cal:'calificación',calMany:'calificaciones',inc:'incidencia'};
+const _commitZ=commit;
+commit=function(op,o){
+  if(ADMR&&REVIEW.on&&op&&(op.t==='wipe'||op.t==='newcycle')){toast('Iniciar ciclo o borrar datos se hace en una computadora de la escuela.','err');return false}
+  const r=_commitZ(op,o);
+  if(r&&ADMR&&REVIEW.on&&!(o&&o.sys)){ADMR.ops.push(JSON.parse(JSON.stringify(op)));ADMR.res.push(op.t==='cfg'?'ajuste «'+op.k+'»':(OP_TXT[op.t]||op.t));admProgramar()}
+  return r;
+};
+function admProgramar(){clearTimeout(ADMR.tm);ADMR.tm=setTimeout(()=>{admEnviar()},1500);admBar()}
+async function admEnviar(){
+  const A=ADMR;if(!A||!A.ops.length||A.envOcup)return;A.envOcup=true;
+  const ops=A.ops.splice(0),res=A.res.splice(0);
+  try{
+    const ts=Math.max(Date.now(),(A.ultTs||0)+1);A.ultTs=ts;
+    const u8=await gzip(_te.encode(JSON.stringify({ops,by:SOP.rec.nombre,res:[...new Set(res)].join(', ')}))),iv=crypto.getRandomValues(new Uint8Array(12));
+    const ct=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv},await opsAes(A.bits,unb64(A.salt),['encrypt']),u8));
+    const m={kid:SOP.rec.kid,ts,ex:SOP.rec.enc.x,ey:SOP.rec.enc.y,s:A.salt,iv:b64(iv),ct:b64(ct),h:await sha256hex(ct)};
+    m.sig=await sopFirmar(opsMsg(m));
+    const r=await fetchT(A.e.u+'/e/'+A.e.e+'/datos/ops/'+m.kid+'/'+ts+'.json',{method:'PUT',body:JSON.stringify(m)},20000);
+    if(!r.ok)throw new Error('La nube respondió '+r.status+'.');
+    A.env.push({ts,n:ops.length});A.err='';admAck();
+  }catch(e){A.ops=ops.concat(A.ops);A.res=res.concat(A.res);A.err='No se pudieron enviar los cambios ('+(e.message||e)+'). Se reintentará.';clearTimeout(A.tm);A.tm=setTimeout(()=>{admEnviar()},8000)}
+  finally{A.envOcup=false;admBar();if(A.ops.length)admProgramar()}
+}
+async function admAck(){
+  const A=ADMR;if(!A)return;clearTimeout(A.ackT);
+  try{const r=await fetchT(A.e.u+'/e/'+A.e.e+'/datos/opsok/'+SOP.rec.kid+'.json',null,10000);const j=r.ok?await r.json():null;if(j&&j.ts)A.ack=Math.max(A.ack||0,j.ts)}catch(e){}
+  admBar();
+  if(A.env.some(x=>x.ts>(A.ack||0)))A.ackT=setTimeout(admAck,4000);
+}
+function admEstado(){
+  const A=ADMR;if(!A)return '';
+  const env=A.env.reduce((s,x)=>s+x.n,0),apl=A.env.filter(x=>x.ts<=(A.ack||0)).reduce((s,x)=>s+x.n,0),pend=env-apl;
+  if(A.err)return '<span class="cF">'+esc(A.err)+'</span>';
+  if(A.ops.length||A.envOcup)return 'Enviando cambios…';
+  if(!env)return 'Sin cambios todavía. Lo que modifiques se envía solo a la escuela.';
+  if(pend)return '⏳ '+pend+' cambio'+(pend===1?'':'s')+' esperando a la escuela (se aplican en cuanto una computadora de la escuela esté abierta con internet).';
+  return '<span class="cP">✓ '+apl+' cambio'+(apl===1?'':'s')+' aplicado'+(apl===1?'':'s')+' en la escuela.</span>';
+}
+function admBarHTML(){
+  if(!ADMR||!REVIEW.on)return '';
+  return '<div class="admbar" id="admbar"><div class="admbar-t"><b>Administrador del sistema</b> · <span>'+esc(ADMR.e.n)+'</span> · todos los permisos<br><small id="admst">'+admEstado()+'</small></div><div class="admbar-b"><button class="btn sm" data-act="admEscuelas">Cambiar de escuela</button><button class="btn sm" data-act="admSalir">Salir</button></div></div>';
+}
+function admBar(){const s=document.getElementById('admst');if(s)s.innerHTML=admEstado()}
+const _renderZ=render;
+render=function(){_renderZ();if(ADMR&&REVIEW.on){const m=$('#main');if(m&&!document.getElementById('admbar'))m.insertAdjacentHTML('afterbegin',admBarHTML())}};
+const _bannerZ=datosBanner;
+datosBanner=function(){return ADMR&&REVIEW.on?'':_bannerZ()};
+async function admEntrar(i,aviso){
+  const e=SOP.esc[i];if(!e)throw new Error('Escuela no encontrada.');
+  datosDescifrar.ult=null;
+  const ts=await datosPedir(i),r=await datosEsperar(i,ts,aviso),k=datosDescifrar.ult;
+  if(!k)throw new Error('No se pudo preparar la sesión segura con la escuela.');
+  ADMR={e,bits:k.bits,salt:k.salt,ops:[],res:[],env:[],ack:0,err:''};
+  entrarRevision(r.snap,r.esc||e.n);
+  ME.ro=false;REVIEW.edit=true;U.tab='ajustes';render();
+  toast('Entraste a «'+(r.esc||e.n)+'» con todos los permisos.');
+}
+async function admSalirSeguro(){
+  if(ADMR){clearTimeout(ADMR.tm);if(ADMR.ops.length){toast('Enviando los últimos cambios…');await admEnviar()}}
+  location.reload();
+}
+Object.assign(ACT,{
+  admSalir:()=>{if(ADMR&&REVIEW.on)return admSalirSeguro();if(REVIEW.on){location.reload();return}logout()},
+  admEscuelas:async()=>{if(ADMR&&ADMR.ops.length){clearTimeout(ADMR.tm);await admEnviar()}try{await IDB.put('kv','admVolver',1)}catch(e){}location.reload()}
+});
+
+/* --- en la consola del Administrador: lista de escuelas con «Entrar» --- */
+function admEscuelasHTML(){
+  const L=SOP.esc||[];
+  return '<div class="sopcard" id="admEsc"><h3>Entrar a una escuela</h3><p class="note">Elige la escuela: entras con <b>todos los permisos</b> (Ajustes, personal, alumnos…). Tus cambios viajan cifrados y firmados con tu llave, y la escuela los aplica sola.</p>'+
+   (L.length?'<div class="admlist">'+L.map((e,i)=>'<div class="admrow"><div class="admrow-t"><b>'+esc(e.n||'Escuela')+'</b>'+(e.v?'<small> · v'+esc(e.v)+'</small>':'')+'<div class="note" id="adm_st'+i+'"></div></div><button class="btn sm pri" type="button" data-adm="'+i+'">Entrar</button></div>').join('')+'</div>'
+     :'<div class="warnbox">Todavía no hay escuelas dadas de alta. Aparecen solas cuando instalas o autorizas tu llave en la computadora de cada escuela con la casilla de la Nube de SICET marcada (o en «Opciones avanzadas» → Agregar escuela).</div>')+
+   '<div class="actions"><button class="btn sm" type="button" id="adm_ref">Actualizar lista</button></div>'+
+   '<p class="note">Para que entres, una computadora de la escuela debe estar abierta con internet (responde en segundos).</p></div>';
+}
+const _sopConsolaZ=sopConsola;
+sopConsola=async function(msg){
+  await _sopConsolaZ(msg);
+  const f=document.querySelector('#lform');if(!f||document.getElementById('admEsc'))return;
+  const c=f.querySelector('.sopcard');if(c)c.insertAdjacentHTML('beforebegin',admEscuelasHTML());else return;
+  f.querySelectorAll('[data-adm]').forEach(b=>b.onclick=async()=>{
+    const i=+b.dataset.adm,st=document.getElementById('adm_st'+i);
+    f.querySelectorAll('[data-adm]').forEach(x=>x.disabled=true);
+    try{st.textContent='Pidiendo acceso a la escuela…';await admEntrar(i,t=>{st.textContent=t})}
+    catch(e){st.innerHTML='<span class="cF">'+esc(e.message||String(e))+'</span>';f.querySelectorAll('[data-adm]').forEach(x=>x.disabled=false)}
+  });
+  const rf=document.getElementById('adm_ref');if(rf)rf.onclick=async()=>{rf.disabled=true;let n=0;try{n=await sopDirLeer()}catch(e){}sopConsola(n?'Lista actualizada: '+n+' escuela(s).':'No se encontraron escuelas nuevas en la Nube de SICET.')};
+};
+/* «Cambiar de escuela»: al recargar vuelve directo a la consola si la llave sigue abierta en esta pestaña */
+setTimeout(async()=>{try{if(await IDB.get('kv','admVolver')){await IDB.put('kv','admVolver',0);showSoporte()}}catch(e){}},1500);
+
 /* ====== inicio ====== */
 boot();
 
 </script>
 <script>
 (function(){
- var EMB='4.6.7',ED='movil';
+ var EMB='4.7.0',ED='movil';
  function cmp(a,b){a=String(a).split('.').map(Number);b=String(b).split('.').map(Number);for(var i=0;i<3;i++){var d=(a[i]||0)-(b[i]||0);if(d)return d>0?1:-1}return 0}
  function exec(id){var n=document.getElementById(id);if(!n)return;var s=document.createElement('script');s.textContent=n.textContent;document.head.appendChild(s)}
  function run(){['asx-qr','asx-app'].forEach(exec)}
