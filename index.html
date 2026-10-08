@@ -651,6 +651,48 @@ table.calgrid thead th span{display:inline-block;max-width:80px;white-space:norm
 .admrow{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line,#e3e7ee)}.admrow:last-child{border-bottom:0}
 .admrow-t{flex:1;min-width:0}.admrow-t small{color:var(--mut)}
 @media print{.admbar{display:none}}
+/* datos del alumno */
+.alxbeca{display:flex;flex-direction:column;gap:6px}
+.alxbecas{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:4px 14px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--soft)}
+.alxbecas[hidden]{display:none}
+#pAlx .form>div{display:flex;flex-direction:column;gap:4px}
+.ksec{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:18px 0 8px}
+.ksec h3{margin:0;font-size:16px}
+@media print{.ksec .link{display:none}}
+/* planeaciones didácticas */
+.plgrid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:900px){.plgrid{grid-template-columns:1fr}}
+.plform .body{display:flex;flex-direction:column;gap:12px}
+.plpaso{display:flex;gap:12px;align-items:flex-start}
+.pln{flex:0 0 28px;height:28px;border-radius:50%;background:var(--brand);color:var(--on-brand,#fff);display:grid;place-items:center;font-weight:700;font-size:14px;margin-top:2px}
+.pllab{font-size:13px;color:var(--mut);margin-bottom:4px;font-weight:500}
+.plpaso select,.plpaso input[type=date]{width:100%}
+.pldrop{display:flex;gap:12px;align-items:center;border:2px dashed var(--line);border-radius:12px;padding:16px;cursor:pointer;background:var(--soft);transition:border-color .15s}
+.pldrop:hover{border-color:var(--brand)}.pldrop.ok{border-style:solid;border-color:var(--P);background:var(--Ps)}
+.pldrop>b{flex:0 0 48px;height:48px;border-radius:10px;background:var(--surf);border:1px solid var(--line);display:grid;place-items:center;font-size:13px;color:var(--brand)}
+.pldrop span{display:flex;flex-direction:column;font-weight:600;min-width:0;word-break:break-word}.pldrop small{font-weight:400;color:var(--mut)}
+.plsem{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
+.plsemi{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--surf)}
+.plsemi .dot{flex:0 0 12px;height:12px;border-radius:50%;margin-top:4px;background:var(--mut)}
+.plsemi .dot.P{background:var(--P)}.plsemi .dot.R{background:var(--R)}.plsemi .dot.F{background:var(--F)}.plsemi .dot.N{background:var(--line)}
+.plcrumb{margin:4px 0 12px;font-size:15px}.plcrumb .link{font-size:15px}
+.plfolders{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-bottom:16px}
+.plfolders.sm{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.plfolder{--fc:var(--brand);position:relative;display:flex;flex-direction:column;gap:6px;text-align:left;border:1px solid var(--line);border-radius:14px;padding:16px;background:var(--surf);cursor:pointer;color:var(--ink);font:inherit;transition:transform .12s,box-shadow .12s}
+.plfolder:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.plf-ico{width:44px;height:34px;border-radius:4px 8px 8px 8px;background:var(--fc);position:relative;opacity:.9}
+.plf-ico::before{content:"";position:absolute;left:0;top:-6px;width:20px;height:8px;border-radius:4px 4px 0 0;background:var(--fc)}
+.plf-n{font-weight:700;font-size:16px;line-height:1.25}.plf-s{font-size:13px;color:var(--mut)}
+.plf-bar{height:6px;border-radius:6px;background:var(--line);overflow:hidden}.plf-bar i{display:block;height:100%;background:var(--fc)}
+.plf-p{font-size:12px;color:var(--mut)}
+.plic{display:inline-block;font-size:10px;font-weight:700;padding:1px 5px;border-radius:4px;background:var(--soft);border:1px solid var(--line)}
+.plprev{max-height:70vh;overflow:auto;text-align:center}.plprev img{max-width:100%;height:auto;border-radius:8px}
+.plcampos{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:8px}
+.plcampo{display:flex;flex-direction:column;gap:6px;border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--soft)}
+.plcampo .inrow input{flex:1;font-weight:600}
+.secruta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 12px;font-size:14px}
+@media print{.plfolder{break-inside:avoid}}
+.plform label.full{display:flex;flex-direction:column;gap:4px}
 
 </style>
 <style id="pagestyle"></style>
@@ -687,7 +729,7 @@ table.calgrid thead th span{display:inline-block;max-width:80px;white-space:norm
 <script type="text/plain" id="asx-app">
 'use strict';
 const EDITION='movil';
-const ASX_VERSION='4.7.0';
+const ASX_VERSION='4.8.0';
 const APP='SICET';
 const SXLOGO=(id,cls)=>'<svg class="sxlogo '+(cls||'')+'" viewBox="0 0 '+(id==='sx-icon'?'1280 1280':'1290 425')+'" role="img" aria-label="SICET"><use href="#'+id+'"/></svg>';
 /* ====== utilidades ====== */
@@ -1680,9 +1722,9 @@ function alumnoForm(id,fromFicha){
   }
 }
 /* ====== carga por lotes (Excel o CSV) ====== */
-const MAPK={matricula:'mat',folio:'mat',nombre:'nom',nombres:'nom',nombredelalumno:'nom',apellidopaterno:'ap',paterno:'ap',primerapellido:'ap',apellidomaterno:'am',materno:'am',segundoapellido:'am',sexo:'sx',genero:'sx',grado:'gr',grupo:'gp',tecnologia:'tec',taller:'tec',fechanacimiento:'nac',fechadenacimiento:'nac',nacimiento:'nac',tutor:'tut',nombretutor:'tut',nombredeltutor:'tut',parentesco:'par',telefono:'tel',telefonotutor:'tel',celular:'tel',telefono2:'tel2',telefonoalterno:'tel2',correo:'mail',correoelectronico:'mail',email:'mail'};
+const MAPK={matricula:'mat',folio:'mat',nombre:'nom',nombres:'nom',nombredelalumno:'nom',apellidopaterno:'ap',paterno:'ap',primerapellido:'ap',apellidomaterno:'am',materno:'am',segundoapellido:'am',sexo:'sx',genero:'sx',grado:'gr',grupo:'gp',tecnologia:'tec',taller:'tec',fechanacimiento:'nac',fechadenacimiento:'nac',nacimiento:'nac',tutor:'tut',nombretutor:'tut',nombredeltutor:'tut',parentesco:'par',telefono:'tel',telefonotutor:'tel',celular:'tel',telefono2:'tel2',telefonoalterno:'tel2',correo:'mail',correoelectronico:'mail',email:'mail',curp:'curp',tiposangre:'sangre',tipodesangre:'sangre',sangre:'sangre',gruposanguineo:'sangre',consentimientosalud:'cons',consentimiento:'cons',fechaconsentimiento:'cons',beca1:'b1',beca:'b1',beca2:'b2',becas:'bx'};
 const normH=s=>String(s==null?'':s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]/g,'');
-const TPL_HEAD=['matricula','nombre','apellido_paterno','apellido_materno','sexo','grado','grupo','tecnologia','fecha_nacimiento','tutor','parentesco','telefono','telefono2','correo'];
+const TPL_HEAD=['matricula','nombre','apellido_paterno','apellido_materno','sexo','grado','grupo','tecnologia','fecha_nacimiento','tutor','parentesco','telefono','telefono2','correo','curp','tipo_sangre','consentimiento_salud','beca_1','beca_2'];
 const TPL_HEAD_G=TPL_HEAD.filter(h=>h!=='grado'&&h!=='grupo');
 
 /* --- lectura de archivos --- */
@@ -1803,7 +1845,7 @@ function planImport(sheets,op,fixes){
   fixes=fixes||{};
   const items=[],rows=[],ign=new Set(),skipped=[],counts={nuevo:0,actualizar:0,omitir:0,error:0,repetido:0,warn:0,fix:0,ok:0},byGrp={};
   const used=new Set(Object.values(D.al).map(a=>a.id)),mats=new Set(),vistos=new Map();
-  const porNombre=new Map();Object.values(D.al).forEach(a=>{if(!a.baja)porNombre.set(normNom(a),a)});
+  const curpsVistas=new Map(),porNombre=new Map();Object.values(D.al).forEach(a=>{if(!a.baja)porNombre.set(normNom(a),a)});
   const genMat=()=>{let m;do{m=String(new Date().getFullYear()).slice(2)+String(Math.floor(Math.random()*9000)+1000)}while(findMat(m)||mats.has(m));return m};
   for(const sh of sheets){
     let hi=-1,map=null;
@@ -1842,6 +1884,7 @@ function planImport(sheets,op,fixes){
       if(raw.tut)o.tut=tcase(raw.tut).slice(0,80);if(raw.par)o.par=raw.par.slice(0,30);
       for(const k of ['tel','tel2']){if(raw[k]){const t=telOf(raw[k]);if(t.v)o[k]=t.v;if(t.fix)fix.push(t.fix);if(t.warn)warn.push(t.warn)}}
       if(raw.mail){if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(raw.mail))warn.push('Correo no válido');o.mail=raw.mail.slice(0,80)}
+      alxImport(raw,o,warn,fix,curpsVistas,mat,i+1);
       const name=(o.ap+' '+(o.am||'')+' '+o.nom).replace(/\s+/g,' ').trim()||'(sin nombre)',rowNo=i+1;
       let status='nuevo',ex=null;
       if(err.length)status='error';
@@ -1911,7 +1954,7 @@ function tplReport(byGroup){
     [byGroup?'3. El grado y el grupo se toman del nombre de cada hoja (por ejemplo «1A» o «2°B»). Llena cada hoja con los alumnos de ese grupo.':'3. Escribe el grado (1, 2 o 3) y el grupo (A, B, C…) de cada alumno en las columnas grado y grupo.'],
     ['4. Los datos del tutor (nombre, teléfono, correo) son opcionales, pero sirven para avisar a las familias. El teléfono, a 10 dígitos.'],
     ['5. La tecnología (taller) es opcional: sirve para dar permisos a todos los alumnos de una tecnología. La fecha de nacimiento puede ir como 2012-05-14 o 14/05/2012.'],
-    ['6. No incluyas CURP, domicilio ni datos de salud: SICET no los carga por lotes. Los datos de salud solo se capturan alumno por alumno, con el consentimiento escrito del tutor.'],
+    ['6. CURP y becas (beca_1, beca_2) son opcionales. El tipo de sangre es dato de salud: solo se carga si escribes la fecha del consentimiento escrito del tutor en consentimiento_salud. No incluyas domicilio ni otros datos de salud.'],
     ['7. Guarda el archivo como «Libro de Excel (.xlsx)» (o como CSV) y súbelo en Alumnos → Cargar alumnos.']],foots:[]};
   if(!byGroup)return {plain:true,title:'Plantilla',lines:[],sheets:[inst,{name:'Alumnos',title:'Alumnos',freeze:1,dv:dvSex,cols:TPL_HEAD.map(head),rows:[],foots:[]}]};
   const sheets=[inst];
@@ -2594,7 +2637,7 @@ const ACT={
   tplC:()=>saveFile('SICET_plantilla_alumnos.csv',toCSV([TPL_HEAD])),
   exportAlX:()=>{
     audit('exportó','lista de alumnos (Excel)');
-    const rows=Object.values(D.al).filter(a=>!a.baja).sort(cmpA).map(a=>[a.mat,a.nom,a.ap,a.am||'',a.sx,a.gr,a.gp,a.tec||'',a.nac||'',a.tut||'',a.par||'',a.tel||'',a.tel2||'',a.mail||'']);
+    const rows=Object.values(D.al).filter(a=>!a.baja).sort(cmpA).map(a=>[a.mat,a.nom,a.ap,a.am||'',a.sx,a.gr,a.gp,a.tec||'',a.nac||'',a.tut||'',a.par||'',a.tel||'',a.tel2||'',a.mail||'',a.curp||'',can('salud')?(a.sangre||''):'',can('salud')?(a.cons||''):'',(a.becas||[])[0]||'',(a.becas||[])[1]||'']);
     downloadXLSX('SICET_alumnos_'+todayISO()+'.xlsx',{plain:true,title:'Alumnos',lines:[],sheets:[{name:'Alumnos',title:'Alumnos',freeze:1,dv:[{sqref:'E2:E2000',list:'H,M',msg:'Escribe H (hombre) o M (mujer)'}],cols:TPL_HEAD.map(h=>C(h,1.4)),rows,foots:[]}]});
   },
   pasosOff:()=>{try{localStorage.setItem('asistemx_pasos','1')}catch(e){}render()},
@@ -5311,11 +5354,11 @@ const calPer=()=>{const p=D.cfg.calPer||[];return [p[0]||'1er trimestre',p[1]||'
 const asigDe=gr=>{const L=(D.cfg.calAsig||{})[gr];return Array.isArray(L)&&L.length?L:(CAL_ASIG0[gr]||CAL_ASIG0[1])};
 function ocultosPanel(){
   const oc=k=>ocCfg(k),U0=personalAlta().filter(u=>u.activo!==false);
-  const chk=(k,t,u)=>{const fijo=u.rol==='administrador';const on=fijo||(oc(k)[t]||[]).includes(u.id);return '<label class="chk"><input type="checkbox" data-oc="'+k+'|'+t+'|'+u.id+'"'+(on?' checked':'')+(fijo?' disabled':'')+'>'+(t==='u'?'Ver':(k==='calif'?'Capturar':'Editar'))+'</label>'};
+  const chk=(k,t,u)=>{const fijo=u.rol==='administrador',no=k==='planea'&&!PLA_ROLES_REV.includes(u.rol);const on=fijo||(!no&&(oc(k)[t]||[]).includes(u.id));return '<label class="chk"'+(no?' title="Solo Dirección, Subdirección o Coordinación"':'')+'><input type="checkbox" data-oc="'+k+'|'+t+'|'+u.id+'"'+(on?' checked':'')+(fijo||no?' disabled':'')+'>'+(t==='u'?'Ver':(k==='calif'?'Capturar':k==='planea'?'Revisar':'Editar'))+'</label>'};
   const indTxt=c=>rsgInd().filter(x=>x.c===c).map(x=>x.n+(x.p&&x.p!==1?' | '+x.p:'')).join('\n');
   const um=rsgUmb(),per=calPer();
-  return '<div class="panel ocultos" id="pOcultos"><h3>Pestañas ocultas <span class="chip J">Solo Administrador</span></h3><p class="sub"><b>Alerta temprana</b> (seguimiento de alumnos propensos a reprobar o abandonar) <b>Calificaciones</b> (3 trimestres), <b>KPI de calificaciones</b> y <b>KPI Global</b> (concentrado de toda la escuela) solo las ven el Administrador y las personas que elijas. Son datos sensibles de menores: dalas solo a quien las necesita.</p><div class="body">'+
-   '<div class="twrap"><table><thead><tr><th class="l">Persona</th><th class="l">Cargo</th><th class="l">Alerta temprana</th><th class="l">Calificaciones</th><th class="l">KPI de calificaciones</th><th class="l">KPI Global</th></tr></thead><tbody>'+U0.map(u=>'<tr><td class="l">'+esc(u.nombre)+'</td><td class="l">'+esc(ROL[u.rol]||u.rol)+'</td><td class="l"><div class="chips" style="margin:0">'+chk('riesgo','u',u)+chk('riesgo','e',u)+'</div></td><td class="l"><div class="chips" style="margin:0">'+chk('calif','u',u)+chk('calif','e',u)+'</div></td><td class="l"><div class="chips" style="margin:0">'+chk('kpical','u',u)+'</div></td><td class="l"><div class="chips" style="margin:0">'+chk('kpiglob','u',u)+'</div></td></tr>').join('')+'</tbody></table></div>'+
+  return '<div class="panel ocultos" id="pOcultos"><h3>Pestañas ocultas <span class="chip J">Solo Administrador</span></h3><p class="sub"><b>Alerta temprana</b> (seguimiento de alumnos propensos a reprobar o abandonar) <b>Calificaciones</b> (3 trimestres), <b>KPI de calificaciones</b> y <b>KPI Global</b> (concentrado de toda la escuela) y la revisión de <b>Planeaciones didácticas</b> (solo Dirección, Subdirección o Coordinación) solo las ven el Administrador y las personas que elijas. Son datos sensibles de menores: dalas solo a quien las necesita.</p><div class="body">'+
+   '<div class="twrap"><table><thead><tr><th class="l">Persona</th><th class="l">Cargo</th><th class="l">Alerta temprana</th><th class="l">Calificaciones</th><th class="l">KPI de calificaciones</th><th class="l">KPI Global</th><th class="l">Planeaciones</th></tr></thead><tbody>'+U0.map(u=>'<tr><td class="l">'+esc(u.nombre)+'</td><td class="l">'+esc(ROL[u.rol]||u.rol)+'</td><td class="l"><div class="chips" style="margin:0">'+chk('riesgo','u',u)+chk('riesgo','e',u)+'</div></td><td class="l"><div class="chips" style="margin:0">'+chk('calif','u',u)+chk('calif','e',u)+'</div></td><td class="l"><div class="chips" style="margin:0">'+chk('kpical','u',u)+'</div></td><td class="l"><div class="chips" style="margin:0">'+chk('kpiglob','u',u)+'</div></td><td class="l"><div class="chips" style="margin:0">'+chk('planea','u',u)+chk('planea','e',u)+'</div></td></tr>').join('')+'</tbody></table></div>'+
    '<p class="note">«Editar» y «Capturar» incluyen «Ver». Las cuentas con cargo de Administrador siempre las ven.</p>'+
    '<h3 style="margin:16px 0 4px">Indicadores de Alerta temprana</h3><p class="note" style="margin:0 0 6px">Uno por renglón. Puedes agregar « | 2» o « | 3» al final para darle más peso (1 = leve, 3 = grave). Además, SICET calcula solo los indicadores de asistencia, calificaciones, conducta y permanencia en el aula.</p>'+
    '<div class="form">'+Object.entries(RSG_CAT).map(([c,n])=>'<label>'+n+'<textarea rows="9" data-rsgcat="'+c+'">'+esc(indTxt(c))+'</textarea></label>').join('')+
@@ -7442,13 +7485,650 @@ sopConsola=async function(msg){
 /* «Cambiar de escuela»: al recargar vuelve directo a la consola si la llave sigue abierta en esta pestaña */
 setTimeout(async()=>{try{if(await IDB.get('kv','admVolver')){await IDB.put('kv','admVolver',0);showSoporte()}}catch(e){}},1500);
 
+/* ====== Datos del alumno: CURP, edad, tipo de sangre y becas ======
+   - Alta/edición del alumno: CURP (validada; llena la fecha de nacimiento), edad (se calcula sola),
+     tipo de sangre (dato de salud: requiere consentimiento escrito del tutor) y becas (una o varias).
+   - Las opciones de tipo de sangre y de becas se editan en Ajustes → «Datos del alumno».
+   - En Ajustes se elige qué indicadores salen en el Panel (resumen) y en el KPI Global. */
+const SANGRE0=['O+','O-','A+','A-','B+','B-','AB+','AB-'];
+const BECAS0=['Beca Universal Rita Cetina','Beca estatal','Beca municipal','Beca de la escuela','Beca de aprovechamiento','Beca deportiva o cultural','Otra'];
+const ALX_IND=[['curp','CURP registrada'],['edad','Edad'],['beca','Becas'],['sangre','Tipo de sangre']];
+const ALX_DEF={panel:['edad','beca'],kpi:['curp','edad','beca','sangre']};
+const sangreOps=()=>Array.isArray(D.cfg.sangreOps)&&D.cfg.sangreOps.length?D.cfg.sangreOps:SANGRE0;
+const becasOps=()=>Array.isArray(D.cfg.becasOps)&&D.cfg.becasOps.length?D.cfg.becasOps:BECAS0;
+const alxVer=donde=>{const v=D.cfg['alx_'+donde];return Array.isArray(v)?v:ALX_DEF[donde]};
+
+/* --- CURP --- */
+const CURP_RE=/^[A-Z][AEIOUX][A-Z]{2}\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])[HMX](AS|BC|BS|CC|CL|CM|CS|CH|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)[B-DF-HJ-NP-TV-Z]{3}[0-9A-Z]\d$/;
+function curpDigito(c){const d='0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZ';let s=0;for(let i=0;i<17;i++)s+=d.indexOf(c[i])*(18-i);return (10-s%10)%10}
+function curpRevisar(c){
+  c=String(c||'').toUpperCase().replace(/\s/g,'');if(!c)return {ok:true,c:''};
+  if(c.length!==18)return {ok:false,c,err:'La CURP debe tener 18 caracteres (tiene '+c.length+').'};
+  if(!CURP_RE.test(c))return {ok:false,c,err:'La CURP no tiene el formato correcto. Revísala letra por letra.'};
+  if(curpDigito(c)!==Number(c[17]))return {ok:false,c,err:'La CURP no es válida: el último dígito no corresponde. Revísala.'};
+  const yy=Number(c.slice(4,6)),siglo=/\d/.test(c[16])?1900:2000,nac=(siglo+yy)+'-'+c.slice(6,8)+'-'+c.slice(8,10);
+  return {ok:true,c,nac,sx:c[10]==='H'?'H':c[10]==='M'?'M':''};
+}
+function edadDe(a,ref){
+  let n=a&&a.nac;if(!n&&a&&a.curp){const r=curpRevisar(a.curp);if(r.ok)n=r.nac}
+  if(!n||!/^\d{4}-\d{2}-\d{2}$/.test(n))return null;
+  const h=ref||todayISO();let e=Number(h.slice(0,4))-Number(n.slice(0,4));if(h.slice(5)<n.slice(5))e--;
+  return e>=0&&e<100?e:null;
+}
+const becasDe=a=>Array.isArray(a&&a.becas)?a.becas.filter(Boolean):[];
+
+/* --- formulario de alta / edición --- */
+let ALX_EXTRA=null;
+const _commitAX=commit;
+commit=function(op,o){
+  if(ALX_EXTRA&&op&&op.t==='al'&&op.a){op=Object.assign({},op,{a:Object.assign({},op.a,ALX_EXTRA)});ALX_EXTRA=null}
+  return _commitAX(op,o);
+};
+const _alumnoFormAX=alumnoForm;
+alumnoForm=function(id,fromFicha){
+  _alumnoFormAX(id,fromFicha);
+  const fF=can('ficha'),fS=can('salud');if(!fF&&!fS)return;
+  const a=(id&&D.al[id])||{},form=document.querySelector('#modal .form');if(!form)return;
+  const bs=becasDe(a),extra=bs.filter(b=>!becasOps().includes(b));
+  let h='<div class="full"><h3>Datos del alumno</h3></div>';
+  if(fF)h+='<label>CURP<input id="f_curp" maxlength="18" autocapitalize="characters" spellcheck="false" value="'+esc(a.curp||'')+'" placeholder="18 caracteres" style="text-transform:uppercase"><span class="note" id="f_curpm"></span></label>'+
+    '<label>Edad<input id="f_edad" readonly tabindex="-1" value="" placeholder="Se calcula con la fecha de nacimiento"></label>';
+  if(fS)h+='<label>Tipo de sangre<select id="f_sangre" '+(a.cons?'':'disabled')+'><option value="">—</option>'+sangreOps().map(s=>'<option'+(s===a.sangre?' selected':'')+'>'+esc(s)+'</option>').join('')+(a.sangre&&!sangreOps().includes(a.sangre)?'<option selected>'+esc(a.sangre)+'</option>':'')+'</select><span class="note">'+(a.cons?'Dato de salud con consentimiento del tutor.':'Se habilita al registrar la fecha del consentimiento escrito (abajo, en Privacidad).')+'</span></label>';
+  if(fF)h+='<div class="full alxbeca"><label class="chk-line"><input type="checkbox" id="f_beca"'+(a.beca||bs.length?' checked':'')+'>Cuenta con beca</label><div class="alxbecas" id="f_becas"'+(a.beca||bs.length?'':' hidden')+'>'+
+    becasOps().concat(extra).map((b,i)=>'<label class="chk-line"><input type="checkbox" data-beca="'+esc(b)+'"'+(bs.includes(b)?' checked':'')+'>'+esc(b)+'</label>').join('')+'</div></div>';
+  const priv=[...form.querySelectorAll('.full h3')].find(x=>/Privacidad/.test(x.textContent));
+  if(priv)priv.parentElement.insertAdjacentHTML('beforebegin',h);else form.insertAdjacentHTML('beforeend',h);
+  const nac=$('#f_nac'),ed=$('#f_edad'),cu=$('#f_curp'),cm=$('#f_curpm');
+  const pintaEdad=()=>{if(!ed)return;const e=edadDe({nac:nac?nac.value:'',curp:cu?cu.value:''});ed.value=e==null?'':e+' años'};
+  if(cu){cu.addEventListener('input',()=>{
+    const r=curpRevisar(cu.value);cm.textContent='';cm.className='note';
+    if(r.c.length===18){if(!r.ok){cm.textContent=r.err;cm.className='note cF'}else{
+      if(nac&&!nac.value)nac.value=r.nac;
+      const sx=$('#f_sx');if(sx&&r.sx&&sx.value!==r.sx&&!id)sx.value=r.sx;
+      const otro=Object.values(D.al).find(x=>x.id!==id&&x.curp===r.c);
+      cm.textContent=otro?'Esta CURP ya está registrada: '+fullName(otro)+' ('+grp(otro)+').':'✓ CURP válida';cm.className='note '+(otro?'cF':'cP');
+    }}
+    pintaEdad();
+  })}
+  if(nac)nac.addEventListener('input',pintaEdad);pintaEdad();
+  const cons=$('#f_cons'),sg=$('#f_sangre');if(cons&&sg)cons.addEventListener('input',()=>{sg.disabled=!cons.value;const n=sg.parentElement.querySelector('.note');if(n)n.textContent=cons.value?'Dato de salud con consentimiento del tutor.':'Se habilita al registrar la fecha del consentimiento escrito (abajo, en Privacidad).'});
+  const bc=$('#f_beca');if(bc)bc.onchange=()=>{$('#f_becas').hidden=!bc.checked};
+  const sv=$('#mSave'),orig=sv.onclick;
+  sv.onclick=ev=>{
+    const x={};
+    if(fF){
+      const r=curpRevisar(cu.value);if(!r.ok){toast(r.err,'err');cu.focus();return}
+      if(r.c){const otro=Object.values(D.al).find(z=>z.id!==id&&z.curp===r.c);if(otro){toast('Esa CURP ya está registrada: '+fullName(otro)+' ('+grp(otro)+').','err');return}
+        if(nac&&nac.value&&nac.value!==r.nac){toast('La fecha de nacimiento no coincide con la CURP ('+fd(r.nac)+'). Corrige una de las dos.','err');return}}
+      x.curp=r.c;
+      const sel=[...document.querySelectorAll('#f_becas [data-beca]')].filter(c=>c.checked).map(c=>c.dataset.beca);
+      x.beca=!!(bc&&bc.checked);x.becas=x.beca?sel:[];
+      if(x.beca&&!sel.length){toast('Marca cuál o cuáles becas tiene el alumno.','err');return}
+    }
+    if(fS&&sg){if(sg.value&&!(cons&&cons.value)){toast('Para guardar el tipo de sangre registra la fecha del consentimiento escrito.','err');return}x.sangre=sg.disabled?(a.sangre&&cons&&cons.value?a.sangre:''):sg.value}
+    ALX_EXTRA=x;try{return orig.call(sv,ev)}finally{ALX_EXTRA=null}
+  };
+};
+
+/* --- ficha del alumno --- */
+const _fichaExtraAX=fichaExtra;
+fichaExtra=function(a){
+  const fF=can('ficha'),fS=can('salud');let h='';
+  if(fF||fS){
+    const e=edadDe(a),bs=becasDe(a);
+    h='<h3 style="margin-top:14px">Datos del alumno</h3><dl class="kv">'+
+      (fF?'<dt>CURP</dt><dd>'+(a.curp?'<code>'+esc(a.curp)+'</code>':'<span class="cR">Sin registrar</span>')+'</dd>':'')+
+      '<dt>Edad</dt><dd>'+(e==null?'—':e+' años')+'</dd>'+
+      (fF?'<dt>Beca</dt><dd>'+(a.beca||bs.length?bs.map(b=>'<span class="chip P">'+esc(b)+'</span>').join(' ')||'Sí':'No')+'</dd>':'')+
+      (fS?'<dt>Tipo de sangre</dt><dd>'+esc(a.sangre||'—')+'</dd>':'')+'</dl>';
+  }
+  return h+_fichaExtraAX(a);
+};
+
+/* --- indicadores para el Panel y el KPI Global --- */
+function alxDatos(L){
+  const n=L.length,conCurp=L.filter(a=>a.curp).length,eds=L.map(a=>edadDe(a)).filter(e=>e!=null),bec=L.filter(a=>a.beca||becasDe(a).length),sang=L.filter(a=>a.sangre);
+  const porEdad={};eds.forEach(e=>{porEdad[e]=(porEdad[e]||0)+1});
+  const porBeca={};bec.forEach(a=>becasDe(a).forEach(b=>{porBeca[b]=(porBeca[b]||0)+1}));
+  const porSangre={};sang.forEach(a=>{porSangre[a.sangre]=(porSangre[a.sangre]||0)+1});
+  return {n,conCurp,eds,bec,sang,porEdad,porBeca,porSangre};
+}
+function alxBloque(L,donde,titulo){
+  const ver=alxVer(donde).filter(k=>k!=='sangre'||can('salud'));if(!ver.length||!L.length)return '';
+  const X=alxDatos(L),pc=(a,b)=>b?a/b*100:null,cards=[],pan=[];
+  const grs=[...new Set(L.map(a=>a.gr))].sort((x,y)=>x-y);
+  if(ver.includes('curp')){const p=pc(X.conCurp,X.n);cards.push(kCard({t:'CURP registrada',v:pct1(p),sub:X.conCurp+' de '+X.n+' alumnos',ring:p,est:p==null?'':p<70?'F':p<95?'R':'P'}));
+    pan.push(kPanel('CURP registrada por grupo','% de alumnos con CURP.',vzChart([...new Set(L.map(a=>a.gr+'|'+a.gp))].sort().map(k=>{const G=L.filter(a=>a.gr+'|'+a.gp===k),c=G.filter(a=>a.curp).length,v=pc(c,G.length);return {l:grp(G[0]),v,n:G.length-c,est:v<70?'F':v<95?'R':'P',tip:'<b>'+esc(grp(G[0]))+'</b><br>'+c+' de '+G.length+' con CURP'}}),{tipo:'barras',fmt:pct1,max:100})))}
+  if(ver.includes('edad')){const prom=X.eds.length?X.eds.reduce((t,e)=>t+e,0)/X.eds.length:null;
+    cards.push(kCard({t:'Edad promedio',v:prom==null?'—':(Math.round(prom*10)/10).toFixed(1)+' años',sub:X.eds.length+' de '+X.n+' con fecha de nacimiento'}));
+    const rows=Object.keys(X.porEdad).map(Number).sort((a,b)=>a-b).map(e=>({l:e+' años',v:X.porEdad[e],n:X.porEdad[e],tip:'<b>'+e+' años</b><br>'+X.porEdad[e]+' alumnos'}));
+    pan.push(kPanel('Alumnos por edad','Edad cumplida al día de hoy.',rows.length?vzChart(rows,{fmt:v=>String(v),share:true,u:'alumnos'}):'<div class="empty">Registra la fecha de nacimiento o la CURP de los alumnos.</div>'))}
+  if(ver.includes('beca')){const p=pc(X.bec.length,X.n);
+    cards.push(kCard({t:'Alumnos con beca',v:X.bec.length,sub:pct1(p)+' de la matrícula',ring:p}));
+    const rows=Object.entries(X.porBeca).sort((a,b)=>b[1]-a[1]).map(([b,v])=>({l:b,v,n:v,tip:'<b>'+esc(b)+'</b><br>'+v+' alumnos'}));
+    pan.push(kPanel('Becas por tipo','Un alumno puede tener más de una.',rows.length?vzChart(rows,{fmt:v=>String(v),share:true,u:'becas'}):'<div class="empty">Ningún alumno con beca registrada.</div>'));
+    if(grs.length>1)pan.push(kPanel('Alumnos con beca por grado','% de alumnos de cada grado.',vzChart(grs.map(g=>{const G=L.filter(a=>a.gr===g),b=G.filter(a=>a.beca||becasDe(a).length).length;return {l:g+'°',v:pc(b,G.length)||0,n:b,tip:'<b>'+g+'° grado</b><br>'+b+' de '+G.length+' con beca'}}),{tipo:'barras',fmt:pct1,max:100})))}
+  if(ver.includes('sangre')){const p=pc(X.sang.length,X.n);
+    cards.push(kCard({t:'Tipo de sangre registrado',v:X.sang.length,sub:pct1(p)+' (con consentimiento)',ring:p}));
+    const rows=Object.entries(X.porSangre).sort((a,b)=>b[1]-a[1]).map(([s,v])=>({l:s,v,n:v,tip:'<b>'+esc(s)+'</b><br>'+v+' alumnos'}));
+    pan.push(kPanel('Tipo de sangre','Solo alumnos con consentimiento del tutor.',rows.length?vzChart(rows,{fmt:v=>String(v),share:true,u:'alumnos'}):'<div class="empty">Sin tipos de sangre registrados.</div>'))}
+  return kWrap('<div class="ksec"><h3>'+esc(titulo)+'</h3>'+(can('ajustes')?'<button class="link" data-act="alxAjustes">Elegir qué se muestra</button>':'')+'</div><div class="kgrid6">'+cards.join('')+'</div><div class="kgrid2">'+pan.join('')+'</div>');
+}
+const _panelAX=VIEWS.panel;
+VIEWS.panel=function(){
+  const h=_panelAX();let L=[];try{L=activos().filter(filt(U.p))}catch(e){L=activos()}
+  const b=alxBloque(L,'panel','Datos de los alumnos');if(!b)return h;
+  const i=h.indexOf('<details class="ktablas"');return i>=0?h.slice(0,i)+b+h.slice(i):h+b;
+};
+const _kpiGlobAX=VIEWS.kpiglob;
+VIEWS.kpiglob=function(){
+  const h=_kpiGlobAX();if(!verKpiGlob())return h;
+  return h+alxBloque(activos(),'kpi','Datos de los alumnos (CURP, edad, becas)');
+};
+const _kgRepAX=ACT.kgRep;
+ACT.kgRep=function(){
+  const ver=alxVer('kpi').filter(k=>k!=='sangre'||can('salud'));
+  if(!ver.length)return _kgRepAX();
+  const _rm=reportModal;
+  reportModal=function(o){reportModal=_rm;try{
+    const X=alxDatos(activos()),rows=[];
+    if(ver.includes('curp'))rows.push(['Alumnos con CURP',X.conCurp+' de '+X.n]);
+    if(ver.includes('edad')){rows.push(['Alumnos con edad registrada',X.eds.length]);Object.keys(X.porEdad).map(Number).sort((a,b)=>a-b).forEach(e=>rows.push(['  '+e+' años',X.porEdad[e]]))}
+    if(ver.includes('beca')){rows.push(['Alumnos con beca',X.bec.length]);Object.entries(X.porBeca).sort((a,b)=>b[1]-a[1]).forEach(([b,v])=>rows.push(['  '+b,v]))}
+    if(ver.includes('sangre')){rows.push(['Tipo de sangre registrado',X.sang.length]);Object.entries(X.porSangre).forEach(([s,v])=>rows.push(['  '+s,v]))}
+    o.sheets.push({name:'Alumnos',title:'Datos de los alumnos',cols:[C('Indicador',3),C('Valor',1.6,'c')],rows,foots:[]});
+  }catch(e){}return _rm(o)};
+  try{return _kgRepAX()}finally{reportModal=_rm}
+};
+
+/* --- Ajustes: opciones de sangre y becas, y qué se muestra --- */
+function alxPanel(){
+  if(!can('ajustes'))return '';
+  const chk=(d,k,l)=>'<label class="chk-line"><input type="checkbox" data-alxver="'+d+'|'+k+'"'+(alxVer(d).includes(k)?' checked':'')+'>'+esc(l)+'</label>';
+  return '<div class="panel" id="pAlx"><h3>Datos del alumno (CURP, edad, sangre y becas)</h3><p class="sub">Opciones que aparecen al dar de alta o editar a un alumno, y qué indicadores se muestran en los tableros. La edad se calcula sola con la fecha de nacimiento o la CURP. El tipo de sangre es un dato de salud: solo se guarda con consentimiento escrito del tutor y solo lo ve quien tiene el permiso de salud.</p><div class="body form">'+
+   '<label class="full">Tipos de sangre (separados por coma)<input data-alxlist="sangreOps" value="'+esc(sangreOps().join(', '))+'"></label>'+
+   '<label class="full">Becas que puede tener un alumno (separadas por coma)<input data-alxlist="becasOps" value="'+esc(becasOps().join(', '))+'"></label>'+
+   '<div><b>En el Panel (resumen)</b>'+ALX_IND.map(([k,l])=>chk('panel',k,l)).join('')+'</div>'+
+   '<div><b>En el KPI Global</b>'+ALX_IND.map(([k,l])=>chk('kpi',k,l)).join('')+'</div>'+
+   '<p class="note full">«Tipo de sangre» solo aparece a quien tiene el permiso de datos de salud.</p></div></div>';
+}
+const _ajustesAX=VIEWS.ajustes;
+VIEWS.ajustes=function(){const h=_ajustesAX(),p=alxPanel();if(!p)return h;const i=h.indexOf('<div class="panel"><h3>Privacidad</h3>');return i>=0?h.slice(0,i)+p+h.slice(i):h+p};
+document.addEventListener('change',e=>{
+  const t=e.target;if(!t||!t.dataset)return;
+  if(t.dataset.alxlist){
+    const k=t.dataset.alxlist;let v=[...new Set(t.value.split(',').map(x=>x.trim().slice(0,60)).filter(Boolean))];
+    if(!v.length){toast('Escribe al menos una opción.','err');render();return}
+    if(commit({t:'cfg',k,v}))toast('Guardado.');
+  }else if(t.dataset.alxver){
+    const [d,k]=t.dataset.alxver.split('|'),cur=alxVer(d).slice(),v=t.checked?[...new Set(cur.concat([k]))]:cur.filter(x=>x!==k);
+    if(commit({t:'cfg',k:'alx_'+d,v:ALX_IND.map(x=>x[0]).filter(x=>v.includes(x))}))toast('Guardado.');
+  }
+});
+ACT.alxAjustes=()=>{U.tab='ajustes';render();setTimeout(()=>{const p=document.getElementById('pAlx');if(p)p.scrollIntoView({block:'start'})},60)};
+
+/* --- carga masiva (Excel): curp, tipo_sangre, consentimiento_salud, beca_1, beca_2 --- */
+function alxImport(raw,o,warn,fix,vistas,mat,fila){
+  if(raw.curp){
+    if(!can('ficha'))warn.push('CURP omitida: tu cuenta no tiene permiso de ver la ficha del alumno');
+    else{const r=curpRevisar(raw.curp);
+      if(!r.ok)warn.push(r.err.replace(/\s*Revísala.*$/,'').replace(/\.$/,'')+' (se omite la CURP)');
+      else{
+        const otro=Object.values(D.al).find(a=>a.curp===r.c&&(!mat||String(a.mat).toLowerCase()!==String(mat).toLowerCase()));
+        if(otro)warn.push('CURP ya registrada en '+fullName(otro)+' ('+grp(otro)+'); se omite');
+        else if(vistas.has(r.c))warn.push('CURP repetida en el archivo (fila '+vistas.get(r.c)+'); se omite');
+        else{vistas.set(r.c,fila||'?');o.curp=r.c;if(String(raw.curp).trim()!==r.c)fix.push('CURP en mayúsculas y sin espacios');
+          if(!o.nac){o.nac=r.nac;fix.push('Fecha de nacimiento tomada de la CURP')}else if(o.nac!==r.nac)warn.push('La fecha de nacimiento no coincide con la CURP ('+fd(r.nac)+')');
+          if(r.sx&&o.sx&&r.sx!==o.sx)warn.push('El sexo no coincide con la CURP')}
+      }}
+  }
+  if(raw.sangre||raw.cons){
+    if(!can('salud'))warn.push('Tipo de sangre y consentimiento omitidos: tu cuenta no tiene permiso de datos de salud');
+    else{
+      const c=raw.cons?dateOf(raw.cons):'';if(c===null)warn.push('Fecha de consentimiento no válida (se omite)');else if(c)o.cons=c;
+      if(raw.sangre){
+        let v=String(raw.sangre).toUpperCase().replace(/\s+/g,'').replace(/POSITIVO|POS$/,'+').replace(/NEGATIVO|NEG$/,'-').replace(/^0/,'O');
+        const m=sangreOps().find(x=>x.toUpperCase().replace(/\s+/g,'')===v);
+        if(!m)warn.push('Tipo de sangre no reconocido: «'+raw.sangre+'» (se omite)');
+        else if(!o.cons)warn.push('Tipo de sangre sin fecha de consentimiento del tutor (se omite)');
+        else{o.sangre=m;if(m!==raw.sangre)fix.push('Tipo de sangre «'+raw.sangre+'» → '+m)}
+      }
+    }
+  }
+  const L=[raw.b1,raw.b2].concat(String(raw.bx||'').split(/[;,]/)).map(x=>String(x||'').trim()).filter(x=>x&&!/^(no|ninguna|sin beca|-|—)$/i.test(x));
+  if(L.length){
+    if(!can('ficha'))warn.push('Becas omitidas: tu cuenta no tiene permiso de ver la ficha del alumno');
+    else{const ops=becasOps(),out=[];
+      for(const b of L){const n=normH(b);let m=ops.find(x=>normH(x)===n);
+        if(!m&&n.length>=4){const c=ops.filter(x=>normH(x).includes(n)||n.includes(normH(x)));if(c.length===1){m=c[0];fix.push('Beca «'+b+'» → «'+m+'»')}}
+        if(!m){m=b.slice(0,60);warn.push('Beca «'+b+'» no está en la lista de Ajustes (se guarda tal cual)')}
+        if(!out.includes(m))out.push(m)}
+      o.beca=true;o.becas=out;
+    }
+  }
+}
+
+/* ====== Planeaciones didácticas (pestaña oculta) ======
+   - Docentes (con asignaturas en su cuenta): suben sus planeaciones (semanal, quincenal, mensual o trimestral),
+     por trimestre, con archivo adjunto (PDF, Word, Excel, imagen…).
+   - Revisión: solo el Administrador y quien él autorice (Dirección, Subdirección, Coordinación) en Ajustes → Pestañas ocultas.
+     Carpetas por campo formativo (Fase 6) → materias/tecnologías → entregas. Resumen, KPI y gráficas de cumplimiento.
+   - Los archivos se guardan en esta computadora y viajan cifrados por la Nube de SICET o la carpeta de sincronización. */
+const PLA_TIPOS=[['semanal','Semanal'],['quincenal','Quincenal'],['mensual','Mensual'],['trimestral','Trimestral']];
+const PLA_CAMPOS0=[
+  {n:'Lenguajes',m:['Español','Inglés','Artes']},
+  {n:'Saberes y Pensamiento Científico',m:['Matemáticas','Ciencias (Biología)','Ciencias (Física)','Ciencias (Química)']},
+  {n:'Ética, Naturaleza y Sociedades',m:['Geografía','Historia','Formación Cívica y Ética']},
+  {n:'De lo Humano y lo Comunitario',m:['Tecnología','Educación Física','Tutoría y Educación Socioemocional']}];
+const PLA_COL=['var(--s1)','var(--s2)','var(--s3)','var(--brand)','var(--J)','var(--R)'];
+const PLA_MAX=10*1024*1024;
+const PLA_SIN='Sin campo formativo';
+const plaCampos=()=>Array.isArray(D.cfg.plaCampos)&&D.cfg.plaCampos.length?D.cfg.plaCampos:PLA_CAMPOS0;
+const plaLims=()=>Object.assign({},D.cfg.plaLim||{});
+const plaLimMs=tr=>{const v=plaLims()[tr];if(!v)return 0;const t=new Date(v).getTime();return isNaN(t)?0:t};
+const plaRevisor=()=>!!ME&&!!ME.id&&verOculto('planea');
+const plaPuedeRev=()=>!!ME&&!!ME.id&&editOculto('planea');
+const PLA_ROLES_REV=['admin','subdir','coord','administrador'];
+function plaCampoDe(mat){
+  const n=normH(mat);if(!n)return PLA_SIN;const C=plaCampos();
+  for(const c of C)if((c.m||[]).some(x=>normH(x)===n))return c.n;
+  for(const c of C)if((c.m||[]).some(x=>{const k=normH(x);return k.length>=4&&(n.includes(k)||k.includes(n))}))return c.n;
+  return PLA_SIN;
+}
+const plaMatTxt=r=>r.mat+(r.tec?' · '+r.tec:'');
+/* unidades del docente: cada asignatura (la de Tecnología se abre por taller si el docente tiene tecnologías) */
+function plaUnidades(u){
+  const out=[];if(!u)return out;
+  for(const s of asigsU(u)){
+    if(esTecAsig(s)){const T=[...new Set((u.tecs||[]).map(k=>String(k).split('|').slice(1).join('|')).filter(Boolean))];if(T.length){T.forEach(t=>out.push({u:u.id,mat:s,tec:t,campo:plaCampoDe(s)}));continue}}
+    out.push({u:u.id,mat:s,tec:'',campo:plaCampoDe(s)});
+  }
+  return out;
+}
+const plaDocentes=()=>Object.values(D.users).filter(u=>u.activo!==false&&asigsU(u).length).sort((a,b)=>String(a.nombre).localeCompare(String(b.nombre),'es'));
+const plaLista=()=>Object.values(D.pla||{});
+const plaKeyU=(x)=>x.u+'|'+x.mat+'|'+(x.tec||'');
+/* estado de una unidad en un trimestre: a tiempo / tarde / pendiente / por entregar */
+function plaEstado(un,tr){
+  const L=plaLista().filter(r=>plaKeyU(r)===plaKeyU(un)&&Number(r.tr)===Number(tr)),lim=plaLimMs(tr),now=Date.now();
+  if(L.length){const primero=Math.min(...L.map(r=>r.f));return {e:!lim||primero<=lim?'tiempo':'tarde',n:L.length,L}}
+  if(!lim)return {e:'sinfecha',n:0,L};
+  return {e:now>lim?'pendiente':'porentregar',n:0,L};
+}
+const PLA_EST={tiempo:['P','A tiempo'],tarde:['R','Tarde'],pendiente:['F','Sin entregar'],porentregar:['N','Por entregar'],sinfecha:['N','Sin fecha límite']};
+const PLA_REV={recibida:['N','Recibida'],revisada:['P','Revisada'],observada:['R','Con observaciones']};
+const plaTrAct=()=>{const now=Date.now();for(const t of [1,2,3]){const l=plaLimMs(t);if(l&&now<=l)return t}try{return trAbierto()}catch(e){return 1}};
+const plaTam=n=>n>=1048576?(n/1048576).toFixed(1)+' MB':Math.max(1,Math.round(n/1024))+' KB';
+const plaIcono=t=>/pdf/.test(t)?'PDF':/image\//.test(t)?'IMG':/sheet|excel|csv/.test(t)?'XLS':/word|document|rtf|odt/.test(t)?'DOC':/presentation|powerpoint/.test(t)?'PPT':'ARCH';
+
+/* --- datos: colección pla, operación 'pla', clave n|id --- */
+if(!COLS.includes('pla'))COLS.push('pla');
+['plaCampos','plaLim'].forEach(k=>{if(!CFG_MOV.includes(k))CFG_MOV.push(k)});
+const _applyPL=applyOp;
+applyOp=function(S0,op){
+  if(op.t==='pla'){S0.pla=S0.pla||{};if(op.rec)S0.pla[op.id]=op.rec;else delete S0.pla[op.id];return}
+  _applyPL(S0,op);
+  if(op.t==='newcycle'||op.t==='wipe')S0.pla={};
+};
+const _primsPL=prims;
+prims=function(op){if(op.t==='pla')return [{k:'n|'+op.id,p:op,del:!op.rec}];return _primsPL(op)};
+const plaCampRev=['est','obs','rev','rf'];
+const _guardPL=guardOp;
+guardOp=function(op){
+  if(op.t==='pla'){
+    const cur=(D.pla||{})[op.id],nv=op.rec;
+    if(!nv){if(esAdministrador())return '';if(cur&&cur.u===ME.id)return cur.est&&cur.est!=='recibida'?'Esa planeación ya fue revisada: no se puede borrar.':'';return 'Solo quien subió la planeación puede borrarla.'}
+    if(cur&&plaPuedeRev()&&cur.u!==ME.id){const a=Object.assign({},cur),b=Object.assign({},nv);plaCampRev.forEach(k=>{delete a[k];delete b[k]});return JSON.stringify(a)===JSON.stringify(b)?'':'Solo puedes marcar la revisión.'}
+    if(nv.u!==ME.id)return 'Solo el docente sube sus planeaciones.';
+    if(!plaUnidades(meU()).some(x=>x.mat===nv.mat&&(x.tec||'')===(nv.tec||'')))return 'Esa materia no está asignada a tu cuenta.';
+    if(cur&&cur.est&&cur.est!=='recibida')return 'Esa planeación ya fue revisada.';
+    return '';
+  }
+  if(op.t==='cfg'&&op.k==='plaLim')return puedeCalLim()?'':'Solo Dirección, Subdirección o el Administrador ponen la fecha límite.';
+  if(op.t==='cfg'&&op.k==='plaCampos')return (esAdministrador()||puedeCalLim())?'':'Solo Dirección, Subdirección o el Administrador cambian los campos formativos.';
+  return _guardPL(op);
+};
+/* sincronización: nube y carpeta */
+const _clPermPL=clPermitido;clPermitido=function(k){if(k[0]==='n')return true;return _clPermPL(k)};
+const plaRevU=u=>!!u&&(u.rol==='administrador'||(ocCfg('planea').e||[]).includes(u.id));
+const _clAcPL=clAcepta;
+clAcepta=function(o){
+  if(o&&typeof o.k==='string'&&o.k[0]==='n'&&o.p&&o.p.t==='pla'){
+    if(EDITION==='movil')return true;
+    const u=Object.values(D.users).find(x=>x.usuario===o.by);if(!u||u.activo===false)return false;
+    const cur=(D.pla||{})[o.p.id],nv=o.p.rec;
+    if(!nv)return !!cur&&(cur.u===u.id||plaRevU(u));
+    if(nv.u===u.id)return plaUnidades(u).some(x=>x.mat===nv.mat&&(x.tec||'')===(nv.tec||''));
+    return plaRevU(u)&&!!cur;
+  }
+  return _clAcPL(o);
+};
+const _encNubePL=encolarNube;
+encolarNube=function(){_encNubePL();if(!CL.on||EDITION==='movil')return;const by=(ME&&ME.usuario)||'',ts0=k=>(META.get(k)&&META.get(k).ts)||1;for(const id in (D.pla||{})){const k='n|'+id;clEnqueue(k,ts0(k),by,{t:'pla',id,rec:D.pla[id]})}};
+const _encTodoPL=encolarTodo;
+encolarTodo=function(){_encTodoPL();const by=(ME&&ME.usuario)||'';for(const id in (D.pla||{})){const k='n|'+id,ts=nextTs();META.set(k,{ts,dev:DEV});metaDirty.push(k);OUT.push({k,ts,by,p:{t:'pla',id,rec:D.pla[id]}})}SY.pend=OUT.length};
+
+/* --- archivos: en esta computadora (IndexedDB) y viajan cifrados --- */
+async function plaGuardarArchivo(h,meta,u8){await IDB.put('kv','plf|'+h,{n:meta.n,t:meta.t,b:u8})}
+async function plaPend(){return (await IDB.get('kv','plfPend'))||[]}
+async function plaSubirPend(){
+  if(plaSubirPend.ocup)return;plaSubirPend.ocup=true;
+  try{
+    let P=await plaPend();if(!P.length)return;const quedan=[];
+    for(const h of P){
+      const f=await IDB.get('kv','plf|'+h);if(!f){continue}
+      let ok=true;
+      if(CL.on&&navigator.onLine!==false){
+        try{
+          const m=await fetchT(clDUrl('/f/'+h+'/m'),null,10000).then(r=>r.ok?r.json():null).catch(()=>null);
+          if(!m||!m.n){
+            const s=b64(await cifrar(f.b,CL.key)),n=Math.max(1,Math.ceil(s.length/150000));
+            for(let i=0;i<n;i++){const r=await fetchT(clDUrl('/f/'+h+'/c/'+i),{method:'PUT',body:JSON.stringify(s.slice(i*150000,(i+1)*150000))},60000);if(!r.ok)throw new Error(String(r.status))}
+            const r=await fetchT(clDUrl('/f/'+h+'/m'),{method:'PUT',body:JSON.stringify({n,sz:f.b.length,t:Date.now()})},15000);if(!r.ok)throw 0;
+          }
+        }catch(e){ok=false}
+      }
+      if(SY.activo&&SY.key){
+        try{if(await permisoOk(false)){let ya=false;try{await SY.sub.getFileHandle('f-'+h+'.asx');ya=true}catch(e){}if(!ya)await escribir(SY.sub,'f-'+h+'.asx',await cifrar(f.b))}else ok=false}catch(e){ok=false}
+      }
+      if(!ok)quedan.push(h);
+    }
+    P=await plaPend();await IDB.put('kv','plfPend',P.filter(h=>quedan.includes(h)||!P.includes(h)));
+  }finally{plaSubirPend.ocup=false}
+}
+setInterval(()=>{plaSubirPend().catch(()=>{})},60000);setTimeout(()=>{plaSubirPend().catch(()=>{})},6000);
+async function plaLeerArchivo(r){
+  const h=r.arch&&r.arch.h;if(!h)throw new Error('Esta planeación no tiene archivo.');
+  const loc=await IDB.get('kv','plf|'+h);if(loc&&loc.b)return loc.b;
+  let u8=null;
+  if(SY.activo&&SY.key){try{if(await permisoOk(true))u8=await descifrar(await leer(SY.sub,'f-'+h+'.asx'))}catch(e){u8=null}}
+  if(!u8&&CL.on){
+    try{const m=await fetchT(clDUrl('/f/'+h+'/m'),null,15000).then(x=>x.ok?x.json():null);
+      if(m&&m.n){const p=[];for(let i=0;i<m.n;i++){const x=await fetchT(clDUrl('/f/'+h+'/c/'+i),null,60000);if(!x.ok)throw 0;p.push(await x.json())}u8=await descifrar(unb64(p.join('')),CL.key)}}catch(e){u8=null}
+  }
+  if(!u8)throw new Error('El archivo todavía no llega a este equipo. Llega cuando el equipo del docente se conecte a la Nube de SICET o a la carpeta de sincronización.');
+  if(await sha256hex(u8)!==h)throw new Error('El archivo llegó dañado. Pide al docente que lo vuelva a subir.');
+  await plaGuardarArchivo(h,r.arch,u8);return u8;
+}
+
+/* --- pestaña --- */
+const _tabsPL=tabsFor;
+tabsFor=function(){const t=_tabsPL();if(ME&&ME.id&&(calEsDoc()||plaRevisor())&&!t.some(x=>x[0]==='planea')){const i=t.findIndex(y=>y[0]==='ajustes');const x=['planea','Planeaciones didácticas'];if(i<0)t.push(x);else t.splice(i,0,x)}return t};
+U.pl={v:'',tr:0,campo:'',mat:'',q:''};U.plf={mat:'',tipo:'semanal',tr:0,ini:'',com:''};let PLA_FILE=null;
+const _initPL=initU;initU=function(){_initPL();U.pl={v:'',tr:0,campo:'',mat:'',q:''};U.plf={mat:'',tipo:'semanal',tr:0,ini:'',com:''};PLA_FILE=null};
+VIEWS.planea=function(){
+  const doc=calEsDoc(),rev=plaRevisor();if(!doc&&!rev)return '<div class="empty">No tienes acceso a esta sección.</div>';
+  const o=U.pl;if(!o.v)o.v=rev?'carpetas':'subir';if(!o.tr)o.tr=plaTrAct();
+  const tabs=[];if(doc)tabs.push(['subir','Subir mis planeaciones']);if(rev){tabs.push(['carpetas','Carpetas']);tabs.push(['resumen','Resumen y KPI'])}
+  let h='<div class="head"><div><h2>Planeaciones didácticas'+(rev?' <span class="chip J">Confidencial</span>':'')+'</h2><p>'+(rev?'Lo que sube cada docente, ordenado por campo formativo y materia.':'Sube tus planeaciones en pocos pasos. Dirección las recibe al instante.')+'</p></div>'+(tabs.length>1?'<div class="segtabs">'+tabs.map(([k,l])=>'<button class="'+(o.v===k?'on':'')+'" data-act="plV" data-v="'+k+'">'+esc(l)+'</button>').join('')+'</div>':'')+'</div>';
+  if(o.v==='subir'&&doc)return h+plaSubirHTML();
+  if(!rev)return h+plaSubirHTML();
+  h+='<div class="filters"><div class="segtabs">'+calPer().map((p,i)=>'<button class="'+(o.tr===i+1?'on':'')+'" data-act="plTr" data-v="'+(i+1)+'">'+esc(p)+'</button>').join('')+'</div>'+(plaLimMs(o.tr)?'<span class="plabel">Fecha límite: <b>'+esc(fechaLarga(plaLims()[o.tr]).replace(/\.$/,''))+'</b></span>':'<span class="plabel">Sin fecha límite para este periodo'+(puedeCalLim()?' · <button class="link" data-act="plAj">Ponerla</button>':'')+'</span>')+'</div>';
+  return h+(o.v==='resumen'?plaResumenHTML(o.tr):plaCarpetasHTML(o.tr));
+};
+/* --- docente: formulario sencillo --- */
+function plaSubirHTML(){
+  const me=meU(),U0=plaUnidades(me),f=U.plf;if(!f.tr)f.tr=plaTrAct();
+  if(!U0.length)return '<div class="empty"><b>Todavía no tienes materias asignadas.</b><br>Pide a Dirección que agregue tus asignaturas en tu cuenta (Ajustes → Personal → «Asignaturas que imparte»).</div>';
+  if(!U0.some(x=>plaKeyU(x)===f.mat))f.mat=plaKeyU(U0[0]);
+  const un=U0.find(x=>plaKeyU(x)===f.mat),per={semanal:'Semana del',quincenal:'Quincena del',mensual:'Mes de',trimestral:'Inicio del trimestre'}[f.tipo]||'Desde';
+  const mias=plaLista().filter(r=>r.u===me.id).sort((a,b)=>b.f-a.f);
+  const lim=plaLimMs(f.tr);
+  let h='<div class="plgrid"><div class="panel plform"><h3>Nueva planeación</h3><div class="body">'+
+   '<div class="plpaso"><span class="pln">1</span><div><b>'+esc(me.nombre||ME.nombre)+'</b><div class="note">Docente que sube la información</div></div></div>'+
+   '<div class="plpaso"><span class="pln">2</span><label style="flex:1">Materia'+(U0.length>1?'':'')+'<select id="pl_mat">'+U0.map(x=>'<option value="'+esc(plaKeyU(x))+'"'+(plaKeyU(x)===f.mat?' selected':'')+'>'+esc(plaMatTxt(x))+'</option>').join('')+'</select><span class="note">Campo formativo: <b>'+esc(un.campo)+'</b></span></label></div>'+
+   '<div class="plpaso"><span class="pln">3</span><div style="flex:1"><div class="pllab">Tipo de planeación</div><select id="pl_tipo">'+opts(PLA_TIPOS,f.tipo)+'</select></div></div>'+
+   '<div class="plpaso"><span class="pln">4</span><div style="flex:1"><div class="pllab">Trimestre</div><div class="segtabs">'+[1,2,3].map(t=>'<button type="button" class="'+(f.tr===t?'on':'')+'" data-act="plfTr" data-v="'+t+'">'+t+'</button>').join('')+'</div><div class="note">'+esc(calPer()[f.tr-1])+(lim?' · entrega a más tardar el <b>'+esc(fechaLarga(plaLims()[f.tr]).replace(/\.$/,''))+'</b>'+(Date.now()>lim?' <span class="chip R">fecha vencida</span>':''):'')+'</div></div></div>'+
+   '<div class="plpaso"><span class="pln">5</span><label style="flex:1">'+esc(per)+' <span class="note">(opcional)</span><input type="date" id="pl_ini" value="'+esc(f.ini||'')+'"></label></div>'+
+   '<div class="plpaso"><span class="pln">6</span><div style="flex:1"><div class="pllab">Archivo</div><label class="pldrop'+(PLA_FILE?' ok':'')+'" id="pl_drop"><input type="file" id="pl_file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.odt,.ods,.odp,.rtf,.txt,.csv,.zip,image/*" hidden>'+
+     (PLA_FILE?'<b>'+plaIcono(PLA_FILE.type)+'</b><span>'+esc(PLA_FILE.name)+'<small>'+plaTam(PLA_FILE.size)+' · toca para cambiarlo</small></span>':'<b>＋</b><span>Toca para elegir tu archivo<small>PDF, Word, Excel, PowerPoint o imagen · hasta 10 MB</small></span>')+'</label></div></div>'+
+   '<label class="full">Comentario para Dirección <span class="note">(opcional)</span><input id="pl_com" maxlength="200" value="'+esc(f.com||'')+'"></label>'+
+   '<div class="actions"><button class="btn pri" data-act="plSubir"'+(PLA_FILE?'':' disabled')+'>Subir planeación</button></div></div></div>';
+  /* semáforo personal */
+  h+='<div class="panel"><h3>Mi avance · '+esc(calPer()[f.tr-1])+'</h3><div class="body"><div class="plsem">'+U0.map(x=>{const e=plaEstado(x,f.tr),[c,l]=PLA_EST[e.e];return '<div class="plsemi"><span class="dot '+c+'"></span><div><b>'+esc(plaMatTxt(x))+'</b><div class="note">'+l+(e.n?' · '+e.n+' archivo'+(e.n===1?'':'s'):'')+'</div></div></div>'}).join('')+'</div></div></div></div>';
+  h+='<div class="panel"><h3>Mis planeaciones <span class="chip N">'+mias.length+'</span></h3>'+(mias.length?'<div class="twrap"><table><thead><tr><th class="l">Materia</th><th>Tipo</th><th>Trim.</th><th class="l">Periodo</th><th class="l">Archivo</th><th class="l">Subida</th><th class="l">Revisión</th><th></th></tr></thead><tbody>'+mias.map(r=>{const [c,l]=PLA_REV[r.est||'recibida'];return '<tr><td class="l">'+esc(plaMatTxt(r))+'</td><td>'+esc((PLA_TIPOS.find(x=>x[0]===r.tipo)||[0,r.tipo])[1])+'</td><td>'+r.tr+'</td><td class="l">'+(r.ini?fd(r.ini):'—')+'</td><td class="l"><button class="link" data-act="plAbrir" data-id="'+r.id+'">'+esc(r.arch.n)+'</button></td><td class="l">'+esc(new Date(r.f).toLocaleString('es-MX',{dateStyle:'medium',timeStyle:'short'}))+'</td><td class="l"><span class="chip '+c+'">'+l+'</span>'+(r.obs?'<div class="note">'+esc(r.obs)+'</div>':'')+'</td><td>'+((r.est||'recibida')==='recibida'?'<button class="btn sm" data-act="plBorrar" data-id="'+r.id+'">Quitar</button>':'')+'</td></tr>'}).join('')+'</tbody></table></div>':'<div class="empty" style="padding:16px">Todavía no subes planeaciones.</div>')+'</div>';
+  return h;
+}
+document.addEventListener('change',e=>{
+  const t=e.target;if(!t||!t.id)return;
+  if(t.id==='pl_mat'){U.plf.mat=t.value;render()}
+  else if(t.id==='pl_tipo'){U.plf.tipo=t.value;render()}
+  else if(t.id==='pl_ini'){U.plf.ini=t.value}
+  else if(t.id==='pl_com'){U.plf.com=t.value}
+  else if(t.id==='pl_file'){const f=t.files&&t.files[0];if(!f)return;if(f.size>PLA_MAX){toast('El archivo pesa '+plaTam(f.size)+'. El máximo es 10 MB: guárdalo como PDF o reduce las imágenes.','err');t.value='';return}PLA_FILE=f;render()}
+});
+document.addEventListener('dragover',e=>{if(e.target.closest&&e.target.closest('#pl_drop'))e.preventDefault()});
+document.addEventListener('drop',e=>{const z=e.target.closest&&e.target.closest('#pl_drop');if(!z)return;e.preventDefault();const f=e.dataTransfer.files[0];if(!f)return;if(f.size>PLA_MAX)return toast('El archivo pesa más de 10 MB.','err');PLA_FILE=f;render()});
+Object.assign(ACT,{
+  plV:t=>{U.pl.v=t.dataset.v;render()},
+  plTr:t=>{U.pl.tr=Number(t.dataset.v);render()},
+  plfTr:t=>{U.plf.tr=Number(t.dataset.v);render()},
+  plAj:()=>{U.tab='ajustes';render();setTimeout(()=>{const p=document.getElementById('pPla');if(p)p.scrollIntoView({block:'start'})},60)},
+  plSubir:async t=>{
+    const f=PLA_FILE,me=meU(),F=U.plf;if(!f)return toast('Elige el archivo.','err');
+    const com=$('#pl_com'),ini=$('#pl_ini');F.com=com?com.value.trim():'';F.ini=ini?ini.value:'';
+    const un=plaUnidades(me).find(x=>plaKeyU(x)===F.mat);if(!un)return toast('Elige la materia.','err');
+    t.disabled=true;t.textContent='Subiendo…';
+    try{
+      const u8=new Uint8Array(await f.arrayBuffer()),h=await sha256hex(u8),arch={n:String(f.name).slice(0,120),t:f.type||'application/octet-stream',sz:u8.length,h};
+      await plaGuardarArchivo(h,arch,u8);
+      let id;do{id='pl'+hexR(5)}while((D.pla||{})[id]);
+      const rec={id,u:me.id,n:me.nombre||ME.nombre,campo:un.campo,mat:un.mat,tec:un.tec||'',tipo:F.tipo,tr:F.tr,ini:F.ini||'',com:F.com||'',f:Date.now(),arch,est:'recibida'};
+      if(!commit({t:'pla',id,rec}))throw new Error('');
+      const P=await plaPend();if(!P.includes(h)){P.push(h);await IDB.put('kv','plfPend',P)}
+      bitacora('Subió planeación '+plaMatTxt(rec)+' ('+rec.tipo+', trimestre '+rec.tr+')');
+      PLA_FILE=null;F.ini='';F.com='';toast('Planeación subida. Dirección ya puede verla.');render();
+      plaSubirPend().catch(()=>{});
+    }catch(e){if(e&&e.message)toast(e.message,'err');t.disabled=false;t.textContent='Subir planeación'}
+  },
+  plBorrar:t=>{const r=(D.pla||{})[t.dataset.id];if(!r)return;confirmDlg('Quitar planeación','¿Quitar «'+r.arch.n+'» de '+plaMatTxt(r)+'?','Quitar',()=>{if(commit({t:'pla',id:r.id,rec:null})){toast('Planeación quitada.');render()}},true)},
+  plAbrir:async t=>{
+    const r=(D.pla||{})[t.dataset.id];if(!r)return;toast('Abriendo…');
+    try{const u8=await plaLeerArchivo(r),bl=new Blob([u8],{type:r.arch.t||'application/octet-stream'});
+      if(/^image\//.test(r.arch.t)){const u=URL.createObjectURL(bl);openModal('<h2>'+esc(r.arch.n)+'</h2><p class="note">'+esc(r.n)+' · '+esc(plaMatTxt(r))+'</p><div class="plprev"><img src="'+u+'" alt=""></div><div class="mfoot"><button class="btn" data-act="plBajar" data-id="'+r.id+'">Descargar</button><button class="btn pri" data-act="closemodal">Cerrar</button></div>')}
+      else if(/pdf/.test(r.arch.t)&&!DL){const u=URL.createObjectURL(bl);const w=window.open(u,'_blank','noopener');if(!w)saveFile(r.arch.n,bl)}
+      else saveFile(r.arch.n,bl);
+      if(plaRevisor()&&r.u!==ME.id)bitacora('Consultó planeación de '+r.n+' ('+plaMatTxt(r)+')');
+    }catch(e){toast(e.message||String(e),'err')}
+  },
+  plBajar:async t=>{const r=(D.pla||{})[t.dataset.id];if(!r)return;try{saveFile(r.arch.n,new Blob([await plaLeerArchivo(r)],{type:r.arch.t}))}catch(e){toast(e.message||String(e),'err')}},
+  plCampo:t=>{U.pl.campo=t.dataset.v||'';U.pl.mat='';render()},
+  plMat:t=>{U.pl.mat=t.dataset.v||'';render()},
+  plRev:t=>{
+    const r=(D.pla||{})[t.dataset.id];if(!r||!plaPuedeRev())return;
+    openModal('<h2>Revisar planeación</h2><p><b>'+esc(r.n)+'</b> · '+esc(plaMatTxt(r))+' · '+esc((PLA_TIPOS.find(x=>x[0]===r.tipo)||[0,r.tipo])[1])+' · trimestre '+r.tr+'</p><p class="note">Archivo: '+esc(r.arch.n)+(r.com?'<br>Comentario del docente: '+esc(r.com):'')+'</p>'+
+     '<div class="form"><label class="full">Resultado<select id="pr_e">'+opts([['revisada','Revisada (todo en orden)'],['observada','Con observaciones (el docente las verá)'],['recibida','Solo recibida (sin revisar)']],r.est||'revisada')+'</select></label><label class="full">Observaciones para el docente<textarea id="pr_o" rows="3" maxlength="400">'+esc(r.obs||'')+'</textarea></label></div>'+
+     '<div class="mfoot"><button class="btn" data-act="plAbrir" data-id="'+r.id+'">Abrir archivo</button><button class="btn" data-act="closemodal">Cancelar</button><button class="btn pri" id="pr_ok">Guardar</button></div>');
+    $('#pr_ok').onclick=()=>{const e=$('#pr_e').value,ob=$('#pr_o').value.trim();if(e==='observada'&&!ob)return toast('Escribe las observaciones para el docente.','err');
+      if(commit({t:'pla',id:r.id,rec:Object.assign({},r,{est:e,obs:e==='recibida'?'':ob,rev:ME.nombre,rf:Date.now()})})){closeModal();toast('Revisión guardada.');render()}};
+  },
+  plRep:()=>plaReporte()
+});
+/* --- revisión: carpetas por campo formativo → materia → entregas --- */
+function plaUnidadesTodas(){const L=[];for(const u of plaDocentes())L.push(...plaUnidades(u).map(x=>Object.assign(x,{nom:u.nombre})));return L}
+function plaCarpetasHTML(tr){
+  const o=U.pl,UN=plaUnidadesTodas(),R=plaLista().filter(r=>Number(r.tr)===tr),C=plaCampos().map(c=>c.n);
+  if(UN.some(x=>x.campo===PLA_SIN)||R.some(r=>r.campo===PLA_SIN))C.push(PLA_SIN);
+  const tasa=L=>{if(!L.length)return null;return L.filter(x=>['tiempo','tarde'].includes(plaEstado(x,tr).e)).length/L.length*100};
+  const crumbs='<nav class="plcrumb"><button class="link" data-act="plCampo" data-v="">Campos formativos</button>'+(o.campo?' › <button class="link" data-act="plMat" data-v="">'+esc(o.campo)+'</button>':'')+(o.mat?' › <b>'+esc(o.mat)+'</b>':'')+'</nav>';
+  if(!o.campo){
+    return crumbs+'<div class="plfolders">'+C.map((c,i)=>{const Lu=UN.filter(x=>x.campo===c),Lr=R.filter(r=>r.campo===c),p=tasa(Lu),porRev=Lr.filter(r=>(r.est||'recibida')==='recibida').length;
+      return '<button class="plfolder" data-act="plCampo" data-v="'+esc(c)+'" style="--fc:'+PLA_COL[i%PLA_COL.length]+'"><span class="plf-ico" aria-hidden="true"></span><span class="plf-n">'+esc(c)+'</span><span class="plf-s">'+(n=>n+(n===1?' materia':' materias'))(new Set(Lu.map(x=>x.mat+(x.tec?'·'+x.tec:''))).size)+' · '+Lr.length+' archivo'+(Lr.length===1?'':'s')+(porRev?' · <b>'+porRev+' por revisar</b>':'')+'</span><span class="plf-bar"><i style="width:'+(p||0)+'%"></i></span><span class="plf-p">'+(p==null?'Sin docentes asignados':Math.round(p)+'% de docentes entregó')+'</span></button>'}).join('')+'</div>';
+  }
+  const Lu=UN.filter(x=>x.campo===o.campo),mats=[...new Set(Lu.map(x=>plaMatTxt(x)).concat(R.filter(r=>r.campo===o.campo).map(plaMatTxt)))].sort((a,b)=>a.localeCompare(b,'es'));
+  if(!o.mat){
+    return crumbs+(mats.length?'<div class="plfolders sm">'+mats.map(m=>{const L=Lu.filter(x=>plaMatTxt(x)===m),Lr=R.filter(r=>plaMatTxt(r)===m),p=tasa(L);return '<button class="plfolder" data-act="plMat" data-v="'+esc(m)+'"><span class="plf-ico" aria-hidden="true"></span><span class="plf-n">'+esc(m)+'</span><span class="plf-s">'+L.length+' docente'+(L.length===1?'':'s')+' · '+Lr.length+' archivo'+(Lr.length===1?'':'s')+'</span><span class="plf-bar"><i style="width:'+(p||0)+'%"></i></span><span class="plf-p">'+(p==null?'—':Math.round(p)+'% entregó')+'</span></button>'}).join('')+'</div>':'<div class="empty">Ningún docente tiene materias de este campo formativo.</div>');
+  }
+  const Lm=Lu.filter(x=>plaMatTxt(x)===o.mat),Rm=R.filter(r=>plaMatTxt(r)===o.mat).sort((a,b)=>b.f-a.f),q=(o.q||'').toLowerCase();
+  let h=crumbs+'<div class="panel"><h3>Docentes de '+esc(o.mat)+'</h3><div class="body"><div class="plsem">'+Lm.map(x=>{const e=plaEstado(x,tr),[c,l]=PLA_EST[e.e];return '<div class="plsemi"><span class="dot '+c+'"></span><div><b>'+esc(x.nom)+'</b><div class="note">'+l+(e.n?' · '+e.n+' archivo'+(e.n===1?'':'s'):'')+'</div></div></div>'}).join('')+'</div></div></div>';
+  h+='<div class="panel"><h3>Entregas <span class="chip N">'+Rm.length+'</span></h3>'+(Rm.length?'<div class="twrap"><table><thead><tr><th class="l">Docente</th><th>Tipo</th><th class="l">Periodo</th><th class="l">Archivo</th><th class="l">Subida</th><th>Entrega</th><th class="l">Revisión</th><th></th></tr></thead><tbody>'+
+    Rm.filter(r=>!q||(r.n+' '+r.arch.n).toLowerCase().includes(q)).map(r=>{const lim=plaLimMs(r.tr),[c,l]=PLA_REV[r.est||'recibida'];return '<tr><td class="l"><b>'+esc(r.n)+'</b>'+(r.com?'<div class="note">'+esc(r.com)+'</div>':'')+'</td><td>'+esc((PLA_TIPOS.find(x=>x[0]===r.tipo)||[0,r.tipo])[1])+'</td><td class="l">'+(r.ini?fd(r.ini):'—')+'</td><td class="l"><span class="plic">'+plaIcono(r.arch.t)+'</span> <button class="link" data-act="plAbrir" data-id="'+r.id+'">'+esc(r.arch.n)+'</button><div class="note">'+plaTam(r.arch.sz||0)+'</div></td><td class="l">'+esc(new Date(r.f).toLocaleString('es-MX',{dateStyle:'medium',timeStyle:'short'}))+'</td><td>'+(lim?'<span class="chip '+(r.f<=lim?'P':'R')+'">'+(r.f<=lim?'A tiempo':'Tarde')+'</span>':'—')+'</td><td class="l"><span class="chip '+c+'">'+l+'</span>'+(r.rev?'<div class="note">'+esc(r.rev)+'</div>':'')+'</td><td style="white-space:nowrap">'+(plaPuedeRev()?'<button class="btn sm pri" data-act="plRev" data-id="'+r.id+'">Revisar</button>':'')+'</td></tr>'}).join('')+'</tbody></table></div>':'<div class="empty" style="padding:16px">Todavía no hay planeaciones de esta materia en este periodo.</div>')+'</div>';
+  return h;
+}
+/* --- resumen, KPI y gráficas --- */
+function plaDatos(tr){
+  const UN=plaUnidadesTodas(),R=plaLista().filter(r=>Number(r.tr)===tr),E=UN.map(x=>Object.assign({},x,{st:plaEstado(x,tr)}));
+  const cnt=k=>E.filter(x=>x.st.e===k).length;
+  return {UN,R,E,tiempo:cnt('tiempo'),tarde:cnt('tarde'),pend:cnt('pendiente'),porent:cnt('porentregar')+cnt('sinfecha'),docs:plaDocentes()};
+}
+function plaResumenHTML(tr){
+  const K=plaDatos(tr),n=K.E.length,ent=K.tiempo+K.tarde,pc=n?ent/n*100:null,pt=n?K.tiempo/n*100:null;
+  const porRev=K.R.filter(r=>(r.est||'recibida')==='recibida').length,obs=K.R.filter(r=>r.est==='observada').length;
+  const docOk=K.docs.filter(u=>{const L=K.E.filter(x=>x.u===u.id);return L.length&&L.every(x=>x.st.e==='tiempo')}).length;
+  const C=plaCampos().map(c=>c.n);if(K.E.some(x=>x.campo===PLA_SIN))C.push(PLA_SIN);
+  const vencio=plaLimMs(tr)&&Date.now()>plaLimMs(tr),est=v=>v==null?'':(!vencio&&v<90)?'':v<60?'F':v<90?'R':'P';
+  const porCampo=C.map(c=>{const L=K.E.filter(x=>x.campo===c);if(!L.length)return null;const a=L.filter(x=>x.st.e==='tiempo').length,b=L.filter(x=>x.st.e==='tarde').length,v=(a+b)/L.length*100;return {l:c,v,n:L.length-a-b,est:est(v),tip:'<b>'+esc(c)+'</b><br>'+a+' a tiempo · '+b+' tarde · '+(L.length-a-b)+' sin entregar'}}).filter(Boolean);
+  const porDoc=K.docs.map(u=>{const L=K.E.filter(x=>x.u===u.id);if(!L.length)return null;const a=L.filter(x=>x.st.e==='tiempo').length,b=L.filter(x=>x.st.e==='tarde').length,v=(a+b)/L.length*100;return {l:u.nombre,v,n:L.length-a-b,est:est(v),tip:'<b>'+esc(u.nombre)+'</b><br>'+a+' a tiempo · '+b+' tarde · '+(L.length-a-b)+' sin entregar de '+L.length}}).filter(Boolean).sort((a,b)=>a.v-b.v);
+  const porTipo=PLA_TIPOS.map(([k,l])=>{const v=K.R.filter(r=>r.tipo===k).length;return {l,v,n:v}}).filter(x=>x.v);
+  const sem={};K.R.forEach(r=>{const d=new Date(r.f);d.setDate(d.getDate()-((d.getDay()+6)%7));const k=d.toISOString().slice(0,10);sem[k]=(sem[k]||0)+1});
+  const porSem=Object.keys(sem).sort().map(k=>({l:fdc?fdc(k):k,v:sem[k],tip:'<b>Semana del '+esc(fd(k))+'</b><br>'+sem[k]+' archivos'}));
+  const estado=st=>{const [c,l]=PLA_EST[st.e];return '<span class="chip '+c+'">'+l+(st.n>1?' ('+st.n+')':'')+'</span>'};
+  const tabla='<table class="ktab"><thead><tr><th class="l">Docente</th><th class="l">Campo formativo</th><th class="l">Materia</th><th>Entrega</th><th>Archivos</th><th>Revisión</th></tr></thead><tbody>'+
+    K.E.slice().sort((a,b)=>String(a.nom).localeCompare(String(b.nom),'es')||a.campo.localeCompare(b.campo)).map(x=>{const L=x.st.L,rv=L.filter(r=>r.est==='revisada').length,ob=L.filter(r=>r.est==='observada').length;return '<tr><td class="l"><b>'+esc(x.nom)+'</b></td><td class="l">'+esc(x.campo)+'</td><td class="l">'+esc(plaMatTxt(x))+'</td><td>'+estado(x.st)+'</td><td>'+x.st.n+'</td><td>'+(L.length?(rv?'<span class="chip P">'+rv+' revisada'+(rv===1?'':'s')+'</span> ':'')+(ob?'<span class="chip R">'+ob+' con obs.</span> ':'')+(L.length-rv-ob?'<span class="chip N">'+(L.length-rv-ob)+' por revisar</span>':''):'—')+'</td></tr>'}).join('')+'</tbody></table>';
+  return '<div class="actions" style="justify-content:flex-end;margin:-4px 0 8px"><button class="btn" data-act="plRep">Descargar resumen (PDF o Excel)</button></div>'+kWrap('<div class="kgrid6">'+
+    kCard({t:'Entregaron',v:pct1(pc),sub:ent+' de '+n+' materias-docente',ring:pc,est:est(pc)})+
+    kCard({t:'En tiempo y forma',v:pct1(pt),sub:K.tiempo+' a tiempo · '+K.tarde+' tarde',ring:pt,est:est(pt)})+
+    kCard({t:'Sin entregar',v:K.pend,sub:K.porent?K.porent+' aún en plazo':'fecha vencida',est:K.pend?'F':''})+
+    kCard({t:'Docentes al corriente',v:docOk+' de '+K.docs.length,sub:'todas sus materias a tiempo',ring:K.docs.length?docOk/K.docs.length*100:undefined})+
+    kCard({t:'Archivos recibidos',v:K.R.length,sub:'en '+esc(calPer()[tr-1])})+
+    kCard({t:'Por revisar',v:porRev,sub:obs+' con observaciones',est:porRev?'R':''})+'</div>'+
+    '<div class="kgrid2">'+
+    kPanel('Cumplimiento por campo formativo','% de materias-docente con planeación entregada.',vzChart(porCampo,{tipo:'barras',fmt:pct1,max:100}))+
+    kPanel('Entregas por tipo','Archivos recibidos en el periodo.',porTipo.length?vzChart(porTipo,{fmt:v=>String(v),share:true,u:'archivos'}):'<div class="empty">Sin archivos todavía.</div>')+
+    kPanel('Cumplimiento por docente','De menor a mayor: arriba quienes necesitan seguimiento.',porDoc.length?vzChart(porDoc,{tipo:'barras',fmt:pct1,max:100}):'<div class="empty">No hay docentes con materias asignadas.</div>',' kwide')+
+    kPanel('Archivos subidos por semana','Cuándo suben sus planeaciones.',porSem.length?vzChart(porSem,{tipo:'columnas',fmt:v=>String(v)}):'<div class="empty">Sin archivos todavía.</div>',' kwide')+
+    kPanel('Detalle por docente y materia','Estado de entrega y revisión.',tabla,' kwide')+'</div>');
+}
+function plaReporte(){
+  const tr=U.pl.tr||plaTrAct(),K=plaDatos(tr),EST=Object.fromEntries(Object.entries(PLA_EST).map(([k,v])=>[k,v[1]]));
+  reportModal({id:'planea',title:'Planeaciones didácticas',lines:[(D.cfg.escuela||'')+' · '+calPer()[tr-1]+(plaLims()[tr]?' · fecha límite '+fechaLarga(plaLims()[tr]).replace(/\.$/,''):''),'Confidencial: uso interno de la escuela'],sheets:[
+    {name:'Por docente',title:'Entrega por docente y materia',cols:[C('Docente',2.6),C('Campo formativo',2.4),C('Materia',2),C('Entrega',1.2,'c'),C('Archivos',.8,'c','n'),C('Revisadas',.9,'c','n'),C('Con observaciones',1.1,'c','n')],
+     rows:K.E.slice().sort((a,b)=>String(a.nom).localeCompare(String(b.nom),'es')).map(x=>[x.nom,x.campo,plaMatTxt(x),EST[x.st.e],x.st.n,x.st.L.filter(r=>r.est==='revisada').length,x.st.L.filter(r=>r.est==='observada').length]),foots:[]},
+    {name:'Archivos',title:'Archivos recibidos',cols:[C('Docente',2.4),C('Campo formativo',2.2),C('Materia',1.8),C('Tipo',1,'c'),C('Periodo',1.1,'c'),C('Archivo',2.8),C('Subido',1.6,'c'),C('Revisión',1.3,'c'),C('Observaciones',3)],
+     rows:K.R.slice().sort((a,b)=>a.f-b.f).map(r=>[r.n,r.campo,plaMatTxt(r),(PLA_TIPOS.find(x=>x[0]===r.tipo)||[0,r.tipo])[1],r.ini?fd(r.ini):'',r.arch.n,new Date(r.f).toLocaleString('es-MX'),PLA_REV[r.est||'recibida'][1],r.obs||'']),foots:[]}]});
+}
+/* --- Ajustes: campos formativos y materias, fechas límite --- */
+function plaAjPanel(){
+  if(!(esAdministrador()||puedeCalLim()))return '';
+  const L=plaLims(),C=plaCampos(),tecs=tecList();
+  return '<div class="panel" id="pPla"><h3>Planeaciones didácticas</h3><p class="sub">Carpetas de los campos formativos (Fase 6) y las materias de cada uno. Las planeaciones de cada docente se acomodan solas según las asignaturas de su cuenta. Las tecnologías (talleres) de la escuela aparecen dentro de «Tecnología».</p><div class="body">'+
+   '<div class="plcampos">'+C.map((c,i)=>'<div class="plcampo"><div class="inrow"><input data-placn="'+i+'" value="'+esc(c.n)+'" maxlength="60" aria-label="Nombre del campo formativo"><button class="btn sm danger" data-act="plaCampoDel" data-i="'+i+'" type="button">Quitar</button></div><textarea rows="5" data-placm="'+i+'" aria-label="Materias de '+esc(c.n)+'">'+esc((c.m||[]).join('\n'))+'</textarea><span class="note">Una materia o asignatura por renglón'+((c.m||[]).some(esTecAsig)&&tecs.length?' · Tecnologías: '+esc(tecs.join(', ')):'')+'</span></div>').join('')+'</div>'+
+   '<div class="actions"><button class="btn" data-act="plaCampoAdd" type="button">Agregar campo formativo</button><button class="btn" data-act="plaCampoRes" type="button">Volver a los 4 campos de la Fase 6</button></div>'+
+   '<h3 style="margin:14px 0 4px">Fecha límite de entrega por trimestre</h3><div class="form">'+[1,2,3].map(t=>'<label>'+esc(calPer()[t-1])+'<input type="datetime-local" data-plalim="'+t+'" value="'+esc(L[t]||'')+'"'+(puedeCalLim()?'':' disabled')+'></label>').join('')+'</div>'+
+   '<p class="note">Quién ve la pestaña para revisar se elige en «Pestañas ocultas» (columna Planeaciones). Los docentes con asignaturas la ven siempre, solo para subir las suyas.</p></div></div>';
+}
+const plaGuardarCampos=C=>{if(commit({t:'cfg',k:'plaCampos',v:C})){toast('Campos formativos guardados.');render()}};
+document.addEventListener('change',e=>{
+  const t=e.target;if(!t||!t.dataset)return;
+  if(t.dataset.placn!==undefined){const C=JSON.parse(JSON.stringify(plaCampos())),i=+t.dataset.placn,v=t.value.trim().slice(0,60);if(!v)return toast('Escribe el nombre del campo.','err');if(C.some((c,j)=>j!==i&&c.n===v))return toast('Ya existe un campo con ese nombre.','err');C[i].n=v;plaGuardarCampos(C)}
+  else if(t.dataset.placm!==undefined){const C=JSON.parse(JSON.stringify(plaCampos())),i=+t.dataset.placm;C[i].m=[...new Set(t.value.split('\n').map(x=>x.trim().slice(0,60)).filter(Boolean))];plaGuardarCampos(C)}
+  else if(t.dataset.plalim){const L=plaLims();if(t.value)L[t.dataset.plalim]=t.value;else delete L[t.dataset.plalim];if(commit({t:'cfg',k:'plaLim',v:L}))toast('Fecha límite guardada.')}
+});
+Object.assign(ACT,{
+  plaCampoAdd:()=>{const C=JSON.parse(JSON.stringify(plaCampos()));let n='Nuevo campo formativo',k=2;while(C.some(c=>c.n===n))n='Nuevo campo formativo '+k++;C.push({n,m:[]});plaGuardarCampos(C)},
+  plaCampoDel:t=>{const C=JSON.parse(JSON.stringify(plaCampos())),i=+t.dataset.i;if(C.length<=1)return toast('Debe quedar al menos un campo formativo.','err');confirmDlg('Quitar campo formativo','¿Quitar «'+C[i].n+'»? Sus materias quedarán en «'+PLA_SIN+'» hasta que las pongas en otro campo.','Quitar',()=>{C.splice(i,1);plaGuardarCampos(C)},true)},
+  plaCampoRes:()=>confirmDlg('Campos de la Fase 6','Se pondrán los 4 campos formativos de secundaria (Lenguajes; Saberes y Pensamiento Científico; Ética, Naturaleza y Sociedades; De lo Humano y lo Comunitario) con sus materias.','Aplicar',()=>plaGuardarCampos(JSON.parse(JSON.stringify(PLA_CAMPOS0))))
+});
+const _ajPL=VIEWS.ajustes;
+VIEWS.ajustes=function(){const h=_ajPL(),p=plaAjPanel();if(!p)return h;const i=h.indexOf('<div class="panel ocultos"');return i>=0?h.slice(0,i)+p+h.slice(i):h+p};
+
+/* ====== Secretarías responsables por grado ======
+   En Ajustes (y en el alta de cada secretario/a) se asignan los grados de los que es responsable.
+   Cuando Dirección o Subdirección autorizan una lista de calificaciones, le llega directamente a la Secretaría
+   responsable de ese grado: aparece en su pestaña «Listas de calificaciones», con aviso y contador. */
+const esSecreU=u=>!!u&&u.activo!==false&&!todosPermisos(u.rol)&&!['admin','subdir','administrador'].includes(u.rol)&&(u.rol==='secretaria'||(u.permisos||[]).includes('calif_listas'));
+const secretarias=()=>Object.values(D.users).filter(esSecreU).sort((a,b)=>String(a.nombre).localeCompare(String(b.nombre),'es'));
+const grResU=u=>Array.isArray(u&&u.grRes)?u.grRes.map(Number).filter(Boolean):[];
+/* responsables de un grado: quienes lo tienen asignado; si nadie, todas las que no tienen grados asignados */
+function secResp(gr){
+  const S=secretarias(),con=S.filter(u=>grResU(u).includes(Number(gr)));
+  return con.length?con:S.filter(u=>!grResU(u).length);
+}
+const grDeEnv=e=>Number(String(e&&e.g||'').match(/^\d+/)||[0]);
+const secMias=()=>{const me=meU(),G=grResU(me);return e=>!G.length||G.includes(grDeEnv(e))};
+function secPendientes(){
+  if(!ME||!ME.id||typeof esSecre!=='function'||!esSecre())return 0;
+  const ok=secMias();let n=0;const vist=new Set();
+  for(const id in (D.cenv||{})){const e=D.cenv[id];if(!e||!e.aut||e.dev||e.recb||!ok(e))continue;const k=e.u+'|'+e.s+'|'+grDeEnv(e)+'|'+e.tr;if(!vist.has(k)){vist.add(k);n++}}
+  return n;
+}
+/* la Secretaría solo ve las listas de sus grados */
+const _grRepS=gruposReporte;
+gruposReporte=function(f){if(typeof esSecre==='function'&&esSecre()&&!puedeCalLim()){const ok=secMias();return _grRepS(e=>f(e)&&ok(e))}return _grRepS(f)};
+const _listasS=VIEWS.listas;
+VIEWS.listas=function(){
+  let h=_listasS();if(!(typeof esSecre==='function'&&esSecre()))return h;
+  const G=grResU(meU());
+  const nota='<div class="okbox secnota">'+(G.length?'Eres responsable de <b>'+G.map(g=>g+'°').join(', ')+'</b>: aquí te llegan directamente las listas de esos grados en cuanto Dirección o Subdirección las autorizan.':'Recibes las listas de <b>todos los grados</b> (no tienes grados asignados). Dirección puede asignarte grados en Ajustes → Secretarías responsables por grado.')+'</div>';
+  const i=h.indexOf('<div class="stats">');return i>=0?h.slice(0,i)+nota+h.slice(i):nota+h;
+};
+const _tabsS=tabsFor;
+tabsFor=function(){const t=_tabsS();const n=secPendientes();if(n){const x=t.find(y=>y[0]==='listas');if(x)x[1]='Listas de calificaciones ('+n+')'}return t};
+const _renderS=render;
+render=function(){_renderS();try{const n=secPendientes();if(n&&U.tab!=='listas'){const m=$('#main');if(m&&!document.getElementById('secaviso'))m.insertAdjacentHTML('afterbegin','<div class="warnbox" id="secaviso"><b>Te llegaron '+n+' lista'+(n===1?'':'s')+' de calificaciones autorizada'+(n===1?'':'s')+'.</b> Revísalas e imprímelas para que el docente vea que ya se recibieron. <button class="btn sm pri" data-act="secIr">Ver listas</button></div>')}}catch(e){}};
+ACT.secIr=()=>{U.tab='listas';render()};
+/* aviso a Dirección: a quién le llegó la lista que acaba de autorizar */
+const _commitS=commit;
+commit=function(op,o){
+  const antes=op&&op.t==='calEnv'?(D.cenv||{})[op.id]:null,r=_commitS(op,o);
+  if(r&&op&&op.t==='calEnv'&&op.rec&&op.rec.aut&&!(antes&&antes.aut)&&!(o&&o.sys)){const R=secResp(grDeEnv(op.rec));clearTimeout(commit._t);commit._t=setTimeout(()=>toast(R.length?'Enviada a Secretaría: '+R.map(u=>u.nombre).join(', ')+'.':'Autorizada. Asigna una Secretaría responsable del grado en Ajustes.'),900)}
+  if(r&&op&&op.t==='user'&&SEC_EXTRA&&op.u&&op.u.usuario===SEC_EXTRA.usuario)SEC_EXTRA=null;
+  return r;
+};
+/* --- alta/edición de la persona: grados de los que es responsable --- */
+let SEC_EXTRA=null;
+const _commitS2=commit;
+commit=function(op,o){
+  if(op&&op.t==='user'&&op.u&&SEC_EXTRA&&op.u.usuario===SEC_EXTRA.usuario&&Date.now()-SEC_EXTRA.t<60000){op=Object.assign({},op,{u:Object.assign({},op.u,{grRes:SEC_EXTRA.gr})})}
+  return _commitS2(op,o);
+};
+const _userModalS=userModal;
+userModal=function(u){
+  _userModalS(u);
+  const mv=$('#u_mov');if(!mv)return;const lab=mv.closest('label');if(!lab||document.getElementById('u_secbox'))return;
+  const G=grResU(u);
+  lab.insertAdjacentHTML('beforebegin','<fieldset class="pg" id="u_secbox" style="margin-top:12px"><legend>Secretaría: grados de los que es responsable</legend><div class="chips" style="margin:4px 0">'+D.cfg.grados.map(g=>'<label class="chk"><input type="checkbox" data-secgr="'+g+'"'+(G.includes(Number(g))?' checked':'')+'>'+g+'°</label>').join('')+'</div><span class="note">Las listas de calificaciones de esos grados le llegan directamente cuando Dirección o Subdirección las autorizan. Sin marcar: recibe las de todos los grados.</span></fieldset>');
+  const vis=()=>{const r=$('#u_r').value,p=document.querySelector('#u_perms input[data-perm="calif_listas"]');document.getElementById('u_secbox').hidden=!(r==='secretaria'||(p&&p.checked&&!todosPermisos(r)&&!['admin','subdir','administrador'].includes(r)))};
+  $('#u_r').addEventListener('change',vis);$('#u_perms').addEventListener('change',vis);vis();
+};
+document.addEventListener('click',e=>{
+  const b=e.target.closest&&e.target.closest('#mSave');if(!b||!document.getElementById('u_secbox'))return;
+  const box=document.getElementById('u_secbox');
+  SEC_EXTRA={t:Date.now(),usuario:String(($('#u_u')||{}).value||'').trim().toLowerCase(),gr:box.hidden?[]:[...box.querySelectorAll('[data-secgr]:checked')].map(x=>Number(x.dataset.secgr))};
+},true);
+/* --- Ajustes: tabla rápida de responsables por grado --- */
+function secAjPanel(){
+  if(!can('usuarios'))return '';
+  const S=secretarias();
+  return '<div class="panel" id="pSecGr"><h3>Secretarías responsables por grado</h3><p class="sub">Cuando Dirección o Subdirección autorizan las listas de calificaciones, le llegan directamente a la Secretaría responsable de cada grado (con aviso en su pestaña «Listas de calificaciones»).</p><div class="body">'+
+   (S.length?'<div class="twrap"><table><thead><tr><th class="l">Grado</th>'+S.map(u=>'<th>'+esc(u.nombre)+'</th>').join('')+'<th class="l">Le llega a</th></tr></thead><tbody>'+
+    D.cfg.grados.map(g=>'<tr><td class="l"><b>'+g+'°</b></td>'+S.map(u=>'<td><input type="checkbox" aria-label="'+esc(u.nombre)+' responsable de '+g+'°" data-secaj="'+u.id+'|'+g+'"'+(grResU(u).includes(Number(g))?' checked':'')+'></td>').join('')+'<td class="l">'+esc(secResp(g).map(u=>u.nombre).join(', ')||'—')+'</td></tr>').join('')+'</tbody></table></div><p class="note">Si un grado no tiene responsable, sus listas le llegan a las secretarías que no tienen grados asignados.</p>'
+    :'<div class="empty" style="padding:14px">No hay personal con cargo de Secretario(a) o con el permiso «Ver e imprimir las listas de calificaciones autorizadas». Agrégalo en «Personal con acceso y permisos».</div>')+'</div></div>';
+}
+document.addEventListener('change',e=>{
+  const t=e.target;if(!t||!t.dataset||!t.dataset.secaj)return;
+  const [id,g]=t.dataset.secaj.split('|'),u=D.users[id];if(!u)return;
+  const G=new Set(grResU(u));if(t.checked)G.add(Number(g));else G.delete(Number(g));
+  if(commit({t:'user',u:Object.assign({},u,{grRes:[...G].sort((a,b)=>a-b)})})){toast('Responsable actualizado.');render()}
+});
+const _ajS=VIEWS.ajustes;
+VIEWS.ajustes=function(){const h=_ajS(),p=secAjPanel();if(!p)return h;const i=h.indexOf('<div class="panel"><h3>Personal con acceso y permisos</h3>');return i>=0?h.slice(0,i)+p+h.slice(i):h+p};
+/* --- Entrega de calificaciones (Dirección): a quién llega cada grado --- */
+const _entS=VIEWS.entregas;
+VIEWS.entregas=function(){
+  const h=_entS();if(!puedeCalLim())return h;
+  const fila='<div class="secruta"><b>Al autorizar, las listas llegan a:</b> '+D.cfg.grados.map(g=>{const R=secResp(g);return '<span class="chip '+(R.length?'N':'R')+'">'+g+'° → '+esc(R.map(u=>u.nombre).join(', ')||'sin responsable')+'</span>'}).join(' ')+(can('usuarios')?' <button class="link" data-act="secAj">Cambiar</button>':'')+'</div>';
+  const i=h.indexOf('<div class="stats">');return i>=0?h.slice(0,i)+fila+h.slice(i):h+fila;
+};
+ACT.secAj=()=>{U.tab='ajustes';render();setTimeout(()=>{const p=document.getElementById('pSecGr');if(p)p.scrollIntoView({block:'start'})},60)};
+
 /* ====== inicio ====== */
 boot();
 
 </script>
 <script>
 (function(){
- var EMB='4.7.0',ED='movil';
+ var EMB='4.8.0',ED='movil';
  function cmp(a,b){a=String(a).split('.').map(Number);b=String(b).split('.').map(Number);for(var i=0;i<3;i++){var d=(a[i]||0)-(b[i]||0);if(d)return d>0?1:-1}return 0}
  function exec(id){var n=document.getElementById(id);if(!n)return;var s=document.createElement('script');s.textContent=n.textContent;document.head.appendChild(s)}
  function run(){['asx-qr','asx-app'].forEach(exec)}
