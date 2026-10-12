@@ -18,11 +18,11 @@
 			<key>PayloadDisplayName</key>
 			<string>SICET (pantalla de inicio)</string>
 			<key>PayloadIdentifier</key>
-			<string>mx.sicet.escuela.webclip.90F8599A-6922-4E50-92B5-E4C40BAD8A67</string>
+			<string>mx.sicet.escuela.webclip.F7646559-DA6F-40B3-966D-B7D8E3879A30</string>
 			<key>PayloadType</key>
 			<string>com.apple.webClip.managed</string>
 			<key>PayloadUUID</key>
-			<string>90F8599A-6922-4E50-92B5-E4C40BAD8A67</string>
+			<string>F7646559-DA6F-40B3-966D-B7D8E3879A30</string>
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 			<key>Precomposed</key>
@@ -36,7 +36,7 @@
 	<key>PayloadDisplayName</key>
 	<string>SICET</string>
 	<key>PayloadIdentifier</key>
-	<string>mx.sicet.escuela.088363BD-91E7-4DCD-AD02-7230369037A0</string>
+	<string>mx.sicet.escuela.83FA9923-B44F-498F-83DB-D60298E6561D</string>
 	<key>PayloadOrganization</key>
 	<string>SICET</string>
 	<key>PayloadRemovalDisallowed</key>
@@ -44,7 +44,7 @@
 	<key>PayloadType</key>
 	<string>Configuration</string>
 	<key>PayloadUUID</key>
-	<string>088363BD-91E7-4DCD-AD02-7230369037A0</string>
+	<string>83FA9923-B44F-498F-83DB-D60298E6561D</string>
 	<key>PayloadVersion</key>
 	<integer>1</integer>
 </dict>
