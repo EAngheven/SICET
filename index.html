@@ -978,6 +978,76 @@ html[data-navinf] .dlpill{bottom:calc(96px + env(safe-area-inset-bottom,0px))}
 .agev.agdrag{cursor:grab}.agev.arrastrando{opacity:.45}
 .agday.sobre{outline:2px dashed var(--brand);outline-offset:-3px;background:color-mix(in srgb,var(--brand) 8%,var(--surf))}
 .chkgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:4px 14px}
+/* ====== Inicio de sesión: carpeta sincronizada ====== */
+.lsync{display:flex;flex-direction:column;gap:6px;margin-top:14px;padding:12px 14px;border:1px solid color-mix(in srgb,var(--P) 45%,var(--line));background:color-mix(in srgb,var(--P) 8%,var(--surf));border-radius:12px;font-size:14px}
+.lsync b{color:var(--P)}.lsync span{color:var(--mut);font-size:13px}.lsync .btn{align-self:flex-start}
+.lsync.no{border-color:var(--line);background:var(--soft)}
+.pasos-con{margin:6px 0 4px;padding-left:20px;line-height:1.45}.pasos-con li{margin:3px 0}
+.clvbox{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:10px 0;background:var(--soft)}
+.clvbox span{color:var(--mut);font-size:13px}.clvbox b{font-family:ui-monospace,Consolas,monospace;font-size:17px;letter-spacing:.04em;flex:1;min-width:120px}
+/* ====== Comunicados ====== */
+.comlist{display:grid;gap:10px}
+.comi{background:var(--surf);border:1px solid var(--line);border-left:4px solid var(--brand);border-radius:14px;padding:12px 14px}
+.comi.k-felicitacion{border-left-color:var(--P)}.comi.k-conducta,.comi.k-citatorio{border-left-color:var(--F)}.comi.k-asistencia,.comi.k-academico{border-left-color:var(--R)}
+.ci-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.ci-h b{font-size:16px;flex:1;min-width:150px}.ci-f{color:var(--mut);font-size:13px}
+.ci-p{color:var(--mut);font-size:13px;margin-top:2px}.comi p{margin:8px 0;white-space:pre-wrap}
+.ci-b{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}.ci-b small{color:var(--mut)}
+.tcom .tcoms{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.tcoms li{border:1px solid var(--line);border-left:4px solid var(--brand);border-radius:12px;padding:10px 12px;background:var(--surf)}
+.tcoms li.nuevo{background:color-mix(in srgb,var(--R) 9%,var(--surf));border-color:color-mix(in srgb,var(--R) 45%,var(--line))}
+.tcoms li.k-felicitacion{border-left-color:var(--P)}.tcoms li.k-conducta,.tcoms li.k-citatorio{border-left-color:var(--F)}
+.tc-h{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;color:var(--mut)}.tc-t{font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.tcoms b{display:block;margin-top:3px}.tcoms p{margin:6px 0;white-space:pre-wrap;line-height:1.45}.tcoms small{color:var(--mut)}
+/* ====== Códigos del portal en Ajustes ====== */
+.tpc-esc{display:flex;flex-wrap:wrap;gap:8px 18px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--soft)}
+.tpc-pin{font-family:ui-monospace,Consolas,monospace;font-size:15px;letter-spacing:.06em}
+/* ====== Alta: grupos en los que da clase ====== */
+#u_clases{margin-top:14px;border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--soft)}
+.clx-sec h4{margin:12px 0 6px;font-size:14px}
+.clx{border:1px solid var(--line);border-radius:12px;background:var(--surf);margin:6px 0;padding:6px 10px}
+.clx.on{border-color:color-mix(in srgb,var(--brand) 55%,var(--line))}
+.clx-h{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.clx-h .chk-line{margin:0}
+.clx-res{color:var(--brand);font-size:13px;font-weight:600;flex:1;min-width:120px}
+.clx-b{padding:6px 0 4px}.clx-b .grow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:4px 0}.clx-b .grow>b{width:28px}
+.clx-b .chk small{margin-left:4px;font-size:10.5px;color:var(--mut)}.clx-b .chk.vacio{opacity:.55}
+.clx-f{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:6px}
+/* ====== Permisos económicos ====== */
+.ec-fund{margin:0 0 14px;border:1px solid var(--line);border-radius:12px;padding:8px 14px;background:var(--surf)}.ec-fund summary{cursor:pointer;font-weight:600}.ec-fund p{margin:8px 0;font-size:14px}
+.ec-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:0 0 14px}
+.ec-kpis>div{background:var(--surf);border:1px solid var(--line);border-radius:16px;padding:14px 16px}.ec-kpis small{display:block;color:var(--mut);font-size:13px}.ec-kpis b{font-size:30px;line-height:1.2}
+.ec-kpis>div.r{border-color:color-mix(in srgb,var(--R) 50%,var(--line));background:color-mix(in srgb,var(--R) 8%,var(--surf))}
+.ec-cols{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:16px}@media (max-width:1000px){.ec-cols{grid-template-columns:minmax(0,1fr)}}
+.ec-people{display:grid;gap:10px;padding:0 16px 16px}
+.ec-card{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:16px;padding:12px 14px;background:var(--surf)}
+.ec-yo .ec-card{margin-bottom:14px;padding:16px 18px}
+.ec-rw{position:relative;width:72px;height:72px;flex:none}.ec-ring{width:72px;height:72px}.ec-rt{fill:none;stroke:var(--soft);stroke-width:8}.ec-rv{fill:none;stroke:var(--P);stroke-width:8;stroke-linecap:round;transition:stroke-dasharray .6s}
+.ec-rn{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}.ec-rn b{font-size:22px}.ec-rn small{font-size:11px;color:var(--mut)}
+.ec-ci{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}.ec-ci>small{color:var(--mut)}.ec-pills{display:flex;gap:6px;flex-wrap:wrap;margin-top:2px}.ec-f{color:var(--mut);font-size:12.5px}
+.ec-list{list-style:none;margin:0;padding:0 16px 14px}.ec-list li{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid var(--line)}.ec-list li:last-child{border-bottom:0}
+.ec-list li>div:first-child{display:flex;flex-direction:column}.ec-list small{color:var(--mut)}.ec-list li.x{opacity:.6}.ec-acts{display:flex;gap:6px;flex-wrap:wrap}
+.ec-cal{padding:0 16px 14px}.ec-dow,.ec-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}.ec-dow span{text-align:center;font-size:12px;color:var(--mut);font-weight:600}
+.ec-d{min-height:52px;border:1px solid var(--line);border-radius:10px;padding:4px 5px;font-size:12px;background:var(--surf);overflow:hidden}.ec-d span{font-weight:600}
+.ec-d.nl{background:var(--soft);color:var(--mut)}.ec-d.hoy{outline:2px solid var(--brand)}
+.ec-d.oc{background:color-mix(in srgb,var(--R) 14%,var(--surf));border-color:color-mix(in srgb,var(--R) 55%,var(--line))}.ec-d i{display:block;font-style:normal;font-size:10.5px;line-height:1.2;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ec-conf .body>h4{font-size:14px}.ec-ext{list-style:none;padding:0;margin:0 0 8px}.ec-ext li{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--line)}
+.ec-saldo{display:flex;gap:6px 16px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--soft);font-size:14px}
+.ec-fechas{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.ec-fbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}.ec-fbar b{flex:1}
+.ec-fmt{background:#fff;color:#111;max-width:760px;margin:0 auto;padding:28px 34px;border:1px solid #ddd;border-radius:6px;font-size:14.5px;line-height:1.55;font-family:Georgia,'Times New Roman',serif}
+.ec-fmt header{display:flex;align-items:center;gap:14px;border-bottom:2px solid #111;padding-bottom:10px;font-family:Arial,sans-serif}.ec-fmt header img{width:62px;height:62px;object-fit:contain}
+.ec-fmt header>div{display:flex;flex-direction:column;flex:1}.ec-fmt header b{font-size:16px}.ec-fmt header span{font-size:12px;color:#444}
+.ec-folio{text-align:center;font-size:11px;border:1px solid #111;padding:4px 10px;border-radius:4px}.ec-folio b{display:block;font-size:14px}
+.ec-fmt h2{text-align:center;font-size:17px;text-transform:uppercase;letter-spacing:.04em;margin:18px 0 6px;font-family:Arial,sans-serif}
+.ec-lf{text-align:right;margin:0 0 14px}.ec-body{text-align:justify}.ec-dias{margin:6px 0 10px 18px}
+.ec-fund2{font-size:12.5px;color:#333}
+.ec-ctl{width:100%;border-collapse:collapse;margin:12px 0;font-family:Arial,sans-serif;font-size:13px}.ec-ctl th,.ec-ctl td{border:1px solid #111;padding:6px;text-align:center}.ec-ctl th{background:#f0f0f0}
+.ec-firmas{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:56px;text-align:center;font-family:Arial,sans-serif}.ec-firmas span{display:block;border-top:1px solid #111;margin-bottom:4px}.ec-firmas b{display:block;font-size:13px}.ec-firmas small{font-size:12px;color:#444}
+.ec-sello{margin:34px 0 0;text-align:center;color:#888;font-size:12px;border:1px dashed #bbb;border-radius:50%;width:120px;height:120px;display:flex;align-items:center;justify-content:center;margin-left:auto;margin-right:auto}
+.ec-fmt footer{margin-top:20px;border-top:1px solid #ccc;padding-top:6px;font-size:11px;color:#666;font-family:Arial,sans-serif}
+@media print{.ec-fmt{border:0;padding:0;max-width:none;font-size:13.5px}}
+.ec-tpl{display:flex;align-items:center;gap:12px;flex-wrap:wrap;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surf)}
+.ec-tpli{width:42px;height:50px;border-radius:6px;background:#C2453B;color:#fff;font-weight:800;font-size:12px;display:grid;place-items:center;flex:none}
+.ec-tpl>div{flex:1;display:flex;flex-direction:column;min-width:160px}.ec-tpl small{color:var(--mut)}
 
 </style>
 <style id="pagestyle"></style>
@@ -1053,13 +1123,16 @@ const ROLES={
   control:{n:'Control escolar',p:['panel','lista','escaner','corregir','reportes','alumnos','alumnos_editar','alumnos_eliminar','credenciales','contacto','ficha','exportar_datos','todos_grupos']},
   orient:{n:'Orientación / Trabajo social',p:['bitacora_todos','conducta','conducta_todos','panel','corregir','reportes','seguimiento','alumnos','alumnos_editar','contacto','ficha','salud','bitacora','todos_grupos']},
   secretaria:{n:'Secretario(a)',p:['permisos_personal','panel','reportes','alumnos','alumnos_editar','credenciales','contacto','ficha','exportar_datos','todos_grupos']},
-  coord:{n:'Coordinación',p:['bitacora_todos','conducta','conducta_todos','panel','lista','escaner','corregir','incidencias','permisos_personal','reportes','seguimiento','alumnos','contacto','bitacora','todos_grupos']},
+  coord:{n:'Coordinación',p:['bitacora_todos','conducta','conducta_todos','panel','lista','escaner','corregir','incidencias','permisos_personal','reportes','seguimiento','alumnos','contacto','bitacora','todos_grupos','mis_grupos','bitacora_doc']},
+  coordtec:{n:'Coordinación de tecnología',p:['bitacora_todos','conducta','conducta_todos','panel','lista','escaner','corregir','incidencias','permisos_personal','reportes','seguimiento','alumnos','contacto','bitacora','todos_grupos','mis_grupos','bitacora_doc']},
   prefecto:{n:'Prefectura',p:['bitacora_todos','conducta','conducta_todos','panel','lista','escaner','corregir','incidencias','reportes','seguimiento','contacto','todos_grupos']},
   docentetec:{n:'Docente de tecnología',p:['conducta','mis_grupos','bitacora_doc','lista','escaner','reportes','seguimiento','contacto']},
   docente:{n:'Docente o tutor(a)',p:['mis_grupos','bitacora_doc','conducta','panel','lista','escaner','reportes','seguimiento','contacto']},
   consulta:{n:'Solo consulta',p:['panel','reportes','todos_grupos']},
   custom:{n:'Personalizado',p:[]}
 };
+/* cargos que dan clase frente a grupo */
+const ROL_DOC=['docente','docentetec','coord','coordtec'];
 const ROL=Object.fromEntries(Object.entries(ROLES).map(([k,v])=>[k,v.n]));
 const MOTIVOS=['Enfermedad','Cita o atención médica','Situación familiar','Trámite o diligencia oficial','Actividad escolar o representación','Transporte o clima','Otro motivo'];
 const TPL='Estimado(a) {tutor}: buen día. Le escribimos de {escuela} porque {alumno} ({grupo}) ha faltado {faltas} día(s) en el periodo {periodo}. Nos interesa saber si necesita algún apoyo y conversar con usted para que continúe con sus estudios. Puede comunicarse con nosotros o acudir a la escuela. Gracias.';
@@ -1451,7 +1524,13 @@ function afterLogin(u){
 /* ====== sincronización por carpeta (OneDrive, Google Drive, Dropbox…) ====== */
 const SY={dir:null,sub:null,key:null,esc:'',dev:'',activo:false,ocupado:false,ult:0,err:'',cursor:{},seq:0,pend:0};
 const SYF='SICET-sincronizacion',SYF_OLD='AsisteMX-sincronizacion';
-async function syfDir(dir,create){try{return await syfDir(dir,false)}catch(e){}try{return await dir.getDirectoryHandle(SYF_OLD,{create:false})}catch(e){}return dir.getDirectoryHandle(SYF,{create:!!create})}
+async function syfDir(dir,create){
+  /* si eligieron directamente la carpeta «SICET-sincronizacion», se usa tal cual */
+  try{await dir.getFileHandle('escuela.json',{create:false});return dir}catch(e){}
+  try{return await dir.getDirectoryHandle(SYF,{create:false})}catch(e){}
+  try{return await dir.getDirectoryHandle(SYF_OLD,{create:false})}catch(e){}
+  return dir.getDirectoryHandle(SYF,{create:!!create})
+}
 async function syncLoad(){
   const c=await IDB.get('kv','sync');OUT=(await IDB.get('kv','out'))||[];SY.dev=DEV;
   if(c&&c.key&&c.esc)Object.assign(SY,{dir:c.dir||window.__asmCarpeta||null,key:c.key,esc:c.esc,cursor:c.cursor||{},seq:c.seq||0,activo:true});
@@ -1551,7 +1630,7 @@ function syncAhora(manual){
   })();
   return SY.promesa;
 }
-async function infoCarpeta(dir){try{const sub=await dir.getDirectoryHandle(SYF,{create:false});const i=JSON.parse(_td.decode(await leer(sub,'escuela.json')));return i&&i.app==='AsisteMX'?i:null}catch(e){return null}}
+async function infoCarpeta(dir){try{const sub=await syfDir(dir,false);const i=JSON.parse(_td.decode(await leer(sub,'escuela.json')));return i&&i.app==='AsisteMX'?i:null}catch(e){return null}}
 async function syncConfigurar(dir,clave,o){
   o=o||{};const modo0=o.modo||'subir';let modo=modo0;
   const sub=await syfDir(dir,!o.soloExistente);
@@ -1565,7 +1644,7 @@ async function syncConfigurar(dir,clave,o){
     info={app:'AsisteMX',formato:1,esc:'E'+hexR(6),nombre:D.cfg.escuela||'',salt,iter:210000,prueba:b64(await cifrar(_te.encode('AsisteMX'),key)),creado:new Date().toISOString()};
     await escribir(sub,'escuela.json',_te.encode(JSON.stringify(info,null,1)));modo='subir';
   }
-  Object.assign(SY,{dir,sub,key,esc:info.esc,dev:DEV,cursor:{},seq:0,activo:true,err:''});OUT=[];
+  Object.assign(SY,{dir,sub,key,esc:info.esc,dev:DEV,cursor:{},seq:0,activo:true,err:''});OUT=[];try{await IDB.put('kv','syncClave',clave)}catch(e){}
   if(modo==='reemplazar'){const keep=DEV;D=defaults();META.clear();metaDirty=[];await IDB.clear('meta');EPOCH=0;DEV=keep;SY.cursor={}}
   else encolarTodo();
   await syncSave();await IDB.put('kv','out',OUT);bitacora(modo==='reemplazar'?'Computadora conectada a la escuela':'Sincronización activada');
@@ -2511,7 +2590,7 @@ function userModal(u){
   if(!u)$('#u_p').value=genPwd();
   const tg=()=>{const t=boxes().find(b=>b.dataset.perm==='todos_grupos');tgGrupos(!!(t&&t.checked))};
   const lock=()=>{const isA=todosPermisos($('#u_r').value);boxes().forEach(b=>{if(isA)b.checked=true;b.disabled=isA||!(adm||mine.has(b.dataset.perm))});tg()};
-  $('#u_r').onchange=()=>{const k=$('#u_r').value;if(k!=='custom'&&k!=='admin')boxes().forEach(b=>{b.checked=ROLES[k].p.includes(b.dataset.perm)});if(!u)$('#u_mov').checked=(k==='docente'||k==='prefecto');lock()};
+  $('#u_r').onchange=()=>{const k=$('#u_r').value;if(k!=='custom'&&k!=='admin')boxes().forEach(b=>{b.checked=ROLES[k].p.includes(b.dataset.perm)});if(!u)$('#u_mov').checked=ROL_DOC.includes(k)||k==='prefecto';lock()};
   $('#u_perms').addEventListener('change',tg);lock();
   $('#mSave').onclick=async()=>{
     const body={nombre:$('#u_n').value,usuario:$('#u_u').value,rol:$('#u_r').value,permisos:boxes().filter(b=>b.checked).map(b=>b.dataset.perm),grupos:[...document.querySelectorAll('#u_gbox input:checked')].map(x=>x.value),password:$('#u_p').value};
@@ -3221,14 +3300,14 @@ function listaAula(){
 VIEWS.lista=()=>{const hoy=todayISO();if(U.diaApp&&U.diaApp!==hoy){U.lista.fecha=hoy;U.lista.m=''}U.diaApp=hoy;if(D.cfg.confirmaAula===false)return listaClasica();if(!porModulo()||U.lista.u)return listaAula();return modSelN()===pmLista()?listaAula():listaModulo()};
 const personalAlta=()=>Object.values(D.users).filter(u=>u.activo!==false).sort((x,y)=>String(x.nombre).localeCompare(String(y.nombre),'es'));
 function quienOpts(tipo,sel){
-  const L=personalAlta(),rolT=tipo==='P'?'prefecto':'docente',a=L.filter(u=>u.rol===rolT),b=L.filter(u=>u.rol!==rolT),o=u=>'<option value="'+esc(u.id)+'"'+(u.id===sel?' selected':'')+'>'+esc(u.nombre)+' · '+esc(ROL[u.rol]||u.rol)+'</option>';
+  const L=personalAlta(),esT=u=>tipo==='P'?u.rol==='prefecto':ROL_DOC.includes(u.rol),a=L.filter(esT),b=L.filter(u=>!esT(u)),o=u=>'<option value="'+esc(u.id)+'"'+(u.id===sel?' selected':'')+'>'+esc(u.nombre)+' · '+esc(ROL[u.rol]||u.rol)+'</option>';
   return '<option value="">— Elige a la persona —</option>'+(a.length?'<optgroup label="'+(tipo==='P'?'Prefectura':'Docentes')+'">'+a.map(o).join('')+'</optgroup>':'')+(b.length?'<optgroup label="Otro personal dado de alta">'+b.map(o).join('')+'</optgroup>':'')+'<option value="__otro">Otra persona (escribir el nombre)</option>';
 }
 function aulaCerrarModal(){
   const L=U.lista,f=L.fecha,key=unitKey(),list=listaPeople().sort(cmpA),E=D.ent[f]||{},A=D.aul[f]||{},inc=L.u?(D.inc[f]||{})[L.u]:null;
   const st=a=>U.aula[a.id]||(A[a.id]?A[a.id].s:(E[a.id]?'P':'N'));
   let p=0,n=0,ne=0,se=0;list.forEach(a=>{if(st(a)==='P'){p++;if(!E[a.id])se++}else{n++;if(E[a.id])ne++}});
-  const sup=ME.rol==='prefecto',t0=sup?'P':'D',def=(t0==='P'?ME.rol==='prefecto':ME.rol==='docente')&&D.users[ME.id]?ME.id:'';
+  const sup=ME.rol==='prefecto',t0=sup?'P':'D',def=(t0==='P'?ME.rol==='prefecto':ROL_DOC.includes(ME.rol))&&D.users[ME.id]?ME.id:'';
   openModal('<h2>Confirmar y cerrar lista · '+esc(unitTxt())+'</h2><p><b>'+p+'</b> en el aula · <b>'+n+'</b> no están'+(ne?' (<b class="cF">'+ne+' entraron al plantel</b>: se avisará a Prefectura)':'')+(se?' · <b class="cR">'+se+' en aula sin registro de entrada</b>':'')+'.</p>'+
    '<div class="form"><label class="full">¿Quién pasa lista?<select id="aq"><option value="D"'+(sup?'':' selected')+'>El docente</option><option value="P"'+(sup?' selected':'')+'>Prefectura (suplencia)</option></select></label>'+
    '<label class="full" id="amw" style="display:'+(sup?'':'none')+'">Motivo de la suplencia<select id="am">'+MOT_SUP.map(m=>'<option>'+esc(m)+'</option>').join('')+'</select></label>'+
@@ -3236,7 +3315,7 @@ function aulaCerrarModal(){
    '<label class="full" id="aow" style="display:none">Escribe el nombre completo<input id="aon" maxlength="80" placeholder="Nombre y apellidos" autocomplete="off"></label>'+(L.u?'':bloqueSelHTML(f,pmLista(),key))+'</div>'+
    '<p class="hint">Elige a la persona dada de alta en SICET. Si no está dada de alta, elige «Otra persona» y escribe su nombre. Se registra el módulo en que se pasa lista ('+(modActual()?modActual():'fuera de horario')+'). Después de cerrar, la lista solo la corrige quien tiene permiso de corrección.</p><div class="mfoot"><button class="btn" data-act="closemodal">Cancelar</button><button class="btn pri" id="mOk">Cerrar lista</button></div>');
   const otro=()=>{$('#aow').style.display=$('#aqn').value==='__otro'?'':'none';if($('#aqn').value==='__otro')$('#aon').focus()};
-  $('#aq').onchange=()=>{const tt=$('#aq').value;$('#amw').style.display=tt==='P'?'':'none';const cur=$('#aqn').value;$('#aqn').innerHTML=quienOpts(tt,cur&&cur!=='__otro'?(D.users[cur]&&D.users[cur].rol===(tt==='P'?'prefecto':'docente')?cur:''):'');otro()};
+  $('#aq').onchange=()=>{const tt=$('#aq').value;$('#amw').style.display=tt==='P'?'':'none';const cur=$('#aqn').value;$('#aqn').innerHTML=quienOpts(tt,cur&&cur!=='__otro'?(D.users[cur]&&(tt==='P'?D.users[cur].rol==='prefecto':ROL_DOC.includes(D.users[cur].rol))?cur:''):'');otro()};
   $('#aqn').onchange=otro;
   $('#mOk').onclick=()=>{
     const tipo=$('#aq').value,mot=tipo==='P'?$('#am').value:'',v=$('#aqn').value;let quien;
@@ -3568,9 +3647,10 @@ Object.assign(ACT,{
   incDel:t=>incQuitar(t.dataset.d,t.dataset.id),
   hoyCohorte:t=>{U.lista.fecha=t.dataset.d;U.lista.u=t.dataset.id;U.tab='lista';render()}
 });
-setInterval(()=>{if(!locked&&SY.activo&&document.visibilityState==='visible')syncAhora()},20000);
-window.addEventListener('online',()=>{if(!locked)syncAhora()});
-document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&!locked&&SY.activo)syncAhora()});
+/* también en la pantalla de inicio de sesión: así llegan los usuarios y datos creados en otras computadoras */
+setInterval(()=>{if(SY.activo&&document.visibilityState==='visible')syncAhora()},10000);
+window.addEventListener('online',()=>{if(SY.activo)syncAhora()});
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&SY.activo)syncAhora()});
 
 
 /* ====== nube para celulares (Firebase Realtime Database, datos cifrados) ====== */
@@ -3580,7 +3660,7 @@ const CFG_MOV=['homenajes','homExc','cdLugares','cdMedios','cdExtra','cdFirmas',
 const b64u=u8=>b64(u8).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
 const unb64u=s=>unb64(String(s).replace(/-/g,'+').replace(/_/g,'/')+'==='.slice((String(s).length+3)%4));
 const k64=k=>b64u(_te.encode(k));
-const movilOk=u=>!!u&&u.rol!=='admin'&&(u.movil===true||(u.movil===undefined&&['docente','docentetec','prefecto'].includes(u.rol)));
+const movilOk=u=>!!u&&u.rol!=='admin'&&(u.movil===true||(u.movil===undefined&&ROL_DOC.concat('prefecto').includes(u.rol)));
 const clUrl=a=>CL.cfg.url+'/e/'+CL.cfg.esc+a+'.json';
 /* datos de la escuela: ruta secreta /s/<derivada de la clave> (v2) o la ruta anterior /e/<escuela> */
 const clDUrl=a=>CL.cfg.url+(CL.cfg.v2&&CL.cfg.sec?'/s/'+CL.cfg.sec:'/e/'+CL.cfg.esc)+a+'.json';
@@ -3637,7 +3717,7 @@ async function clEvt(ev){
   let n=0;
   for(const [,v] of items){
     if(!v||!v.c)continue;
-    try{const o=JSON.parse(_td.decode(await descifrar(unb64(v.c),CL.key)));if(clAcepta(o)&&aplicarRemoto(o,v.d)){n++;if(SY.activo)OUT.push(o)}}catch(e){/* ignorar */}
+    try{const o=JSON.parse(_td.decode(await descifrar(unb64(v.c),CL.key)));if(clAcepta(o)&&aplicarRemoto(o,v.d)){n++;if(SY.activo)OUT.push(o);if(typeof pcRelay==='function')pcRelay(o)}}catch(e){/* ignorar */}
   }
   if(n){save();sesionRefrescar();if(SY.activo)syncSoon();uiTouched(true)}
 }
@@ -3981,7 +4061,7 @@ function modCerrarModal(){
   const L=U.lista,f=L.fecha,m=modSelN(),key=modKey(),list=modPeople().sort(cmpA);
   const stOf=a=>U.aulaMod[a.id]||modDefault(a,f,m);
   let p=0,t=0,n=0;list.forEach(a=>{if(incMod(a,f,m))return;const s=stOf(a);if(s==='P')p++;else if(s==='T')t++;else n++});
-  const sup=ME.rol==='prefecto',t0=sup?'P':'D',def=(t0==='P'?ME.rol==='prefecto':ME.rol==='docente')&&D.users[ME.id]?ME.id:'',lim=modLimite(m),antes=f===todayISO()&&nowHM()<lim;
+  const sup=ME.rol==='prefecto',t0=sup?'P':'D',def=(t0==='P'?ME.rol==='prefecto':ROL_DOC.includes(ME.rol))&&D.users[ME.id]?ME.id:'',lim=modLimite(m),antes=f===todayISO()&&nowHM()<lim;
   openModal('<h2>Cerrar lista · Módulo '+m+' · '+esc(unitTxt())+'</h2><p><b>'+p+'</b> en aula · <b>'+t+'</b> llegaron tarde · <b>'+n+'</b> no están.</p>'+
    (antes?'<div class="warnbox">Todavía están dentro del tiempo de traslado (hasta las '+esc(lim)+'). Si cierras ahora, quien aún no llega quedará como «No está». Puedes esperar unos minutos.</div>':'')+
    '<div class="form"><label class="full">¿Quién pasa lista?<select id="aq"><option value="D"'+(sup?'':' selected')+'>El docente</option><option value="P"'+(sup?' selected':'')+'>Prefectura (suplencia)</option></select></label>'+
@@ -3990,7 +4070,7 @@ function modCerrarModal(){
    '<label class="full" id="aow" style="display:none">Escribe el nombre completo<input id="aon" maxlength="80" placeholder="Nombre y apellidos" autocomplete="off"></label>'+bloqueSelHTML(f,m,key)+'</div>'+
    '<div class="mfoot"><button class="btn" data-act="closemodal">Cancelar</button><button class="btn pri" id="mOk">'+(antes?'Cerrar de todos modos':'Cerrar lista')+'</button></div>');
   const otro=()=>{$('#aow').style.display=$('#aqn').value==='__otro'?'':'none';if($('#aqn').value==='__otro')$('#aon').focus()};
-  $('#aq').onchange=()=>{const tt=$('#aq').value;$('#amw').style.display=tt==='P'?'':'none';const cur=$('#aqn').value;$('#aqn').innerHTML=quienOpts(tt,cur&&cur!=='__otro'?(D.users[cur]&&D.users[cur].rol===(tt==='P'?'prefecto':'docente')?cur:''):'');otro()};
+  $('#aq').onchange=()=>{const tt=$('#aq').value;$('#amw').style.display=tt==='P'?'':'none';const cur=$('#aqn').value;$('#aqn').innerHTML=quienOpts(tt,cur&&cur!=='__otro'?(D.users[cur]&&(tt==='P'?D.users[cur].rol==='prefecto':ROL_DOC.includes(D.users[cur].rol))?cur:''):'');otro()};
   $('#aqn').onchange=otro;
   $('#mOk').onclick=()=>{
     const tipo=$('#aq').value,mot=tipo==='P'?$('#am').value:'',v=$('#aqn').value;let quien;
@@ -4095,7 +4175,7 @@ function condModal(rec,pre){
   const nuevo=!rec;rec=rec||{};const todos=can('conducta_todos'),tecs=tecList(),alumnos=activos().sort(cmpA),p0=pre||{};
   const hoy=todayISO(),mAct=modActual(),personal=personalAlta();
   const chks=(name,list,sel)=>list.map(x=>'<label class="chk"><input type="checkbox" name="'+name+'" value="'+esc(x)+'"'+((sel||[]).includes(x)?' checked':'')+'>'+esc(x)+'</label>').join('');
-  const docs=personal.filter(u=>u.rol==='docente'),otros=personal.filter(u=>u.rol!=='docente'),defU=rec.u||((D.users[ME.id]&&(ME.rol==='docente'||(!todos)))?ME.id:'');
+  const docs=personal.filter(u=>ROL_DOC.includes(u.rol)),otros=personal.filter(u=>!ROL_DOC.includes(u.rol)),defU=rec.u||((D.users[ME.id]&&(ROL_DOC.includes(ME.rol)||(!todos)))?ME.id:'');
   const qopt=u=>'<option value="'+esc(u.id)+'"'+(u.id===defU?' selected':'')+'>'+esc(u.nombre)+' · '+esc(ROL[u.rol]||u.rol)+'</option>';
   const fixed=!todos&&D.users[ME.id];
   const alSel=rec.al||p0.al||'';
@@ -4979,19 +5059,22 @@ document.addEventListener('change',e=>{
 
 
 /* ====== docentes: grupos y tecnologías que atienden, control de asistencia y bitácora ====== */
-const tecVe=a=>!!a.tec&&(ME.tecs||[]).some(k=>k==='*|'+a.tec||k===String(a.gr)+'|'+a.tec);
+/* tecnología asignada: «*|tec» todos los grados, «1|tec» un grado, «1A|tec» un grupo */
+const tecCubre=(k,a)=>{k=String(k);const i=k.indexOf('|'),g=k.slice(0,i),t=k.slice(i+1);if(!a||!a.tec||t!==a.tec)return false;return g==='*'||g===String(a.gr)||g===String(a.gr)+a.gp};
+const tecAlcTxt=g=>g==='*'?'todos los grados':/^\d+$/.test(g)?g+'° (todos los grupos)':g.replace(/^(\d+)/,'$1°');
+const tecVe=a=>!!a.tec&&(ME.tecs||[]).some(k=>tecCubre(k,a));
 const bdCats=()=>D.cfg.bdCats&&D.cfg.bdCats.length?D.cfg.bdCats:BD_CATS0;
 const bdVisibles=()=>Object.values(D.bd).filter(r=>can('bitacora_todos')||r.u===ME.id);
 const gTxt=g=>String(g).replace(/^(\d+)/,'$1°');
 function misUnidades(){
   const act=activos(),L=[],gks=[...new Set(act.map(a=>String(a.gr)+a.gp))].sort((x,y)=>x.localeCompare(y,'es',{numeric:true}));
-  const tl=(g,t)=>t+' · '+(g==='*'?'todos los grados':g+'°')+' (todos los grupos)';
+  const tl=(g,t)=>t+' · '+tecAlcTxt(g);
   if(can('todos_grupos')){
     gks.forEach(g=>L.push({k:'g:'+g,t:gTxt(g)+' (grupo)'}));
     tecList().forEach(t=>{if(act.some(a=>a.tec===t))L.push({k:'T:*|'+t,t:tl('*',t)})});
   }else{
     (ME.grupos||[]).filter(g=>gks.includes(g)).forEach(g=>L.push({k:'g:'+g,t:gTxt(g)+' (grupo)'}));
-    (ME.tecs||[]).forEach(k=>{const i=k.indexOf('|'),g=k.slice(0,i),t=k.slice(i+1);if(act.some(a=>a.tec===t&&(g==='*'||String(a.gr)===g)))L.push({k:'T:'+k,t:tl(g,t)})});
+    (ME.tecs||[]).forEach(k=>{const i=k.indexOf('|'),g=k.slice(0,i),t=k.slice(i+1);if(act.some(a=>tecCubre(k,a)))L.push({k:'T:'+k,t:tl(g,t)})});
   }
   if(L.length>1)L.unshift({k:'',t:'Todos mis alumnos'});
   return L;
@@ -4999,8 +5082,8 @@ function misUnidades(){
 function misGente(k){
   const act=activos();if(!k)return act;
   if(k[0]==='g')return act.filter(a=>String(a.gr)+a.gp===k.slice(2));
-  const r=k.slice(2),i=r.indexOf('|'),g=r.slice(0,i),t=r.slice(i+1);
-  return act.filter(a=>a.tec===t&&(g==='*'||String(a.gr)===g));
+  const r=k.slice(2);
+  return act.filter(a=>tecCubre(r,a));
 }
 function misDias(a,b,n){const hoy=todayISO(),fin=b<hoy?b:hoy,out=[];for(let d=fin;d>=a&&out.length<n;d=addDays(d,-1)){if(!isNoLab(d))out.unshift(d)}return out}
 const letraReg=(d,id)=>{const r=getReg(d,id);if(!r)return '·';return (r.s==='P'&&/^Retardo/.test(r.x||''))?'R':r.s};
@@ -5011,7 +5094,7 @@ const pctTxt=s=>{const t=s.P+s.R+s.F+s.J;return t?Math.round((s.P+s.R)/t*100)+' 
 function alcanceTxt(){
   if(can('todos_grupos'))return 'Todos los grupos y tecnologías';
   const p=[];if((ME.grupos||[]).length)p.push('Grupos: '+ME.grupos.map(gTxt).join(', '));
-  if((ME.tecs||[]).length)p.push('Tecnología: '+ME.tecs.map(k=>{const i=k.indexOf('|'),g=k.slice(0,i);return k.slice(i+1)+' ('+(g==='*'?'todos los grados':g+'°')+')'}).join(', '));
+  if((ME.tecs||[]).length)p.push('Tecnología: '+ME.tecs.map(k=>{const i=k.indexOf('|'),g=k.slice(0,i);return k.slice(i+1)+' ('+tecAlcTxt(g)+')'}).join(', '));
   return p.join(' · ')||'Sin grupos asignados';
 }
 const unitSel=(k,units,path)=>'<label>Mostrar<select data-b="'+path+'">'+units.map(u=>'<option value="'+esc(u.k)+'"'+(u.k===k?' selected':'')+'>'+esc(u.t)+'</option>').join('')+'</select></label>';
@@ -5340,7 +5423,7 @@ function perHoyPanel(t){
 function perModal(rec){
   const nuevo=!rec;rec=rec||{};const P=personalAlta(),hoy=todayISO(),sel=rec.u||'';
   const qo=u=>'<option value="'+esc(u.id)+'"'+(u.id===sel?' selected':'')+'>'+esc(u.nombre)+' · '+esc(ROL[u.rol]||u.rol)+'</option>';
-  const grupos=[['docente','Docentes'],['docentetec','Docentes de tecnología'],['coord','Coordinación'],['prefecto','Prefectura']];
+  const grupos=[['docente','Docentes'],['docentetec','Docentes de tecnología'],['coord','Coordinación'],['coordtec','Coordinación de tecnología'],['prefecto','Prefectura']];
   const usados=new Set();let opt='';
   grupos.forEach(([r,l])=>{const L=P.filter(u=>u.rol===r);L.forEach(u=>usados.add(u.id));if(L.length)opt+='<optgroup label="'+l+'">'+L.map(qo).join('')+'</optgroup>'});
   const resto=P.filter(u=>!usados.has(u.id));if(resto.length)opt+='<optgroup label="Otro personal">'+resto.map(qo).join('')+'</optgroup>';
@@ -5591,7 +5674,7 @@ function iconoSVG(size,mask){
   return '<svg xmlns="http://www.w3.org/2000/svg" width="'+size+'" height="'+size+'" viewBox="0 0 '+size+' '+size+'"><rect width="'+size+'" height="'+size+'" rx="'+(mask?0:size*.22)+'" fill="#0F4D5C"/><g transform="translate('+off+' '+off+') scale('+s+')">'+inner+'</g></svg>';
 }
 function svgPng(svg,size){return new Promise((res,rej)=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=c.height=size;c.getContext('2d').drawImage(im,0,0,size,size);c.toBlob(b=>b?b.arrayBuffer().then(x=>res(new Uint8Array(x))):rej(new Error('png')),'image/png')};im.onerror=()=>rej(new Error('svg'));im.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg)})}
-const SW_TXT="// SICET Móvil: guarda solo la aplicación (HTML, íconos y el lector de QR). Nunca guarda datos de alumnos.\nconst C='sicet-movil-v43';\nconst SHELL=['./','index.html','manifest.webmanifest','icon-192.png','icon-512.png','apple-touch-icon.png'];\nself.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(SHELL).catch(()=>{})).then(()=>self.skipWaiting()))});\nself.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});\nself.addEventListener('fetch',e=>{\n  const r=e.request,u=new URL(r.url);\n  if(r.method!=='GET')return;\n  const mismo=u.origin===self.location.origin,jsqr=u.hostname==='cdnjs.cloudflare.com';\n  if(!mismo&&!jsqr)return;\n  if(/event-stream/.test(r.headers.get('accept')||'')||/\\.(json|mobileconfig)$/.test(u.pathname)||/iphone\\.html$/.test(u.pathname))return;\n  e.respondWith(fetch(r).then(res=>{if(res.ok){const cp=res.clone();caches.open(C).then(c=>c.put(r,cp))}return res}).catch(()=>caches.match(r).then(m=>m||(r.mode==='navigate'?caches.match('index.html'):undefined))));\n});\n";
+const SW_TXT="// SICET Móvil: guarda solo la aplicación (HTML, íconos y el lector de QR). Nunca guarda datos de alumnos.\nconst C='sicet-movil-v44';\nconst SHELL=['./','index.html','manifest.webmanifest','icon-192.png','icon-512.png','apple-touch-icon.png'];\nself.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(SHELL).catch(()=>{})).then(()=>self.skipWaiting()))});\nself.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});\nself.addEventListener('fetch',e=>{\n  const r=e.request,u=new URL(r.url);\n  if(r.method!=='GET')return;\n  const mismo=u.origin===self.location.origin,jsqr=u.hostname==='cdnjs.cloudflare.com';\n  if(!mismo&&!jsqr)return;\n  if(/event-stream/.test(r.headers.get('accept')||'')||/\\.(json|mobileconfig)$/.test(u.pathname)||/iphone\\.html$/.test(u.pathname))return;\n  e.respondWith(fetch(r).then(res=>{if(res.ok){const cp=res.clone();caches.open(C).then(c=>c.put(r,cp))}return res}).catch(()=>caches.match(r).then(m=>m||(r.mode==='navigate'?caches.match('index.html'):undefined))));\n});\n";
 const MANIF=()=>JSON.stringify({name:'SICET Móvil',short_name:'SICET',description:'SICET · Sistema Integral de Control Escolar Técnico: entrada con QR, listas en el aula y conducta',lang:'es',start_url:'./',scope:'./',display:'standalone',orientation:'portrait',background_color:'#fafbfc',theme_color:'#0F4D5C',icons:[{src:'icon-192.png',sizes:'192x192',type:'image/png',purpose:'any'},{src:'icon-512.png',sizes:'512x512',type:'image/png',purpose:'any'},{src:'icon-maskable-512.png',sizes:'512x512',type:'image/png',purpose:'maskable'}]});
 const LEEME_WEB='SICET MÓVIL · VERSIÓN WEB (iPhone, iPad, Mac, Android y cualquier computadora)\r\n=====================================================================\r\n\r\nEsta carpeta es la app del celular lista para publicarse en internet con una dirección (https://...).\r\nAsí funciona en iPhone y iPad (Safari), en Mac y en Android. Se hace UNA sola vez.\r\nLa carpeta NO contiene datos de alumnos ni claves: los datos viajan cifrados por la nube de la escuela.\r\n\r\nOPCIÓN 1 · NETLIFY (la más fácil, gratis)\r\n1. Entra a app.netlify.com/drop desde la computadora.\r\n2. Arrastra ESTE archivo ZIP (o la carpeta descomprimida) al recuadro.\r\n3. Crea tu cuenta gratuita cuando te lo pida (o pulsa «Claim»): si no, la dirección se borra.\r\n4. Copia la dirección que te da (por ejemplo https://sicet-mi-escuela.netlify.app).\r\n   En «Site configuration» puedes cambiarle el nombre.\r\n5. En SICET (computadora): Ajustes > Celulares y nube > pega la dirección y pulsa «Guardar dirección».\r\n\r\nOPCIÓN 2 · GITHUB PAGES (gratis)\r\nCrea un repositorio público, sube estos archivos, activa Settings > Pages (rama main) y usa la dirección que te da.\r\n\r\nDESPUÉS, PARA CADA PERSONA\r\nEn SICET: Ajustes > Personal con acceso > botón «Celular» junto a su nombre.\r\nLa persona escanea el código QR con la cámara de su celular: se abre la app ya conectada a la escuela.\r\nEn iPhone: toca Compartir > «Agregar a pantalla de inicio» para tenerla como app.\r\n\r\nACTUALIZACIONES\r\nLa app se actualiza sola cuando Dirección autoriza una versión nueva. No hace falta volver a publicar.\r\nSi publicas una versión nueva de este paquete, arrástralo otra vez al mismo sitio de Netlify (en «Deploys»).\r\n';
 async function paqueteWeb(){
@@ -6456,13 +6539,14 @@ setTimeout(()=>{if(EDITION!=='movil')ghActualizarSiPublicado()},15000);
    - Al terminar, el docente pulsa «Enviar a Dirección»: se bloquea. Dirección o Subdirección pueden devolverla con prórroga. */
 const puedeCalLim=()=>esAdmGen()||(!!ME&&['admin','subdir'].includes(ME.rol));
 const esTecAsig=s=>/^tecnolog/i.test(String(s||''));
-const asigsU=u=>{if(!u)return [];const L=Array.isArray(u.asigs)?u.asigs.filter(Boolean):[];if(L.length)return L;return u.rol==='docentetec'?['Tecnología']:[]};
+const asigsU=u=>{if(!u)return [];const L=Array.isArray(u.asigs)?u.asigs.filter(Boolean):[];if(L.length)return L;return ['docentetec','coordtec'].includes(u.rol)?['Tecnología']:[]};
 const meU=()=>(ME&&D.users[ME.id])||ME;
-const calEsDoc=()=>!!ME&&!!ME.id&&(asigsU(meU()).length>0||['docente','docentetec'].includes(ME.rol));
-const tecDeU=(u,a)=>!!a.tec&&(u.tecs||[]).some(k=>k==='*|'+a.tec||k===String(a.gr)+'|'+a.tec);
+const calEsDoc=()=>!!ME&&!!ME.id&&(asigsU(meU()).length>0||['docente','docentetec','coordtec'].includes(ME.rol));
+const tecDeU=(u,a)=>!!a.tec&&(u.tecs||[]).some(k=>tecCubre(k,a));
 function calAlEnUnidad(u,a,s){
   if(!a||a.baja||!asigDe(a.gr).includes(s))return false;
   if(esTecAsig(s)&&(u.tecs||[]).length)return tecDeU(u,a);
+  const G=u.asigG&&u.asigG[s];if(Array.isArray(G)&&G.length)return G.includes(String(a.gr)+a.gp);
   return (u.grupos||[]).map(String).includes(String(a.gr)+a.gp);
 }
 function calUnidades(u){
@@ -6560,7 +6644,7 @@ clAcepta=function(o){
   return _clAcCD(o);
 };
 const _clPayCD=clPayload;
-clPayload=function(k,p){const r=_clPayCD(k,p);if(r&&k[0]==='u'&&r.t==='user'&&p.u&&r.u.movil)r.u.asigs=Array.isArray(p.u.asigs)?p.u.asigs:[];return r};
+clPayload=function(k,p){const r=_clPayCD(k,p);if(r&&k[0]==='u'&&r.t==='user'&&p.u&&r.u.movil){r.u.asigs=Array.isArray(p.u.asigs)?p.u.asigs:[];if(p.u.asigG)r.u.asigG=p.u.asigG}return r};
 function calEncolarQ(){
   if(!CL.on||EDITION==='movil')return;const by=(ME&&ME.usuario)||'',ts0=k=>(META.get(k)&&META.get(k).ts)||1;
   for(const al in D.cal)for(const s in D.cal[al])D.cal[al][s].forEach((v,i)=>{if(v!=null){const k='q|'+al+'|'+s+'|'+(i+1);clEnqueue(k,ts0(k),by,{t:'cal',al,s,tr:i+1,v})}});
@@ -7407,7 +7491,7 @@ ACT.kcRep=()=>{
 };
 /* --- Ajustes: apariencia de los tableros --- */
 /* solo quien usa los tableros ve su apariencia (no docentes, prefectura ni secretaría) */
-const verTableros=()=>!!ME&&(esAdmGen()||can('ajustes')||['subdir','coord','orient','control'].includes(ME.rol)||(!!ME.id&&(verOculto('kpical')||verOculto('kpiglob'))));
+const verTableros=()=>!!ME&&(esAdmGen()||can('ajustes')||['subdir','coord','coordtec','orient','control'].includes(ME.rol)||(!!ME.id&&(verOculto('kpical')||verOculto('kpiglob'))));
 const _prefV=prefPanel;
 prefPanel=function(){
   const sel=(k,L)=>'<select data-pref="'+k+'">'+L.map(([v,t])=>'<option value="'+v+'"'+(String(kp(k))===v?' selected':'')+'>'+t+'</option>').join('')+'</select>';
@@ -8114,7 +8198,7 @@ const plaLims=()=>Object.assign({},D.cfg.plaLim||{});
 const plaLimMs=tr=>{const v=plaLims()[tr];if(!v)return 0;const t=new Date(v).getTime();return isNaN(t)?0:t};
 const plaRevisor=()=>!!ME&&!!ME.id&&verOculto('planea');
 const plaPuedeRev=()=>!!ME&&!!ME.id&&editOculto('planea');
-const PLA_ROLES_REV=['admin','subdir','coord','administrador'];
+const PLA_ROLES_REV=['admin','subdir','coord','coordtec','administrador'];
 function plaCampoDe(mat){
   const n=normH(mat);if(!n)return PLA_SIN;const C=plaCampos();
   for(const c of C)if((c.m||[]).some(x=>normH(x)===n))return c.n;
@@ -8551,7 +8635,7 @@ userModal=function(u){
 if(!PERMS.includes('agenda')){
   PERMS.push('agenda');
   const g=PERM_G.find(x=>x[0]==='Administración')||PERM_G[PERM_G.length-1];g[1].push(['agenda','Editar la agenda escolar (reuniones, suspensiones, CTE)']);
-  ['subdir','coord'].forEach(r=>{if(ROLES[r]&&!ROLES[r].p.includes('agenda'))ROLES[r].p.push('agenda')});
+  ['subdir','coord','coordtec'].forEach(r=>{if(ROLES[r]&&!ROLES[r].p.includes('agenda'))ROLES[r].p.push('agenda')});
 }
 const AG_TIPOS=[['cte','Consejo Técnico Escolar','brand'],['susp','Suspensión de clases','F'],['vac','Vacaciones','J'],['padres','Reunión con padres','P'],['junta','Junta de personal','s2'],['evento','Evento escolar','s3'],['boletas','Entrega de boletas','s1'],['otro','Otro','mut'],['nota','Mi anotación (personal)','nota']];
 const agTipo=k=>AG_TIPOS.find(x=>x[0]===k)||AG_TIPOS[AG_TIPOS.length-2];
@@ -8917,7 +9001,7 @@ const _commitTU=commit;
 commit=function(op,o){const r=_commitTU(op,o);if(r&&op&&EDITION!=='movil'&&['al','alMany','alDel','reg','regs','cal','calMany','calEnv','cond','cfg'].includes(op.t))tutProgramar();return r};
 setTimeout(()=>tutProgramar(25000),3000);setInterval(()=>tutPublicar(),15*60000);
 /* --- escuela: generar accesos e imprimir fichas --- */
-const puedeTut=()=>!!ME&&!!ME.id&&(can('portal_tut')||esAdmGen());
+const puedeTut=()=>!!ME&&(!!ME.id||ME.adm)&&(can('portal_tut')||esAdmGen()||ME.rol==='subdir'||ME.adm);
 function tutFichaHTML(a){
   const l=tutLink(a);
   return '<div class="tficha"><div class="tf-h">'+(D.cfg.logo?'<img src="'+D.cfg.logo+'" alt="">':'')+'<div><b>'+esc(D.cfg.escuela||'')+'</b><span>Portal para madres, padres y tutores</span></div></div>'+
@@ -9422,7 +9506,7 @@ function notaModal(n,fecha){
 ACT.notaNueva=t=>notaModal(null,t.dataset.d);
 document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('.agev[data-id^="nota:"]');if(!b)return;e.stopPropagation();e.preventDefault();const n=(D.notas||{})[b.dataset.id.slice(5)];if(n)notaModal(n)},true);
 /* --- quién ve el evento (en la ventana del evento) --- */
-const AUD_ROLES=['subdir','coord','control','orient','secretaria','prefecto','docente','docentetec'];
+const AUD_ROLES=['subdir','coord','coordtec','control','orient','secretaria','prefecto','docente','docentetec'];
 function agAudHTML(e,nuevo){
   const a=e.aud||{t:'todos',r:[],u:[]},P=personalAlta().filter(u=>u.rol!=='administrador'),mailOk=!!(D.cfg.mailUrl&&D.cfg.mailTok);
   return '<div class="full agaud"><div class="pllab">¿Quién lo ve?</div><div class="segtabs" id="aud_t">'+[['todos','Todo el personal'],['roles','Ciertos cargos'],['personas','Ciertas personas']].map(([k,l])=>'<button type="button" data-aud="'+k+'" class="'+((a.t||'todos')===k?'on':'')+'">'+l+'</button>').join('')+'</div>'+
@@ -9727,7 +9811,7 @@ const ESTILOS={
     v:{bg:'#0B0B14',surf:'#14141F',ink:'#ECEBFA',mut:'#A3A1C2',line:'#27263B',soft:'#1C1B2C'},glow:'radial-gradient(90% 60% at 50% 0%,rgba(124,108,242,.22),rgba(124,108,242,0) 70%)'}
 };
 const ESTILO_ORDEN=['clasico','ambar','verde','petroleo','energia','nocturno'];
-const EST_ROLES=['admin','subdir','coord','administrador'];
+const EST_ROLES=['admin','subdir','coord','coordtec','administrador'];
 const puedeEstilo=()=>!!ME&&(esAdministrador()||EST_ROLES.includes(ME.rol));
 const ESTKEY='sicet_estilo_cache';
 function estCfg(){let e=D&&D.cfg&&D.cfg.estilo;if(!e){try{e=JSON.parse(localStorage.getItem(ESTKEY)||'null')}catch(x){}}return Object.assign({preset:'clasico',meta:95},e||{})}
@@ -10166,7 +10250,7 @@ render=function(){const r=_renderAGD.apply(this,arguments);try{agArrastre()}catc
 /* --- Ajustes: quién mueve las fechas del CTE --- */
 function cteFPanel(){
   if(!(puedeCTEfCfg()||puedeCTEf()))return '';const c=cteFCfg(),ed=puedeCTEfCfg();
-  const RR=[['admin','Dirección'],['subdir','Subdirección'],['coord','Coordinación'],['secretaria','Secretaría'],['control','Control escolar']];
+  const RR=[['admin','Dirección'],['subdir','Subdirección'],['coord','Coordinación'],['coordtec','Coordinación de tecnología'],['secretaria','Secretaría'],['control','Control escolar']];
   const us=Object.values(D.users).filter(u=>u.activo!==false&&!['admin','administrador'].includes(u.rol)&&!(c.r||[]).includes(u.rol)).sort((a,b)=>String(a.nombre).localeCompare(String(b.nombre)));
   return '<div class="panel" id="pCteF"><h3>Fechas del Consejo Técnico</h3><p class="sub">Quién puede <b>mover a otro día o cancelar</b> sesiones de CTE en la Agenda escolar. Los demás solo ven la fecha actualizada y reciben un aviso cuando se publica el cambio.'+(ed?'':' Solo Dirección o el Administrador cambian esta lista.')+'</p><div class="body">'+
    '<div class="chkgrid">'+RR.map(([k,n])=>'<label class="chk-line"><input type="checkbox" data-ctefr="'+k+'"'+(k==='admin'||(c.r||[]).includes(k)?' checked':'')+(k==='admin'||!ed?' disabled':'')+'>'+n+(k==='admin'?' (siempre)':'')+'</label>').join('')+'</div>'+
@@ -10180,6 +10264,776 @@ document.addEventListener('change',ev=>{
 });
 const _ajCTEF=VIEWS.ajustes;
 VIEWS.ajustes=function(){const h=_ajCTEF.apply(this,arguments),p=cteFPanel();if(!p)return h;const i=h.indexOf('<div class="panel"><h3>Privacidad</h3>');return i>=0?h.slice(0,i)+p+h.slice(i):h+p};
+
+/* ====== Trabajo en equipo entre computadoras (Windows, Mac y laptops) ======
+   1. Pantalla de inicio de sesión: conectar esta computadora a la carpeta sincronizada de la escuela, ver el estado
+      y sincronizar antes de entrar (así aparecen los usuarios y datos creados en otras computadoras).
+   2. Quién administra la carpeta: Dirección, Subdirección, el Administrador o quien tenga el permiso
+      «Compartir la carpeta sincronizada» (activar, ver la clave para conectar otra computadora, desconectar).
+   3. Canal rápido por internet: además de la carpeta (OneDrive, Google Drive o Dropbox), los cambios viajan por la
+      Nube de SICET en segundos, cifrados con la clave de la carpeta (los celulares no la tienen).
+      La dirección de la Nube se comparte sola a las demás computadoras dentro de la carpeta cifrada. */
+if(!PERMS.includes('sync_compartir')){
+  PERMS.push('sync_compartir');
+  const g=PERM_G.find(x=>x[0]==='Administración')||PERM_G[PERM_G.length-1];g[1].push(['sync_compartir','Compartir la carpeta sincronizada (activarla, ver su clave y conectar computadoras)']);
+  if(ROLES.subdir&&!ROLES.subdir.p.includes('sync_compartir'))ROLES.subdir.p.push('sync_compartir');
+}
+const puedeSync=()=>!!ME&&(esAdministrador()||ME.adm||['admin','subdir'].includes(ME.rol)||can('sync_compartir'));
+const horaCorta=t=>t?new Date(t).toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'}):'';
+
+/* --- canal rápido entre computadoras (Nube de SICET, área /pc/<día>) --- */
+const PCL={ue:null,base0:'',out:new Map(),t:null,ocupado:false,es:null,hoy:'',err:'',ult:0,rx:0,tx:0,dia:'',limpio:'',escrito:'',iv:null};
+const pcBase=()=>{if(CL.on&&CL.cfg&&CL.cfg.v2&&CL.cfg.sec)return CL.cfg.url+'/s/'+CL.cfg.sec;return PCL.base0||''};
+const pcOn=()=>EDITION!=='movil'&&SY.activo&&!!SY.key&&!!pcBase()&&D&&D.cfg&&D.cfg.pcRapido!==false&&!(typeof REVIEW!=='undefined'&&REVIEW.on);
+function pcEnq(o){
+  if(!pcOn()||!o||!o.k||/^p\|upd/.test(o.k))return;
+  try{if(JSON.stringify(o.p).length>250000)return}catch(e){return}
+  PCL.out.set(o.k,o);IDB.put('kv','pcout',[...PCL.out.values()]).catch(()=>{});
+  clearTimeout(PCL.t);PCL.t=setTimeout(()=>pcFlush().catch(()=>{}),400);
+}
+const pcRelay=o=>pcEnq(o);
+async function pcFlush(){
+  if(!pcOn()||!PCL.out.size||PCL.ocupado||navigator.onLine===false)return;
+  PCL.ocupado=true;
+  try{
+    while(PCL.out.size){
+      const lote=[...PCL.out.values()].slice(0,80),obj={},dia=todayISO();
+      for(const o of lote)obj[k64(o.k)]={t:o.ts,d:DEV,c:b64(await cifrar(_te.encode(JSON.stringify(o)),SY.key))};
+      const r=await fetchT(pcBase()+'/pc/'+dia+'.json',{method:'PATCH',body:JSON.stringify(obj)},20000);
+      if(!r.ok)throw new Error('La Nube respondió '+r.status);
+      lote.forEach(o=>{if(PCL.out.get(o.k)===o)PCL.out.delete(o.k)});PCL.tx+=lote.length;PCL.ult=Date.now();PCL.err='';
+    }
+  }catch(e){PCL.err=e.message||String(e)}
+  finally{PCL.ocupado=false;IDB.put('kv','pcout',[...PCL.out.values()]).catch(()=>{})}
+}
+async function pcAplicar(items){
+  let n=0;
+  for(const [,v] of items){
+    if(!v||!v.c||v.d===DEV)continue;
+    try{const o=JSON.parse(_td.decode(await descifrar(unb64(v.c),SY.key)));if(o&&o.k&&o.p&&aplicarRemoto(o,v.d))n++}catch(e){/* otra clave o dato dañado: se ignora */}
+  }
+  if(n){PCL.rx+=n;PCL.ult=Date.now();save();if(!locked){sesionRefrescar();uiTouched(true)}else pcLoginEstado()}
+  return n;
+}
+function pcEvt(ev){
+  if(!ev||ev.data==null)return;let items=[];
+  if(ev.path==='/')items=Object.entries(ev.data||{});else{const s=ev.path.slice(1).split('/');if(s.length===1)items=[[s[0],ev.data]]}
+  pcAplicar(items);
+}
+function pcCerrar(){if(PCL.es){try{PCL.es.close()}catch(e){}PCL.es=null}}
+function pcAbrir(){
+  pcCerrar();if(!pcOn())return;PCL.hoy=todayISO();
+  try{const es=new EventSource(pcBase()+'/pc/'+PCL.hoy+'.json');PCL.es=es;
+    const h=e=>{try{pcEvt(JSON.parse(e.data))}catch(x){}};es.addEventListener('put',h);es.addEventListener('patch',h);
+    es.onopen=()=>{PCL.err=''};es.onerror=()=>{PCL.err='reconectando'};}catch(e){PCL.err='sin conexión'}
+}
+async function pcPonerseAlDia(){
+  if(!pcOn()||navigator.onLine===false)return;
+  const hoy=todayISO();let d=PCL.dia&&PCL.dia>addDays(hoy,-10)?PCL.dia:addDays(hoy,-10);
+  for(;d<hoy;d=addDays(d,1)){
+    try{const r=await fetchT(pcBase()+'/pc/'+d+'.json',null,20000);if(!r.ok)break;const j=await r.json();if(j)await pcAplicar(Object.entries(j))}catch(e){break}
+    PCL.dia=d;await IDB.put('kv','pcdia',d);
+  }
+  if(PCL.limpio!==hoy){PCL.limpio=hoy;try{const r=await fetchT(pcBase()+'/pc.json?shallow=true',null,15000);const j=r.ok?await r.json():null;const lim=addDays(hoy,-12);for(const k of Object.keys(j||{}))if(/^\d{4}-\d{2}-\d{2}$/.test(k)&&k<lim)await fetchT(pcBase()+'/pc/'+k+'.json',{method:'DELETE'},10000)}catch(e){}}
+}
+async function pcIniciar(){
+  if(EDITION==='movil')return;
+  try{PCL.base0=(await IDB.get('kv','pcbase'))||'';PCL.ue=(await IDB.get('kv','pcue'))||null;PCL.dia=(await IDB.get('kv','pcdia'))||'';(await IDB.get('kv','pcout')||[]).forEach(o=>PCL.out.set(o.k,o))}catch(e){}
+  if(!PCL.iv)PCL.iv=setInterval(()=>{if(!pcOn()){pcCerrar();return}if(todayISO()!==PCL.hoy||!PCL.es||PCL.es.readyState===2){pcPonerseAlDia().finally(pcAbrir)}pcFlush().catch(()=>{})},15000);
+  if(pcOn()){await pcPonerseAlDia();pcAbrir();pcFlush().catch(()=>{})}
+}
+/* la dirección de la Nube viaja a las demás computadoras dentro de la carpeta, cifrada con la clave de la carpeta */
+async function pcArchivoNube(){
+  if(EDITION==='movil'||!SY.activo||!SY.sub||!SY.key)return;
+  try{
+    if(CL.on&&CL.cfg&&CL.cfg.v2&&CL.cfg.sec){
+      const base=CL.cfg.url+'/s/'+CL.cfg.sec;if(PCL.escrito===base)return;
+      await escribir(SY.sub,'nube-pc.asx',await cifrar(_te.encode(JSON.stringify({base,u:CL.cfg.url,e:CL.cfg.esc,t:Date.now()}))));PCL.escrito=base;
+      if(!PCL.es)pcIniciar();
+    }else{
+      let j=null;try{j=JSON.parse(_td.decode(await descifrar(await leer(SY.sub,'nube-pc.asx'))))}catch(e){}
+      if(j&&j.u&&j.e&&!(PCL.ue&&PCL.ue.e===j.e)){PCL.ue={u:j.u,e:j.e};await IDB.put('kv','pcue',PCL.ue)}
+      if(j&&j.base&&j.base!==PCL.base0){PCL.base0=j.base;await IDB.put('kv','pcbase',j.base);bitacora('Cambios al instante entre computadoras: activado');await pcPonerseAlDia();pcAbrir()}
+    }
+  }catch(e){}
+}
+const _clEnqPC=clEnqueue;
+clEnqueue=function(k,ts,by,p,del){try{return _clEnqPC.apply(this,arguments)}finally{pcEnq(Object.assign({k,ts,by,p},del?{del:1}:{}))}};
+const _syncAhoraPC=syncAhora;
+syncAhora=function(manual){const pr=_syncAhoraPC.apply(this,arguments);Promise.resolve(pr).then(()=>pcArchivoNube()).catch(()=>{});return pr};
+setTimeout(()=>{pcIniciar()},2500);
+window.addEventListener('online',()=>{if(pcOn()){pcPonerseAlDia().finally(pcAbrir);pcFlush().catch(()=>{})}});
+/* el Portal para padres se vuelve a publicar cuando llegan cambios de otras computadoras */
+const _aplRemPC=aplicarRemoto;
+aplicarRemoto=function(o,dev){const r=_aplRemPC.apply(this,arguments);if(r&&o&&o.p&&EDITION!=='movil'&&typeof tutProgramar==='function'&&['al','alMany','reg','cal','calEnv','cond','com','cfg'].includes(o.p.t))tutProgramar(30000);return r};
+
+/* --- estado en palabras --- */
+function syncEstadoTxt(){
+  if(!SY.activo)return '';
+  const p=[];
+  if(SY.err==='permiso')p.push('la carpeta necesita permiso');else if(SY.err)p.push('error de la carpeta');else if(SY.ult)p.push('carpeta: '+horaCorta(SY.ult));
+  if(pcOn())p.push(PCL.err?'al instante: '+PCL.err:'cambios al instante activos');
+  return p.join(' · ');
+}
+
+/* --- pantalla de inicio de sesión --- */
+function pcLoginEstado(){
+  const el=document.getElementById('lsyst');if(!el)return;
+  el.textContent=syncEstadoTxt()+(PCL.rx?' · '+PCL.rx+' cambios recibidos':'');
+}
+function loginSyncHTML(){
+  if(EDITION==='movil')return '';
+  if(SY.activo)return '<div class="lsync"><b>✓ Conectada a la carpeta sincronizada</b><span id="lsyst">'+esc(syncEstadoTxt())+'</span>'+
+    '<button type="button" class="btn sm" id="lsy">'+(SY.err==='permiso'?'Dar permiso a la carpeta y sincronizar':'Sincronizar ahora')+'</button></div>';
+  return '<div class="lsync no"><span>¿La escuela ya trabaja con SICET en otra computadora?</span><button type="button" class="btn sm" id="lco">Conectar a la carpeta sincronizada</button></div>';
+}
+const _showLoginPC=showLogin;
+showLogin=function(msg){
+  const r=_showLoginPC.apply(this,arguments);
+  try{
+    const lb=document.querySelector('#lform')||document.getElementById('login');const ref=document.getElementById('lgo');
+    if(ref&&!document.getElementById('lsyw')){const w=document.createElement('div');w.id='lsyw';w.innerHTML=loginSyncHTML();(ref.closest('form,div')||lb).appendChild(w)}
+    if($('#lco'))$('#lco').onclick=()=>showConectar();
+    if($('#lsy'))$('#lsy').onclick=async()=>{const b=$('#lsy');b.disabled=true;b.textContent='Sincronizando…';try{await syncAhora(true)}finally{b.disabled=false;b.textContent='Sincronizar ahora';pcLoginEstado()}};
+    if(SY.activo)syncAhora().then(pcLoginEstado).catch(()=>{});
+  }catch(e){}
+  return r;
+};
+/* conectar: también desde una computadora que ya tenía datos propios (se reemplazan por los de la escuela) */
+showConectar=function(){
+  const tiene=Object.keys(D.users||{}).length>0,ok=syncSoportado();
+  overlay('<h2 style="font-size:18px;margin:4px 0 0">Conectar a la carpeta sincronizada</h2>'+
+   '<ol class="note pasos-con"><li>En esta computadora instala <b>OneDrive, Google Drive o Dropbox</b> y agrega la carpeta que te compartió Dirección (en OneDrive: «Agregar acceso directo a Mis archivos»). Espera a que termine de descargarse.</li><li>Escribe la <b>clave de sincronización</b> (te la da Dirección o Subdirección).</li><li>Pulsa el botón y elige la carpeta que contiene «'+SYF+'» (o esa misma carpeta). Cuando el navegador pregunte, pulsa «Permitir».</li></ol>'+
+   (tiene?'<div class="warnbox">Esta computadora ya tiene datos de SICET. Al conectarla se <b>reemplazan</b> por los de la escuela que están en la carpeta. Si son datos de prueba no pasa nada; si son importantes, primero entra y descarga un respaldo.</div>':'')+
+   '<label>Clave de sincronización<input id="cc" type="password" autocomplete="off"></label><div class="actions"><button class="btn" id="cvo" type="button">Volver</button><button class="btn pri" id="cgo" type="button"'+(ok?'':' disabled')+'>Elegir carpeta y conectar</button></div>'+
+   (ok?'':'<p class="err">Este navegador no permite elegir carpetas. Usa Google Chrome o Microsoft Edge (en Windows o Mac).</p>'));
+  $('#cvo').onclick=()=>Object.keys(D.users).length?showLogin():showSetup();
+  $('#cgo').onclick=async()=>{
+    const cl=$('#cc').value;if(!cl)return lerr('Escribe la clave de sincronización.');
+    let dir;try{dir=window.__asmCarpeta||await window.showDirectoryPicker({id:'asistemx-sync',mode:'readwrite'})}catch(e){return}
+    $('#cgo').disabled=true;$('#cgo').textContent='Descargando datos de la escuela…';lerr('');
+    try{await syncConfigurar(dir,cl,{modo:'reemplazar',soloExistente:true})}catch(e){$('#cgo').disabled=false;$('#cgo').textContent='Elegir carpeta y conectar';return lerr(e.message||String(e))}
+    await pcArchivoNube();
+    Object.keys(D.users).length?showLogin('Listo: esta computadora ya trabaja con los datos de la escuela. Entra con tu usuario y contraseña.'):showSetup();
+  };
+};
+
+/* --- Ajustes → Sincronización: solo quien administra la carpeta activa, ve la clave o desconecta --- */
+const _syncPanelPC=syncPanel;
+syncPanel=function(){
+  let h=_syncPanelPC.apply(this,arguments);const ps=puedeSync();
+  if(!ps){
+    h=h.replace(/<div class="form"><label>Clave de sincronización[\s\S]*?Guarda la clave en un lugar seguro: sin ella no se pueden abrir los datos\.<\/p>/,'<p class="note">Solo Dirección, Subdirección, el Administrador o quien tenga el permiso «Compartir la carpeta sincronizada» pueden activarla.</p>');
+    h=h.replace('<button class="btn danger" data-act="syncDesconectar">Desconectar</button>','');
+  }
+  if(SY.activo){
+    const est='<p class="note"><b>Cambios al instante entre computadoras:</b> '+(pcOn()?(PCL.err?'reconectando ('+esc(PCL.err)+')':'activos'+(PCL.ult?' · último movimiento '+horaCorta(PCL.ult):'')+' · '+PCL.tx+' enviados, '+PCL.rx+' recibidos en esta sesión'):EDITION==='movil'?'':pcBase()?'apagados en esta escuela':'se activan solos cuando la computadora con la Nube de SICET se sincroniza con la carpeta')+'. La carpeta sigue guardando todo como respaldo.</p>'+
+      (ps?'<div class="actions"><button class="btn" data-act="syncClaveVer">Conectar otra computadora</button>'+(D.cfg.pcRapido===false?'<button class="btn" data-act="pcRapidoOn">Activar cambios al instante</button>':'')+'</div>':'');
+    const i=h.lastIndexOf('</div></div>');if(i>=0)h=h.slice(0,i)+est+h.slice(i);
+  }
+  return h;
+};
+['syncActivar','syncDesconectar'].forEach(k=>{const f=ACT[k];if(f)ACT[k]=function(){if(!puedeSync())return toast('Solo Dirección, Subdirección, el Administrador o quien tenga el permiso «Compartir la carpeta sincronizada».','err');return f.apply(this,arguments)}});
+ACT.pcRapidoOn=()=>{if(commit({t:'cfg',k:'pcRapido',v:true})){pcIniciar();render()}};
+ACT.syncClaveVer=async()=>{
+  if(!puedeSync())return;let cl='';try{cl=(await IDB.get('kv','syncClave'))||''}catch(e){}
+  const pasos='Para conectar otra computadora (Windows o Mac) a SICET:\n1. Instala OneDrive (o la nube que usa la escuela) e inicia sesión con tu cuenta.\n2. Abre el enlace de la carpeta compartida y pulsa «Agregar acceso directo a Mis archivos». Espera a que se descargue.\n3. Instala SICET (en Windows «Instalar_SICET_Windows.bat»; en Mac «Abrir SICET (Mac).command»). Usa Chrome o Edge.\n4. En la pantalla de entrada pulsa «Conectar a la carpeta sincronizada», escribe la clave y elige la carpeta.\n5. Entra con tu usuario y contraseña de siempre.';
+  openModal('<h2>Conectar otra computadora</h2><p>Comparte la carpeta de OneDrive (o Drive/Dropbox) con la persona y dale la <b>clave de sincronización</b> en persona.</p>'+
+   (cl?'<div class="clvbox"><span>Clave de sincronización</span><b id="clvv" class="oculta">••••••••••</b><button class="btn sm" id="clvm">Mostrar</button><button class="btn sm" id="clvc">Copiar</button></div>':'<div class="warnbox">Esta computadora no guardó la clave (se activó con una versión anterior). Úsala de donde la anotaste; si la perdiste, desconecta y vuelve a activar la sincronización con una clave nueva en la computadora principal.</div>')+
+   '<p class="note">No la envíes por mensajes ni correo: con la clave y la carpeta se pueden abrir los datos de la escuela.</p><textarea id="clvp" rows="8" readonly>'+esc(pasos)+'</textarea><div class="mfoot"><button class="btn" id="clvpc">Copiar los pasos</button><button class="btn pri" data-act="closemodal">Listo</button></div>');
+  if($('#clvm'))$('#clvm').onclick=()=>{const v=$('#clvv');if(v.classList.contains('oculta')){v.textContent=cl;v.classList.remove('oculta');$('#clvm').textContent='Ocultar'}else{v.textContent='••••••••••';v.classList.add('oculta');$('#clvm').textContent='Mostrar'}};
+  const cp=t=>{try{navigator.clipboard.writeText(t).then(()=>toast('Copiado.'),()=>toast('No se pudo copiar.','err'))}catch(e){toast('No se pudo copiar.','err')}};
+  if($('#clvc'))$('#clvc').onclick=()=>{cp(cl);bitacora('Copió la clave de sincronización')};
+  $('#clvpc').onclick=()=>cp(pasos);
+};
+
+/* ====== Comunicados a las familias y códigos del Portal para padres en Ajustes ======
+   - Docentes, Prefectura, Dirección y Subdirección (y quien tenga el permiso «comunicar») escriben un comunicado
+     sobre un alumno o para todo un grupo. Las madres, padres y tutores lo leen en el Portal para padres.
+   - Ajustes → «Portal para padres: códigos de acceso»: Dirección, Subdirección, el Administrador y quien tenga
+     el permiso del portal ven los códigos de cada alumno y los comparten (copiar o WhatsApp). */
+if(!PERMS.includes('comunicar')){
+  PERMS.push('comunicar');
+  const g=PERM_G.find(x=>x[0]==='Alumnos')||PERM_G[PERM_G.length-1];g[1].push(['comunicar','Enviar comunicados a las familias (Portal para padres)']);
+  ['subdir','prefecto','docente','docentetec','coord','coordtec'].forEach(r=>{if(ROLES[r]&&!ROLES[r].p.includes('comunicar'))ROLES[r].p.push('comunicar')});
+}
+const COM_ROLES=['admin','administrador','subdir','prefecto','docente','docentetec','coord','coordtec'];
+const comPuedeU=u=>!!u&&(u.adm||COM_ROLES.includes(u.rol)||(u.permisos||[]).includes('comunicar'));
+const comPuede=()=>!!ME&&(!!ME.id||ME.adm)&&comPuedeU(ME);
+const comTodos=()=>!!ME&&(ME.adm||['admin','administrador','subdir'].includes(ME.rol));
+const COM_TIPOS=[['aviso','Aviso'],['felicitacion','Felicitación'],['academico','Aprovechamiento escolar'],['conducta','Conducta'],['asistencia','Asistencia'],['citatorio','Citatorio'],['salud','Salud y bienestar'],['otro','Otro']];
+const comTipo=k=>(COM_TIPOS.find(x=>x[0]===k)||COM_TIPOS[0])[1];
+const COM_CARGO={admin:'Dirección',administrador:'Dirección',subdir:'Subdirección',prefecto:'Prefectura',docente:'Docente',docentetec:'Docente de tecnología',coord:'Coordinación',coordtec:'Coordinación de tecnología',orient:'Orientación'};
+if(!COLS.includes('com'))COLS.push('com');
+const _applyCM=applyOp;applyOp=function(S0,op){if(op.t==='com'){S0.com=S0.com||{};if(op.rec)S0.com[op.id]=op.rec;else delete S0.com[op.id];return}_applyCM(S0,op)};
+const _primsCM=prims;prims=function(op){if(op.t==='com')return [{k:'s|'+op.id,p:op,del:!op.rec}];return _primsCM(op)};
+const comAlVe=a=>!!a&&(comTodos()||can('todos_grupos')||verAl(a));
+const comGrVe=g=>comTodos()||can('todos_grupos')||(ME.grupos||[]).includes(g);
+const _guardCM=guardOp;guardOp=function(op){
+  if(op&&op.t==='com'){
+    if(!comPuede())return 'Tu cuenta no puede enviar comunicados a las familias.';
+    const cur=(D.com||{})[op.id];
+    if(!op.rec){if(cur&&cur.u!==ME.id&&!comTodos())return 'Solo quien lo escribió, Dirección o Subdirección pueden retirarlo.';return ''}
+    if(cur&&cur.u!==ME.id&&!comTodos())return 'Solo quien lo escribió puede cambiarlo.';
+    const r=op.rec;if(r.al){const a=D.al[r.al];if(!comAlVe(a))return 'Ese alumno no está en tus grupos.'}else if(r.g&&!comGrVe(r.g))return 'Ese grupo no es tuyo.';
+    return '';
+  }
+  return _guardCM(op);
+};
+const _clPermCM=clPermitido;clPermitido=function(k){if(k[0]==='s')return true;return _clPermCM(k)};
+const _clAcCM=clAcepta;clAcepta=function(o){
+  if(o&&typeof o.k==='string'&&o.k[0]==='s'&&o.p&&o.p.t==='com'){
+    if(EDITION==='movil'){const r=o.p.rec;return !!ME&&!!ME.id&&!!r&&r.u===ME.id}
+    const u=Object.values(D.users).find(x=>x.usuario===o.by);if(!comPuedeU(u))return false;
+    const r=o.p.rec,cur=(D.com||{})[o.p.id];
+    if(!r)return !cur||cur.u===u.id||['admin','subdir'].includes(u.rol);
+    if(r.u!==u.id)return false;
+    const todo=['admin','administrador','subdir','prefecto'].includes(u.rol)||(u.permisos||[]).includes('todos_grupos');if(todo)return true;
+    const G=(u.grupos||[]).map(String);
+    if(r.al){const a=D.al[r.al];return !!a&&(G.includes(String(a.gr)+a.gp)||(u.tecs||[]).some(k=>tecCubre(k,a)))}
+    return G.includes(String(r.g));
+  }
+  return _clAcCM(o);
+};
+const _encNubeCM=encolarNube;encolarNube=function(){_encNubeCM();if(!CL.on||EDITION==='movil')return;const by=(ME&&ME.usuario)||'',ts0=k=>(META.get(k)&&META.get(k).ts)||1;for(const id in (D.com||{})){const k='s|'+id;clEnqueue(k,ts0(k),by,{t:'com',id,rec:D.com[id]})}};
+const _encTodoCM=encolarTodo;encolarTodo=function(){_encTodoCM();const by=(ME&&ME.usuario)||'';for(const id in (D.com||{})){const k='s|'+id,ts=nextTs();META.set(k,{ts,dev:DEV});metaDirty.push(k);OUT.push({k,ts,by,p:{t:'com',id,rec:D.com[id]}})}SY.pend=OUT.length};
+const _commitCM=commit;commit=function(op,o){const r=_commitCM(op,o);if(r&&op&&op.t==='com'&&EDITION!=='movil'&&typeof tutProgramar==='function')tutProgramar(4000);return r};
+
+/* --- lo que llega al Portal para padres --- */
+const comDeAl=(a,dias)=>{const lim=Date.now()-(dias||200)*864e5,g=String(a.gr)+a.gp;return Object.values(D.com||{}).filter(c=>c.ts>=lim&&(c.al===a.id||(!c.al&&c.g===g&&!c.tec)||(!c.al&&c.g===g&&c.tec&&c.tec===a.tec))).sort((x,y)=>y.ts-x.ts)};
+const _tutDatosCM=tutDatos;
+tutDatos=function(a,S){const d=_tutDatosCM.apply(this,arguments);try{d.com=comDeAl(a,200).slice(0,25).map(c=>({id:c.id,f:c.f,ts:c.ts,t:comTipo(c.tipo),k:c.tipo,a:c.asu,x:c.txt,de:c.n,c:COM_CARGO[c.rol]||ROL[c.rol]||'',g:!c.al}))}catch(e){d.com=[]}return d};
+const comVistoKey=m=>'sicet_tutcom_'+m;
+const _tutVistaCM=tutVistaHTML;
+tutVistaHTML=function(d,i){
+  let h=_tutVistaCM.apply(this,arguments);const C=d.com||[];
+  let visto=0;try{visto=Number(localStorage.getItem(comVistoKey(d.al.mat)))||0}catch(e){}
+  const nuevos=C.filter(c=>c.ts>visto).length;
+  const card='<section class="tcard tcom"><h3>Comunicados de la escuela'+(nuevos?' <span class="chip F">'+nuevos+' nuevo'+(nuevos===1?'':'s')+'</span>':'')+'</h3>'+
+    (C.length?'<ul class="tcoms">'+C.map(c=>'<li class="'+(c.ts>visto?'nuevo ':'')+'k-'+esc(c.k)+'"><div class="tc-h"><span class="tc-t">'+esc(c.t)+(c.g?' · para todo el grupo':'')+'</span><span>'+esc(fd(c.f))+'</span></div><b>'+esc(c.a)+'</b><p>'+esc(c.x)+'</p><small>'+esc(c.de)+(c.c?' · '+esc(c.c):'')+'</small></li>').join('')+'</ul>':'<p class="note">Todavía no hay comunicados.</p>')+'</section>';
+  const j=h.indexOf('</header>');h=j>=0?h.slice(0,j+9)+card+h.slice(j+9):card+h;
+  if(C.length&&EDITION==='movil'){try{setTimeout(()=>{try{localStorage.setItem(comVistoKey(d.al.mat),String(Math.max(...C.map(c=>c.ts))))}catch(e){}},4000)}catch(e){}}
+  return h;
+};
+
+/* --- escribir un comunicado --- */
+function comModal(pre){
+  pre=pre||{};const c=pre.id?Object.assign({},(D.com||{})[pre.id]||{}):{};const ed=!!c.id;
+  const A=activos().filter(comAlVe).sort(cmpA),grs=[...new Set(A.map(a=>String(a.gr)+a.gp))].sort();
+  const al0=c.al||pre.al||'',g0=c.g||pre.g||(al0&&D.al[al0]?String(D.al[al0].gr)+D.al[al0].gp:grs[0]||'');
+  const alOpts=g=>'<option value="">— Todo el grupo —</option>'+A.filter(a=>String(a.gr)+a.gp===g).map(a=>'<option value="'+a.id+'"'+(a.id===al0?' selected':'')+'>'+esc(fullName(a))+'</option>').join('');
+  if(!grs.length)return toast('No tienes alumnos asignados para enviar comunicados.','err');
+  openModal('<h2>'+(ed?'Editar comunicado':'Comunicado a la familia')+'</h2><p class="note" style="margin-top:0">Lo leen la madre, el padre o el tutor en el Portal para padres. Escribe con respeto y de forma clara: queda registrado con tu nombre.</p><div class="form">'+
+   '<label>Grupo<select id="cm_g">'+grs.map(g=>'<option'+(g===g0?' selected':'')+'>'+esc(g)+'</option>').join('')+'</select></label>'+
+   '<label>Alumno<select id="cm_al">'+alOpts(g0)+'</select></label>'+
+   '<label>Tipo<select id="cm_t">'+opts(COM_TIPOS,c.tipo||'aviso')+'</select></label>'+
+   '<label class="full">Asunto<input id="cm_a" maxlength="90" value="'+esc(c.asu||'')+'" placeholder="Ej.: Entrega del proyecto de Tecnología"></label>'+
+   '<label class="full">Mensaje<textarea id="cm_x" rows="6" maxlength="1500" placeholder="Escribe aquí el comunicado…">'+esc(c.txt||'')+'</textarea><span class="note" id="cm_n"></span></label></div>'+
+   '<div class="mfoot">'+(ed?'<button class="btn danger" id="cm_del" style="margin-right:auto">Retirar</button>':'')+'<button class="btn" data-act="closemodal">Cancelar</button><button class="btn pri" id="cm_ok">'+(ed?'Guardar':'Enviar al Portal para padres')+'</button></div>');
+  const cnt=()=>{$('#cm_n').textContent=$('#cm_x').value.length+' de 1500 caracteres'};$('#cm_x').oninput=cnt;cnt();
+  $('#cm_g').onchange=()=>{$('#cm_al').innerHTML=alOpts($('#cm_g').value)};
+  $('#cm_ok').onclick=()=>{
+    const g=$('#cm_g').value,al=$('#cm_al').value,asu=$('#cm_a').value.trim(),txt=$('#cm_x').value.trim();
+    if(!asu)return toast('Escribe el asunto.','err');if(txt.length<5)return toast('Escribe el mensaje.','err');
+    const rec=Object.assign({},c,{id:c.id||'cm'+hexR(6),al,g:al?'':g,tipo:$('#cm_t').value,asu,txt,u:c.u||ME.id,n:c.n||ME.nombre,rol:c.rol||(ME.adm?'administrador':ME.rol),f:c.f||todayISO(),ts:c.ts||Date.now()});
+    if(ed)rec.ed=Date.now();
+    if(!commit({t:'com',id:rec.id,rec}))return;
+    bitacora('Comunicado a familias: '+(al?fullName(D.al[al]):'grupo '+g));
+    comListo(rec);
+  };
+  if($('#cm_del'))$('#cm_del').onclick=()=>confirmDlg('Retirar comunicado','Las familias ya no lo verán en el Portal para padres.','Retirar',()=>{if(commit({t:'com',id:c.id,rec:null})){toast('Comunicado retirado.');render()}},true);
+}
+function comListo(rec){
+  const a=rec.al?D.al[rec.al]:null,tel=a&&can('contacto')&&a.tel?String(a.tel).replace(/\D/g,'').slice(-10):'';
+  const esc0=D.cfg.escuela||'la escuela',msg='Buen día. '+esc0+' le envió un comunicado'+(a?' sobre '+a.nom:'')+': «'+rec.asu+'». Puede leerlo en el Portal para padres'+(typeof portalBase==='function'&&portalBase()?': '+portalBase():' con los datos de su ficha')+'.';
+  openModal('<h2>Comunicado enviado</h2><p>Se publica en el Portal para padres en unos minutos'+(a?' para la familia de <b>'+esc(fullName(a))+'</b>':' para todo el grupo <b>'+esc(rec.g)+'</b>')+'.</p><p class="note">Las familias lo ven con su código de acceso. Si quieres, avísales también por WhatsApp.</p>'+
+   '<div class="mfoot"><a class="btn" target="_blank" rel="noopener" href="https://wa.me/'+(tel?'52'+tel:'')+'?text='+encodeURIComponent(msg)+'">Avisar por WhatsApp'+(tel?' al tutor':'')+'</a><button class="btn pri" data-act="closemodal">Listo</button></div>');
+  render();
+}
+/* --- pestaña «Comunicados» --- */
+const _tabsCM=tabsFor;
+tabsFor=function(){const t=_tabsCM.apply(this,arguments);if(comPuede()&&!t.some(x=>x[0]==='com')){const i=t.findIndex(y=>y[0]==='ajustes');const x=['com','Comunicados'];if(i<0)t.push(x);else t.splice(i,0,x)}return t};
+U.cmf={g:'',q:''};const _initCM=initU;initU=function(){_initCM();U.cmf={g:'',q:''}};
+VIEWS.com=function(){
+  const f=U.cmf,todos=comTodos(),L=Object.values(D.com||{}).filter(c=>todos||c.u===ME.id||(c.al?comAlVe(D.al[c.al]):comGrVe(c.g))).filter(c=>{const g=c.al&&D.al[c.al]?String(D.al[c.al].gr)+D.al[c.al].gp:c.g;return !f.g||g===f.g}).filter(c=>{if(!f.q)return true;const q=normH(f.q),a=c.al&&D.al[c.al];return normH(c.asu+' '+c.txt+' '+c.n+' '+(a?fullName(a):'')).includes(q)}).sort((x,y)=>y.ts-x.ts);
+  const grs=[...new Set(activos().filter(comAlVe).map(a=>String(a.gr)+a.gp))].sort();
+  return '<div class="head"><div><h2>Comunicados a las familias</h2><p>Mensajes para la madre, el padre o el tutor de un alumno o de todo un grupo. Los leen en el Portal para padres con su código de acceso.</p></div><div class="actions"><button class="btn pri" data-act="comNuevo">Nuevo comunicado</button></div></div>'+
+   '<div class="filters"><label>Grupo<select data-b="cmf.g"><option value="">Todos</option>'+grs.map(g=>'<option'+(g===f.g?' selected':'')+'>'+esc(g)+'</option>').join('')+'</select></label><label>Buscar<input data-b="cmf.q" data-live value="'+esc(f.q)+'" placeholder="Alumno, asunto o texto"></label></div>'+
+   (L.length?'<div class="comlist">'+L.slice(0,200).map(c=>{const a=c.al&&D.al[c.al];const mio=c.u===ME.id||todos;return '<article class="comi k-'+esc(c.tipo)+'"><div class="ci-h"><span class="chip N">'+esc(comTipo(c.tipo))+'</span><b>'+esc(c.asu)+'</b><span class="ci-f">'+esc(fd(c.f))+'</span></div><div class="ci-p">'+(a?'Para la familia de <b>'+esc(fullName(a))+'</b> · '+esc(grp(a)):'Para todo el grupo <b>'+esc(c.g)+'</b>')+'</div><p>'+esc(c.txt)+'</p><div class="ci-b"><small>'+esc(c.n)+' · '+esc(COM_CARGO[c.rol]||ROL[c.rol]||'')+(c.ed?' · editado':'')+'</small>'+(mio?'<button class="btn sm" data-act="comEditar" data-id="'+esc(c.id)+'">Editar o retirar</button>':'')+'</div></article>'}).join('')+'</div>':'<div class="empty">Todavía no hay comunicados'+(f.g||f.q?' con estos filtros':'')+'.</div>');
+};
+ACT.comNuevo=t=>comModal({al:t.dataset.id||'',g:t.dataset.g||''});
+ACT.comEditar=t=>comModal({id:t.dataset.id});
+/* botón en la ficha del alumno (computadora) */
+const _fichaCM=fichaExtra;
+fichaExtra=function(a){const h=_fichaCM.apply(this,arguments);if(!comPuede()||!comAlVe(a))return h;const n=comDeAl(a,365).length;return h+'<div class="actions" style="margin-top:8px"><button class="btn sm" data-act="comNuevo" data-id="'+a.id+'">Comunicado a la familia</button>'+(n?'<span class="note">'+n+' comunicado'+(n===1?'':'s')+' enviados</span>':'')+'</div>'};
+
+/* --- Ajustes: códigos de acceso del Portal para padres --- */
+U.tpc={g:'',q:''};const _initTPC=initU;initU=function(){_initTPC();U.tpc={g:'',q:''}};
+const tutLinkX=a=>{let l='';try{l=tutLink(a)}catch(e){}if(l)return l;const ue=typeof PCL!=='undefined'&&PCL.ue,b=typeof portalBase==='function'?portalBase():'';if(!ue||!b||!a.tpin)return '';return b+'#tut='+b64u(_te.encode(JSON.stringify({u:ue.u,e:ue.e,m:a.mat,p:a.tpin})))};
+function tutCodPanel(){
+  if(EDITION==='movil'||!(typeof puedeTut==='function'&&puedeTut()))return '';
+  const A=activos().sort(cmpA),grs=[...new Set(A.map(a=>String(a.gr)+a.gp))].sort(),f=U.tpc;if(!f.g&&grs.length)f.g=grs[0];
+  const L=A.filter(a=>(!f.g||String(a.gr)+a.gp===f.g)&&(!f.q||normH(fullName(a)+' '+a.mat).includes(normH(f.q))));
+  const sin=A.filter(a=>!a.tpin).length,link=typeof portalBase==='function'?portalBase():'';
+  return '<div class="panel" id="pTutCod"><h3>Portal para padres: códigos de acceso</h3><p class="sub">Cada alumno tiene su código. Compártelo <b>solo</b> con su madre, padre o tutor: con él ven asistencia, calificaciones autorizadas, conducta, agenda y los comunicados de la escuela.</p><div class="body">'+
+   '<div class="tpc-esc"><span>Código de la escuela <b>'+esc(D.cfg.codigoEsc||'—')+'</b></span>'+(link?'<span>Página del portal <b>'+esc(link.replace(/^https:\/\//,''))+'</b></span>':'<span class="cR">Falta publicar la app del celular (Ajustes → Celulares) para tener la página del portal.</span>')+(CL.on?'':'<span class="note">Los datos del portal los publica la computadora que tiene la Nube de SICET; esa computadora debe abrir SICET para actualizarlos.</span>')+'</div>'+
+   '<div class="filters" style="margin-top:10px"><label>Grupo<select data-b="tpc.g">'+grs.map(g=>'<option'+(g===f.g?' selected':'')+'>'+esc(g)+'</option>').join('')+'<option value=""'+(f.g?'':' selected')+'>Todos</option></select></label><label>Buscar<input data-b="tpc.q" data-live value="'+esc(f.q)+'" placeholder="Nombre o matrícula"></label></div>'+
+   '<div class="actions" style="margin:6px 0 10px">'+(sin?'<button class="btn" data-act="tpcGen">Generar los '+sin+' códigos que faltan</button>':'')+'<button class="btn" data-act="tutAcc">Imprimir fichas</button></div>'+
+   (L.length?'<div class="twrap" style="max-height:420px;overflow:auto"><table><thead><tr><th class="l">Alumno</th><th>Matrícula</th><th>Código de acceso</th><th class="l">Compartir</th></tr></thead><tbody>'+L.map(a=>'<tr><td class="l">'+esc(fullName(a))+'<br><small class="note">'+esc(grp(a))+'</small></td><td>'+esc(a.mat)+'</td><td>'+(a.tpin?'<b class="tpc-pin">'+esc(a.tpin)+'</b>':'<span class="note">Sin código</span>')+'</td><td class="l">'+(a.tpin?'<button class="btn sm" data-act="tpcCopiar" data-id="'+a.id+'">Copiar</button> <button class="btn sm" data-act="tpcWa" data-id="'+a.id+'">WhatsApp</button> <button class="btn sm" data-act="tutAl" data-id="'+a.id+'">Ficha</button>':'<button class="btn sm" data-act="tpcUno" data-id="'+a.id+'">Generar</button>')+'</td></tr>').join('')+'</tbody></table></div>':'<div class="empty">No hay alumnos con este filtro.</div>')+
+   '</div></div>';
+}
+const tpcMsg=a=>{const l=tutLinkX(a);return 'Portal para padres de '+(D.cfg.escuela||'la escuela')+'\nAlumno(a): '+fullName(a)+'\n'+(l?'Entre aquí: '+l+'\n':'')+'O escriba estos datos en la página del portal'+(portalBase()?' ('+portalBase()+')':'')+':\nCódigo de la escuela: '+(D.cfg.codigoEsc||'—')+'\nMatrícula: '+a.mat+'\nCódigo de acceso: '+a.tpin+'\nNo comparta este código: es personal.'};
+ACT.tpcCopiar=t=>{const a=D.al[t.dataset.id];if(!a)return;try{navigator.clipboard.writeText(tpcMsg(a)).then(()=>toast('Datos de acceso copiados. Pégalos en el mensaje para el tutor.'),()=>toast('No se pudo copiar.','err'))}catch(e){toast('No se pudo copiar.','err')}audit('copió el código del Portal para padres',fullName(a))};
+ACT.tpcWa=t=>{const a=D.al[t.dataset.id];if(!a)return;const tel=can('contacto')&&a.tel?String(a.tel).replace(/\D/g,'').slice(-10):'';audit('compartió por WhatsApp el código del Portal para padres',fullName(a));window.open('https://wa.me/'+(tel?'52'+tel:'')+'?text='+encodeURIComponent(tpcMsg(a)),'_blank','noopener')};
+ACT.tpcUno=t=>{const a=D.al[t.dataset.id];if(!a)return;if(commit({t:'al',a:Object.assign({},a,{tpin:tutPinNuevo()})},{sys:true})){bitacora('Generó acceso al Portal para padres: '+fullName(a));tutProgramar(3000);render()}};
+ACT.tpcGen=()=>{const items=activos().filter(a=>!a.tpin).map(a=>Object.assign({},a,{tpin:tutPinNuevo()}));if(!items.length)return;confirmDlg('Generar códigos','Se crearán '+items.length+' códigos de acceso nuevos (uno por alumno que no tiene).','Generar',()=>{commit({t:'alMany',items},{sys:true});bitacora('Generó '+items.length+' códigos del Portal para padres');tutProgramar(3000);toast(items.length+' códigos generados.');render()})};
+const _ajTPC=VIEWS.ajustes;
+VIEWS.ajustes=function(){const h=_ajTPC.apply(this,arguments),p=tutCodPanel();if(!p)return h;const i=h.indexOf('<div class="panel"><h3>Privacidad</h3>');return i>=0?h.slice(0,i)+p+h.slice(i):h+p};
+
+/* ====== Coordinación y Coordinación de tecnología: coordinan y también dan clase frente a grupo ======
+   - Coordinación: permisos de coordinación + los de un docente (sus grupos y asignaturas).
+   - Coordinación de tecnología: permisos de coordinación + los de un docente de tecnología (sus tecnologías).
+   - Aunque vean todos los grupos, en el alta se marcan los grupos, tecnologías y asignaturas que imparten:
+     con eso capturan calificaciones, suben planeaciones y ven «Mis grupos» como cualquier docente. */
+const ROL_COORD=['coord','coordtec'];
+(()=>{
+  const add=(r,L)=>{if(!ROLES[r])return;L.forEach(p=>{if(PERMS.includes(p)&&!ROLES[r].p.includes(p))ROLES[r].p.push(p)})};
+  add('coord',(ROLES.docente?ROLES.docente.p:[]).filter(p=>p!=='todos_grupos'));
+  add('coordtec',ROLES.coord?ROLES.coord.p:[]);
+  add('coordtec',ROLES.docentetec?ROLES.docentetec.p:[]);
+  if(typeof ROL!=='undefined'){ROL.coord=ROLES.coord.n;ROL.coordtec=ROLES.coordtec.n}
+})();
+/* alta de usuario: las casillas de grupos y tecnologías siguen activas para los coordinadores (son los grupos en los que dan clase) */
+const _tgGruposCO=tgGrupos;
+tgGrupos=function(todo){
+  const r=document.getElementById('u_r'),co=!!r&&ROL_COORD.includes(r.value);
+  const res=_tgGruposCO.call(this,co?false:todo);
+  try{
+    const n=document.querySelector('#u_gbox>.note');if(n){if(!n.dataset.orig)n.dataset.orig=n.innerHTML;n.innerHTML=co?'<b>Otros grupos que atiende</b> sin dar una asignatura (como coordinador ya ve todos los grupos; sus clases se marcan arriba, en «Grupos en los que da clase»)':n.dataset.orig}
+    const t=document.querySelector('#u_tbox>.note');if(t){if(!t.dataset.orig)t.dataset.orig=t.innerHTML;t.innerHTML=co&&r.value==='coordtec'?'<b>Tecnologías que imparte</b> (como coordinador de tecnología ve todos los grupos; aquí marca las suyas)':t.dataset.orig}
+    let h=document.getElementById('u_rnote');if(r&&!h){r.closest('label').insertAdjacentHTML('afterend','<p class="note full" id="u_rnote"></p>');h=document.getElementById('u_rnote')}
+    if(h){h.textContent=r.value==='coord'?'Coordinación: coordina (ve todos los grupos) y también da clase. Marca abajo sus asignaturas y a qué grupos las da.':r.value==='coordtec'?'Coordinación de tecnología: coordina (ve todos los grupos) y también es docente de tecnología. Marca abajo su tecnología y a qué grupos la da.':'';h.hidden=!h.textContent}
+  }catch(e){}
+  return res;
+};
+document.addEventListener('change',e=>{if(e.target&&e.target.id==='u_r'){const t=[...document.querySelectorAll('#u_perms input')].find(b=>b.dataset.perm==='todos_grupos');tgGrupos(!!(t&&t.checked))}});
+/* «Mis grupos»: el coordinador que da clase ve primero sus propios grupos y tecnologías */
+const _misUnidadesCO=misUnidades;
+misUnidades=function(){
+  if(ME&&ROL_COORD.includes(ME.rol)&&((ME.grupos||[]).length||(ME.tecs||[]).length)){
+    const P=ME.permisos;ME.permisos=(P||[]).filter(p=>p!=='todos_grupos');
+    try{return _misUnidadesCO.apply(this,arguments)}finally{ME.permisos=P}
+  }
+  return _misUnidadesCO.apply(this,arguments);
+};
+/* los coordinadores que ya existían reciben una sola vez los permisos de docente */
+const _migCO=migrarPerms;
+migrarPerms=async function(){
+  await _migCO.apply(this,arguments);
+  if(EDITION==='movil'||(ME&&ME.adm)||!can('usuarios')||(Number(D.cfg.migPerm)||0)>=7)return;
+  for(const u of Object.values(D.users))if(ROL_COORD.includes(u.rol)){const add=ROLES[u.rol].p.filter(p=>['mis_grupos','bitacora_doc','comunicar'].includes(p)&&!(u.permisos||[]).includes(p));if(add.length)commit({t:'user',u:Object.assign({},u,{permisos:(u.permisos||[]).concat(add)})},{sys:true})}
+  commit({t:'cfg',k:'migPerm',v:7},{sys:true});
+};
+
+/* ====== Alta de usuarios: «Grupos en los que da clase» por asignatura y por tecnología ======
+   En secundaria cada docente da ciertas asignaturas a ciertos grupos. Al marcar una asignatura o una tecnología
+   se despliegan los grados y grupos para elegir a cuáles se la imparte. Con eso se arman «Mis grupos», la captura
+   de calificaciones y las planeaciones. Lo deciden quienes dan de alta al personal (Dirección, Subdirección o el
+   Administrador). Datos: u.asigs (asignaturas), u.asigG {asignatura:[grupos]}, u.tecs («1A|tec», «1|tec», «*|tec»),
+   u.grupos (todos los grupos donde da clase + otros que atiende). */
+const CLS={s:{},t:{},otros:new Set()};
+const clsAsigs=()=>{const L=[...new Set(D.cfg.grados.flatMap(g=>asigDe(g)))];return tecList().length?L.filter(s=>!esTecAsig(s)):L};
+const clsTecAsig=()=>[...new Set(D.cfg.grados.flatMap(g=>asigDe(g)))].find(esTecAsig)||'Tecnología';
+const clsGradosDe=s=>D.cfg.grados.filter(g=>asigDe(g).includes(s));
+const gLbl=g=>String(g).replace(/^(\d+)/,'$1°');
+function clsDesdeUsuario(u){
+  CLS.s={};CLS.t={};CLS.otros=new Set();
+  const G=(u&&u.grupos||[]).map(String),usados=new Set();
+  for(const s of (u&&Array.isArray(u.asigs)?u.asigs:[])){
+    if(tecList().length&&esTecAsig(s))continue;
+    let L=u.asigG&&Array.isArray(u.asigG[s])?u.asigG[s]:G.filter(g=>clsGradosDe(s).map(String).includes(g.match(/^\d+/)?g.match(/^\d+/)[0]:''));
+    CLS.s[s]=new Set(L);L.forEach(g=>usados.add(g));
+  }
+  for(const k of (u&&u.tecs||[])){
+    const i=k.indexOf('|'),g=k.slice(0,i),t=k.slice(i+1);if(!t)continue;const S=CLS.t[t]||(CLS.t[t]=new Set());
+    const grados=g==='*'?D.cfg.grados:/^\d+$/.test(g)?[Number(g)]:null;
+    if(grados)grados.forEach(gr=>D.cfg.grupos.forEach(p=>S.add(gr+p)));else S.add(g);
+  }
+  G.forEach(g=>{if(!usados.has(g))CLS.otros.add(g)});
+}
+const clsRes=S=>{if(!S||!S.size)return '';const por={};[...S].sort((a,b)=>a.localeCompare(b,'es',{numeric:true})).forEach(g=>{const m=g.match(/^(\d+)(.*)$/);if(!m)return;(por[m[1]]||(por[m[1]]=[])).push(m[2])});return Object.entries(por).map(([gr,L])=>gr+'° '+(L.length===D.cfg.grupos.length?'(todos)':L.join(', '))).join(' · ')};
+function clsItemHTML(kind,name){
+  const S=(kind==='s'?CLS.s:CLS.t)[name]||new Set(),on=S.size>0,grados=kind==='s'?clsGradosDe(name):D.cfg.grados;
+  const cnt=(gr,p)=>kind==='t'?activos().filter(a=>a.tec===name&&String(a.gr)===String(gr)&&a.gp===p).length:activos().filter(a=>String(a.gr)===String(gr)&&a.gp===p).length;
+  return '<div class="clx'+(on?' on':'')+'" data-k="'+kind+'" data-n="'+esc(name)+'"><div class="clx-h"><label class="chk-line"><input type="checkbox" class="clx-on"'+(on?' checked':'')+'><b>'+esc(name)+'</b></label><span class="clx-res">'+esc(clsRes(S))+'</span>'+(on?'<button type="button" class="link clx-tg">'+'cambiar grupos'+'</button>':'')+'</div>'+
+   '<div class="clx-b"'+(on&&!S.size?'':' hidden')+'>'+(grados.length?grados.map(gr=>'<div class="grow"><b>'+gr+'°</b><div class="chips">'+D.cfg.grupos.map(p=>{const n=cnt(gr,p),v=gr+p;return '<label class="chk'+(n?'':' vacio')+'" title="'+n+' alumno'+(n===1?'':'s')+(kind==='t'?' de '+esc(name):'')+'"><input type="checkbox" class="clx-g" value="'+esc(v)+'"'+(S.has(v)?' checked':'')+'>'+esc(p)+'<small>'+n+'</small></label>'}).join('')+'</div><button type="button" class="link" data-clxt="'+gr+'">todo '+gr+'°</button></div>').join(''):'<p class="note">Esta asignatura no está en el plan de ningún grado.</p>')+
+   '<div class="clx-f"><button type="button" class="btn sm clx-ok">Listo</button><span class="note">'+(kind==='t'?'El número es cuántos alumnos de esta tecnología hay en cada grupo.':'El número es cuántos alumnos tiene cada grupo.')+'</span></div></div></div>';
+}
+function clsHTML(){
+  const A=clsAsigs(),T=tecList();
+  return '<div id="u_clases"><span class="note"><b>Grupos en los que da clase.</b> Marca cada asignatura'+(T.length?' o tecnología':'')+' que imparte y elige a qué grados y grupos. Con esto se arman «Mis grupos», la captura de calificaciones y las planeaciones.</span>'+
+   '<div class="clx-sec"><h4>Asignaturas</h4>'+A.map(s=>clsItemHTML('s',s)).join('')+'</div>'+
+   (T.length?'<div class="clx-sec"><h4>Tecnologías</h4>'+T.map(t=>clsItemHTML('t',t)).join('')+'</div>':'')+'</div>';
+}
+function clsPintar(){const w=document.getElementById('u_clases');if(w)w.outerHTML=clsHTML()}
+/* la sección reemplaza las listas anteriores; «Otros grupos que atiende» queda para tutoría, orientación, etc. */
+const _gruposBoxCL=gruposBoxHTML;
+gruposBoxHTML=function(u){
+  clsDesdeUsuario(u);
+  let h=_gruposBoxCL.call(this,Object.assign({},u||{},{grupos:[...CLS.otros]}));
+  h=h.replace('<span class="note">Grupos que atiende (se usan si no tiene acceso a todos los grupos)</span>','<span class="note"><b>Otros grupos que atiende</b> sin dar una asignatura (tutoría, orientación, prefectura…). Los grupos donde da clase se agregan solos.</span>');
+  return clsHTML()+h.replace('<div id="u_gfilas">','<div class="cl-hid" hidden></div><div id="u_gfilas">')+'<div id="u_tbox" hidden></div><div id="u_abox" hidden></div>';
+};
+tecBoxHTML=function(){return ''};
+asigBoxHTML=function(){return ''};
+/* interacción */
+function clsSet(el){const d=el.closest('.clx');return d?{d,kind:d.dataset.k,name:d.dataset.n,S:((d.dataset.k==='s'?CLS.s:CLS.t)[d.dataset.n]||(((d.dataset.k==='s'?CLS.s:CLS.t)[d.dataset.n])=new Set()))}:null}
+function clsRefrescar(x){
+  const on=x.S.size>0;x.d.classList.toggle('on',on);x.d.querySelector('.clx-on').checked=on||!x.d.querySelector('.clx-b').hidden;
+  x.d.querySelector('.clx-res').textContent=clsRes(x.S);
+  let tg=x.d.querySelector('.clx-tg');if(on&&!tg){x.d.querySelector('.clx-h').insertAdjacentHTML('beforeend','<button type="button" class="link clx-tg">cambiar grupos</button>')}else if(!on&&tg)tg.remove();
+}
+document.addEventListener('change',e=>{
+  const t=e.target;if(!t||!t.classList)return;
+  if(t.classList.contains('clx-on')){const x=clsSet(t);if(!x)return;const b=x.d.querySelector('.clx-b');
+    if(t.checked){b.hidden=false}
+    else{x.S.clear();x.d.querySelectorAll('.clx-g').forEach(i=>i.checked=false);b.hidden=true}
+    clsRefrescar(x);}
+  else if(t.classList.contains('clx-g')){const x=clsSet(t);if(!x)return;t.checked?x.S.add(t.value):x.S.delete(t.value);clsRefrescar(x)}
+});
+document.addEventListener('click',e=>{
+  const t=e.target;if(!t||!t.closest)return;
+  const b=t.closest('[data-clxt],.clx-ok,.clx-tg');if(!b||!b.closest('.clx'))return;
+  const x=clsSet(b);if(!x)return;
+  if(b.dataset.clxt){const gr=b.dataset.clxt,ins=[...x.d.querySelectorAll('.clx-g')].filter(i=>i.value.match(/^\d+/)[0]===gr),todos=ins.every(i=>i.checked);ins.forEach(i=>{i.checked=!todos;i.checked?x.S.add(i.value):x.S.delete(i.value)});clsRefrescar(x)}
+  else if(b.classList.contains('clx-ok')){x.d.querySelector('.clx-b').hidden=true;clsRefrescar(x);if(!x.S.size)x.d.querySelector('.clx-on').checked=false}
+  else if(b.classList.contains('clx-tg')){const c=x.d.querySelector('.clx-b');c.hidden=!c.hidden}
+});
+/* si agregan un grupo nuevo (F, G…) también aparece en las asignaturas y tecnologías */
+document.addEventListener('click',e=>{if(e.target&&e.target.id==='u_gadd')setTimeout(clsPintar,60)});
+/* al guardar: se arman las listas que usa SICET (asignaturas, grupos y tecnologías) */
+let CLX=null;
+function clsTecKeys(){
+  const out=[],G=D.cfg.grupos,Gr=D.cfg.grados;
+  for(const [t,S] of Object.entries(CLS.t)){
+    if(!S.size)continue;
+    const full=gr=>G.every(p=>S.has(gr+p));
+    if(Gr.every(full)){out.push('*|'+t);continue}
+    for(const gr of Gr){if(full(gr))out.push(gr+'|'+t);else G.forEach(p=>{if(S.has(gr+p))out.push(gr+p+'|'+t)})}
+  }
+  return out;
+}
+document.addEventListener('click',e=>{
+  if(!e.target||e.target.id!=='mSave'||!document.getElementById('u_clases'))return;
+  const asigG={},asigs=[],gs=new Set();
+  for(const [s,S] of Object.entries(CLS.s)){if(S.size){asigG[s]=[...S].sort();asigs.push(s);S.forEach(g=>gs.add(g))}}
+  const tecs=clsTecKeys();if(tecs.length)asigs.push(clsTecAsig());
+  const ab=document.getElementById('u_abox'),tb=document.getElementById('u_tbox'),gh=document.querySelector('#u_gbox .cl-hid');
+  const chk=(v)=>'<input type="checkbox" checked value="'+esc(v)+'">';
+  if(ab)ab.innerHTML=asigs.map(chk).join('');if(tb)tb.innerHTML=tecs.map(chk).join('');
+  const visibles=new Set([...document.querySelectorAll('#u_gfilas input:checked')].map(i=>i.value));
+  if(gh)gh.innerHTML=[...gs].filter(g=>!visibles.has(g)).map(chk).join('');
+  CLX={usuario:($('#u_u').value||'').trim().toLowerCase(),asigG,t:Date.now()};
+},true);
+const _commitCL=commit;
+commit=function(op,o){
+  if(op&&op.t==='user'&&op.u&&CLX&&op.u.usuario===CLX.usuario&&Date.now()-CLX.t<60000){op=Object.assign({},op,{u:Object.assign({},op.u,{asigG:CLX.asigG})});CLX=null}
+  return _commitCL.call(this,op,o);
+};
+
+/* ====== Permisos económicos del personal (pestaña que habilita solo el Administrador) ======
+   Fundamento: Reglamento de las Condiciones Generales de Trabajo del Personal de la Secretaría de Educación Pública
+   (DOF 29-01-1946), art. 52, fracción III: licencias con goce de sueldo «por cualquier otro motivo hasta por tres días
+   en tres ocasiones distintas, separadas cuando menos por un mes, dentro de cada año», concedidas por el jefe de la
+   dependencia (Dirección). En total, 9 días. Las reglas se ajustan en la configuración (cada entidad puede tener las suyas).
+   - El Administrador activa la pestaña, elige quién tiene el beneficio y quién gestiona (registra, sube el documento).
+   - La solicitud se registra con sus fechas, se imprime el formato y APLICA al subir la solicitud firmada por Dirección.
+   - Remanente por persona: días y ocasiones disponibles; al agotarse, SICET ya no deja registrar más.
+   - En la agenda escolar se ve el día ocupado; en «Hoy» la persona aparece con permiso (Prefectura cubre sus grupos). */
+const ECON_FUND='Reglamento de las Condiciones Generales de Trabajo del Personal de la Secretaría de Educación Pública (DOF 29 de enero de 1946), artículo 52, fracción III: licencias con goce de sueldo hasta por tres días en tres ocasiones distintas, separadas cuando menos por un mes, dentro de cada año.';
+const ECON0={on:false,ben:[],ext:[],ges:[],max:9,porOc:3,oc:3,sep:30,sepModo:'aviso',lim:{doc:2,dir:0,apoyo:0},periodo:'ciclo'};
+/* tipo de personal para el límite por día: frente a grupo (docentes y de tecnología), directivos y apoyo/administrativo */
+const ECON_CAT={doc:'Docentes frente a grupo (académicos y de tecnología)',dir:'Dirección y Subdirección',apoyo:'Personal de apoyo y administrativo'};
+const econCatRol=r=>ROL_DOC.includes(r)?'doc':['admin','subdir'].includes(r)?'dir':'apoyo';
+const econLim=()=>Object.assign({doc:2,dir:0,apoyo:0},econCfg().lim||{});
+const econCfg=()=>Object.assign({},ECON0,D.cfg.econ||{});
+if(!COLS.includes('econ'))COLS.push('econ');
+const _applyEC=applyOp;applyOp=function(S0,op){if(op.t==='econ'){S0.econ=S0.econ||{};if(op.rec)S0.econ[op.id]=op.rec;else delete S0.econ[op.id];return}_applyEC(S0,op)};
+const _primsEC=prims;prims=function(op){if(op.t==='econ')return [{k:'v|'+op.id,p:op,del:!op.rec}];return _primsEC(op)};
+const _encTodoEC=encolarTodo;encolarTodo=function(){_encTodoEC();const by=(ME&&ME.usuario)||'';for(const id in (D.econ||{})){const k='v|'+id,ts=nextTs();META.set(k,{ts,dev:DEV});metaDirty.push(k);OUT.push({k,ts,by,p:{t:'econ',id,rec:D.econ[id]}})}SY.pend=OUT.length};
+/* --- quién --- */
+const econGestor=()=>!!ME&&(esAdministrador()||(!!ME.id&&econCfg().ges.includes(ME.id)));
+const econBenef=id=>{const c=econCfg();return c.ben.includes(id)||c.ext.some(x=>x.id===id&&x.act!==false)};
+const econVeo=()=>!!ME&&(esAdministrador()||(econCfg().on&&(econGestor()||(!!ME.id&&econBenef(ME.id)))));
+function econPersonas(){
+  const c=econCfg(),L=[];
+  c.ben.forEach(id=>{const u=D.users[id];if(u&&u.activo!==false)L.push({id,n:u.nombre||u.usuario,puesto:ROL[u.rol]||u.rol,u:true,rol:u.rol,cat:econCatRol(u.rol)})});
+  c.ext.filter(x=>x.act!==false).forEach(x=>L.push({id:x.id,n:x.n,puesto:x.puesto||'Personal de apoyo',u:false,rol:'',cat:x.cat||'apoyo'}));
+  return L.sort((a,b)=>String(a.n).localeCompare(String(b.n),'es'));
+}
+const econPer=id=>econPersonas().find(p=>p.id===id)||null;
+const econDat=id=>((D.econ||{})['pd_'+id]||{});
+/* --- periodo y uso --- */
+function econRango(ref){const c=econCfg();if(c.periodo==='anio'){const y=String(ref||todayISO()).slice(0,4);return [y+'-01-01',y+'-12-31']}return [D.cfg.inicio||'0000',D.cfg.fin||'9999']}
+const econSol=()=>Object.values(D.econ||{}).filter(r=>r&&r.k==='sol');
+const econActiva=r=>r.est==='pendiente'||r.est==='aplicada';
+function econUso(pid,ref,excl){
+  const [a,b]=econRango(ref),L=econSol().filter(r=>r.p===pid&&econActiva(r)&&r.id!==excl&&r.dias[0]>=a&&r.dias[0]<=b);
+  const dias=L.reduce((s,r)=>s+r.dias.length,0),apl=L.filter(r=>r.est==='aplicada').reduce((s,r)=>s+r.dias.length,0);
+  return {L,dias,apl,pend:dias-apl,oc:L.length,fechas:L.flatMap(r=>r.dias).sort()};
+}
+function econResta(pid,ref){const c=econCfg(),u=econUso(pid,ref);return {dias:Math.max(0,c.max-u.dias),oc:Math.max(0,c.oc-u.oc),u}}
+const econCatDe=r=>r.cat||(econPer(r.p)||{}).cat||econCatRol(r.rol||'');
+const econOcupados=(d,excl)=>econSol().filter(r=>econActiva(r)&&r.id!==excl&&r.dias.includes(d));
+/* --- reglas --- */
+function econValidar(rec,excl){
+  const c=econCfg(),err=[],warn=[],D0=rec.dias||[];
+  if(!rec.p||!econBenef(rec.p))err.push('Esa persona no tiene el beneficio de permisos económicos.');
+  if(!D0.length)err.push('Elige al menos un día.');
+  if(D0.length>c.porOc)err.push('En una solicitud caben hasta '+c.porOc+' días.');
+  if(new Set(D0).size!==D0.length)err.push('Hay una fecha repetida.');
+  const [ra,rb]=econRango(D0[0]);
+  D0.forEach(d=>{const nl=isNoLab(d);if(nl)err.push(fd(d)+' no es día hábil ('+nl+').');if(d<ra||d>rb)err.push(fd(d)+' está fuera del '+(c.periodo==='anio'?'año':'ciclo escolar')+'.')});
+  if(err.length)return {err,warn};
+  const u=econUso(rec.p,D0[0],excl);
+  if(u.dias+D0.length>c.max)err.push('Solo le '+(c.max-u.dias===1?'queda 1 día':'quedan '+Math.max(0,c.max-u.dias)+' días')+' en el '+(c.periodo==='anio'?'año':'ciclo')+' (máximo '+c.max+').');
+  if(u.oc+1>c.oc)err.push('Ya usó sus '+c.oc+' ocasiones del '+(c.periodo==='anio'?'año':'ciclo')+'.');
+  if(c.sep>0&&u.fechas.length){
+    const cerca=D0.map(d=>u.fechas.map(f=>[f,Math.abs((pd(d)-pd(f))/864e5)]).filter(x=>x[1]<c.sep)).flat();
+    if(cerca.length){const t='Debe haber al menos '+c.sep+' días entre una ocasión y otra (tiene permiso el '+fd(cerca[0][0])+').';(c.sepModo==='bloquea'?err:warn).push(t)}
+  }
+  const per=econPer(rec.p),cat=per?per.cat:'apoyo',lim=econLim()[cat]||0;
+  if(lim>0)D0.forEach(d=>{const o=econOcupados(d,excl).filter(r=>r.p!==rec.p&&econCatDe(r)===cat);if(o.length>=lim)err.push('El '+fd(d)+' ya tiene '+o.length+' '+(cat==='doc'?'docente'+(o.length===1?'':'s'):'persona'+(o.length===1?'':'s'))+' con permiso'+(econGestor()?' ('+o.map(r=>r.n).join(', ')+')':'')+': el máximo para '+ECON_CAT[cat].toLowerCase()+' es '+lim+' por día.')});
+  return {err,warn};
+}
+/* --- permisos de escritura --- */
+const _guardEC=guardOp;guardOp=function(op){
+  if(op&&op.t==='cfg'&&op.k==='econ'){if(esAdministrador())return '';if(econGestor()){const a=Object.assign({},econCfg(),{lim:null}),b=Object.assign({},ECON0,op.v||{},{lim:null});if(JSON.stringify(a)===JSON.stringify(b))return ''}return 'Solo el Administrador configura los permisos económicos (quien gestiona puede cambiar los límites por día).'}
+  if(op&&op.t==='econ'){
+    const c=econCfg();if(!c.on&&!esAdministrador())return 'La pestaña de permisos económicos no está activa.';
+    const cur=(D.econ||{})[op.id],r=op.rec;
+    if(op.id==='tpl')return econGestor()?'':'Solo quien gestiona los permisos económicos sube el formato.';
+    if(String(op.id).startsWith('pd_'))return econGestor()?'':'Solo quien gestiona los permisos económicos cambia esos datos.';
+    if(!econGestor()){
+      if(!ME.id||!econBenef(ME.id))return 'Tu cuenta no tiene permisos económicos.';
+      const mio=x=>!!x&&x.p===ME.id&&x.est==='pendiente'&&!x.doc;
+      if(!r)return mio(cur)?'':'Solo puedes quitar tus solicitudes que aún no se firman.';
+      if((cur&&!mio(cur))||!(r.p===ME.id&&(r.est==='pendiente'||r.est==='cancelada')&&!r.doc))return 'La solicitud la aplica quien gestiona los permisos, al subir el documento firmado.';
+    }
+    if(r&&econActiva(r)){const v=econValidar(r,op.id);if(v.err.length)return v.err[0]}
+    return '';
+  }
+  return _guardEC(op);
+};
+/* --- pestaña --- */
+const _tabsEC=tabsFor;
+tabsFor=function(){const t=_tabsEC.apply(this,arguments);if(EDITION!=='movil'&&econVeo()&&!t.some(x=>x[0]==='econ')){const i=t.findIndex(y=>y[0]==='ajustes');const x=['econ','Permisos económicos'];if(i<0)t.push(x);else t.splice(i,0,x)}return t};
+U.ec={m:'',cfg:false};const _initEC=initU;initU=function(){_initEC();U.ec={m:'',cfg:false}};
+const econEst={pendiente:['R','Por firmar'],aplicada:['P','Aplicado'],cancelada:['N','Cancelado']};
+const econFechas=r=>r.dias.map(d=>fd(d)).join(', ');
+function econAnillo(usados,max){const p=max?Math.min(100,usados/max*100):0,r=34,C=2*Math.PI*r;return '<svg class="ec-ring" viewBox="0 0 84 84" aria-hidden="true"><circle cx="42" cy="42" r="'+r+'" class="ec-rt"/><circle cx="42" cy="42" r="'+r+'" class="ec-rv" stroke-dasharray="'+(C*(1-p/100)).toFixed(1)+' '+C.toFixed(1)+'" transform="rotate(-90 42 42)"/></svg>'}
+function econTarjeta(p){
+  const c=econCfg(),s=econResta(p.id),u=s.u,est=s.dias===0?'F':s.dias<=3?'R':'P';
+  return '<div class="ec-card"><div class="ec-rw">'+econAnillo(u.dias,c.max)+'<div class="ec-rn"><b>'+s.dias+'</b><small>de '+c.max+'</small></div></div><div class="ec-ci"><b>'+esc(p.n)+'</b><small>'+esc(p.puesto)+'</small>'+
+   '<div class="ec-pills"><span class="chip '+est+'">'+(s.dias?(s.dias===1?'1 día disponible':s.dias+' días disponibles'):'Sin días disponibles')+'</span><span class="chip N">Ocasiones '+u.oc+' de '+c.oc+'</span>'+(u.pend?'<span class="chip R">'+u.pend+' por firmar</span>':'')+'</div>'+
+   (u.fechas.length?'<small class="ec-f">Fechas: '+esc(u.fechas.map(fd).join(', '))+'</small>':'')+'</div>'+
+   (econGestor()||p.id===ME.id?'<div class="ec-ca">'+(s.dias&&s.oc?'<button class="btn sm pri" data-act="ecNueva" data-p="'+esc(p.id)+'">Solicitar</button>':'<span class="note">'+(s.dias?'Sin ocasiones':'Agotados')+'</span>')+'</div>':'')+'</div>';
+}
+function econCalendario(){
+  if(!U.ec.m)U.ec.m=todayISO().slice(0,7);
+  const [y,m]=U.ec.m.split('-').map(Number),d0=new Date(y,m-1,1),dias=new Date(y,m,0).getDate(),off=(d0.getDay()+6)%7,MES=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],g=econGestor();
+  let h='<div class="ec-cal"><div class="agbar"><button class="btn sm" data-act="ecMes" data-v="-1" aria-label="Mes anterior">‹</button><b>'+MES[m-1]+' '+y+'</b><button class="btn sm" data-act="ecMes" data-v="1" aria-label="Mes siguiente">›</button></div><div class="ec-dow">'+['L','M','M','J','V','S','D'].map(x=>'<span>'+x+'</span>').join('')+'</div><div class="ec-grid">';
+  for(let i=0;i<off;i++)h+='<div></div>';
+  for(let d=1;d<=dias;d++){const f=y+'-'+String(m).padStart(2,'0')+'-'+String(d).padStart(2,'0'),O=econOcupados(f),nl=isNoLab(f);
+    h+='<div class="ec-d'+(nl?' nl':'')+(O.length?' oc':'')+(f===todayISO()?' hoy':'')+'" title="'+esc(O.length?(g?O.map(r=>r.n+' ('+econEst[r.est][1]+')').join(', '):'Ocupado por personal de la escuela'):nl||'')+'"><span>'+d+'</span>'+(O.length?'<i>'+(g?esc(O.map(r=>String(r.n).split(' ')[0]).join(', ')):'Ocupado')+'</i>':'')+'</div>'}
+  const L=econLim();return h+'</div><p class="note">Días ocupados por algún permiso económico. Límite por día: '+Object.keys(ECON_CAT).map(k=>ECON_CAT[k].replace(/ \(.*\)/,'')+' '+(L[k]>0?L[k]:'sin límite')).join(' · ')+'.</p></div>';
+}
+VIEWS.econ=function(){
+  const c=econCfg(),g=econGestor(),adm=esAdministrador();
+  let h='<div class="head"><div><h2>Permisos económicos <span class="chip N">'+(c.periodo==='anio'?'Año '+todayISO().slice(0,4):'Ciclo '+esc(D.cfg.ciclo||''))+'</span></h2><p>Hasta '+c.max+' días con goce de sueldo, en '+c.oc+' ocasiones de hasta '+c.porOc+' días. El permiso aplica al subir la solicitud firmada por Dirección.</p></div><div class="actions">'+
+   (c.on&&(g||econBenef(ME.id))?'<button class="btn pri" data-act="ecNueva" data-p="'+(g?'':esc(ME.id))+'">Nueva solicitud</button>':'')+(g&&c.on?'<button class="btn" data-act="ecRep">Control (PDF o Excel)</button>':'')+(adm?'<button class="btn" data-act="ecCfgTg">'+(U.ec.cfg?'Cerrar configuración':'Configuración')+'</button>':'')+'</div></div>';
+  if(adm&&(U.ec.cfg||!c.on))h+=econCfgHTML();
+  if(!c.on)return h+(adm?'':'<div class="empty">Esta pestaña no está activa.</div>');
+  h+='<details class="ec-fund no-print"><summary>Fundamento</summary><p>'+esc(ECON_FUND)+'</p><p class="note">Revisa también las disposiciones de tu entidad y de la sección sindical: si son distintas, el Administrador ajusta las reglas en «Configuración».</p></details>';
+  const sol=econSol(),pend=sol.filter(r=>r.est==='pendiente'&&(g||r.p===ME.id)).sort((a,b)=>a.dias[0].localeCompare(b.dias[0]));
+  if(g){
+    const P=econPersonas(),usados=P.reduce((s,p)=>s+econUso(p.id).dias,0),mes=todayISO().slice(0,7),esteMes=sol.filter(r=>econActiva(r)).reduce((s,r)=>s+r.dias.filter(d=>d.slice(0,7)===mes).length,0);
+    h+='<div class="ec-kpis"><div><small>Personal con el beneficio</small><b>'+P.length+'</b></div><div><small>Días usados en el periodo</small><b>'+usados+'</b></div><div class="'+(pend.length?'r':'')+'"><small>Solicitudes por firmar</small><b>'+pend.length+'</b></div><div><small>Días este mes</small><b>'+esteMes+'</b></div></div>';
+  }else{const me=econPer(ME.id);if(me)h+='<div class="ec-yo">'+econTarjeta(me)+'</div>'}
+  h+='<div class="ec-cols"><div>';
+  h+='<div class="panel"><h3>Por firmar <span class="chip '+(pend.length?'R':'N')+'">'+pend.length+'</span></h3><p class="sub">Imprime el formato, recaba la firma de Dirección y sube el documento escaneado o fotografiado: en ese momento el permiso aplica.</p>'+
+    (pend.length?'<ul class="ec-list">'+pend.map(r=>'<li><div><b>'+esc(r.n)+'</b><small>'+esc(econFechas(r))+' · '+r.dias.length+' día'+(r.dias.length===1?'':'s')+' · folio '+esc(r.folio)+'</small></div><div class="ec-acts"><button class="btn sm" data-act="ecFormato" data-id="'+r.id+'">Formato</button>'+(g?'<button class="btn sm pri" data-act="ecSubir" data-id="'+r.id+'">Subir firmada</button>':'')+'<button class="btn sm" data-act="ecCancelar" data-id="'+r.id+'">Cancelar</button></div></li>').join('')+'</ul>':'<div class="empty" style="padding:14px">Nada pendiente.</div>')+'</div>';
+  if(g)h+='<div class="panel"><h3>Personal <span class="chip N">'+econPersonas().length+'</span></h3><div class="ec-people">'+econPersonas().map(econTarjeta).join('')+'</div></div>';
+  h+='</div><div><div class="panel"><h3>Calendario</h3>'+econCalendario()+'</div>';
+  const hist=sol.filter(r=>r.est!=='pendiente'&&(g||r.p===ME.id)).sort((a,b)=>b.dias[0].localeCompare(a.dias[0])).slice(0,60);
+  h+='<div class="panel"><h3>Historial</h3>'+(hist.length?'<ul class="ec-list">'+hist.map(r=>'<li class="'+(r.est==='cancelada'?'x':'')+'"><div><b>'+esc(r.n)+'</b><small>'+esc(econFechas(r))+' · <span class="chip '+econEst[r.est][0]+'">'+econEst[r.est][1]+'</span></small></div><div class="ec-acts">'+(r.doc?'<button class="btn sm" data-act="ecDoc" data-id="'+r.id+'">Documento</button>':'')+'<button class="btn sm" data-act="ecFormato" data-id="'+r.id+'">Formato</button>'+(g&&r.est==='aplicada'?'<button class="btn sm" data-act="ecCancelar" data-id="'+r.id+'">Cancelar</button>':'')+'</div></li>').join('')+'</ul>':'<div class="empty" style="padding:14px">Sin permisos registrados.</div>')+'</div></div></div>';
+  return h;
+};
+/* --- configuración (solo el Administrador) --- */
+function econCfgHTML(){
+  const c=econCfg(),U0=Object.values(D.users).filter(u=>u.activo!==false&&u.rol!=='administrador').sort((a,b)=>String(a.nombre).localeCompare(String(b.nombre),'es'));
+  const num=(k,l,mi,ma)=>'<label>'+l+'<input type="number" min="'+mi+'" max="'+ma+'" data-eccfg="'+k+'" value="'+c[k]+'"></label>';
+  return '<div class="panel ec-conf"><h3>Configuración <span class="chip J">Solo Administrador</span></h3><div class="body">'+
+   '<label class="chk-line"><input type="checkbox" data-eccfg="on"'+(c.on?' checked':'')+'><b>Activar la pestaña «Permisos económicos» en la escuela</b></label>'+
+   '<div class="twrap" style="margin-top:10px;max-height:340px;overflow:auto"><table><thead><tr><th class="l">Persona</th><th class="l">Cargo</th><th>Tiene el beneficio</th><th>Gestiona (registra y aplica)</th></tr></thead><tbody>'+
+   U0.map(u=>'<tr><td class="l">'+esc(u.nombre||u.usuario)+'</td><td class="l">'+esc(ROL[u.rol]||u.rol)+'</td><td><input type="checkbox" data-ecben="'+esc(u.id)+'"'+(c.ben.includes(u.id)?' checked':'')+'></td><td><input type="checkbox" data-ecges="'+esc(u.id)+'"'+(c.ges.includes(u.id)?' checked':'')+'></td></tr>').join('')+'</tbody></table></div>'+
+   '<div class="actions" style="margin-top:6px"><button class="btn sm" data-act="ecBenTodos">Dar el beneficio a todo el personal</button></div>'+
+   '<h4 style="margin:14px 0 4px">Personal sin usuario en SICET (intendencia, administrativos…)</h4>'+
+   (c.ext.length?'<ul class="ec-ext">'+c.ext.map(x=>'<li><span><b>'+esc(x.n)+'</b> · '+esc(x.puesto||'')+(x.act===false?' · <i>dado de baja</i>':'')+'</span><button class="btn sm" data-act="ecExtBaja" data-id="'+esc(x.id)+'">'+(x.act===false?'Reactivar':'Dar de baja')+'</button></li>').join('')+'</ul>':'')+
+   '<div class="inrow" style="max-width:640px"><input id="ec_xn" placeholder="Nombre completo" maxlength="80"><input id="ec_xp" placeholder="Puesto (ej.: Intendente)" maxlength="60"><select id="ec_xc"><option value="apoyo">Apoyo / administrativo</option><option value="doc">Docente frente a grupo</option><option value="dir">Directivo</option></select><button class="btn sm" data-act="ecExtAdd">Agregar</button></div>'+
+   '<h4 style="margin:14px 0 4px">Reglas</h4><div class="form">'+num('max','Días por periodo',1,30)+num('porOc','Días máximos por solicitud',1,10)+num('oc','Ocasiones por periodo',1,12)+num('sep','Días mínimos entre ocasiones (0 = sin regla)',0,120)+
+   '<label>Si no se cumple la separación<select data-eccfg="sepModo"><option value="aviso"'+(c.sepModo!=='bloquea'?' selected':'')+'>Solo avisar</option><option value="bloquea"'+(c.sepModo==='bloquea'?' selected':'')+'>No permitir</option></select></label>'+
+   '<p class="note full">Los límites de personas por día (docentes, directivos y apoyo) y el formato de la escuela en PDF están en Ajustes → «Permisos económicos».</p>'+
+   '<label>Contar por<select data-eccfg="periodo"><option value="ciclo"'+(c.periodo!=='anio'?' selected':'')+'>Ciclo escolar</option><option value="anio"'+(c.periodo==='anio'?' selected':'')+'>Año calendario (como dice el reglamento)</option></select></label></div>'+
+   '<p class="note">Predeterminado según el art. 52, fr. III del Reglamento de las Condiciones Generales de Trabajo del Personal de la SEP: 9 días, 3 ocasiones de hasta 3 días, separadas por un mes.</p></div></div>';
+}
+const econCfgSet=v=>{if(commit({t:'cfg',k:'econ',v:Object.assign(econCfg(),v)})){toast('Guardado.');render()}};
+document.addEventListener('change',e=>{
+  const t=e.target;if(!t||!t.dataset)return;
+  if(t.dataset.eccfg){if(t.dataset.eccfg==='on')U.ec.cfg=true;const k=t.dataset.eccfg,v=t.type==='checkbox'?t.checked:t.tagName==='SELECT'?t.value:Math.max(0,Number(t.value)||0);econCfgSet({[k]:v})}
+  else if(t.dataset.ecben||t.dataset.ecges){const k=t.dataset.ecben?'ben':'ges',id=t.dataset.ecben||t.dataset.ecges,S=new Set(econCfg()[k]);t.checked?S.add(id):S.delete(id);econCfgSet({[k]:[...S]})}
+});
+/* --- solicitud --- */
+function econSiguientes(ini,n){const out=[];let d=ini;for(let i=0;out.length<n&&i<30;i++){if(!isNoLab(d))out.push(d);d=addDays(d,1)}return out}
+function econModal(pid,edit){
+  const g=econGestor(),P=g?econPersonas():econPersonas().filter(p=>p.id===ME.id);if(!P.length)return toast('No hay personal con el beneficio.','err');
+  const r0=edit||{p:pid||P[0].id,dias:[],mot:'Asuntos particulares'},c=econCfg();
+  openModal('<h2>'+(edit?'Editar solicitud':'Solicitud de permiso económico')+'</h2><div class="form">'+
+   '<label class="full">Persona<select id="ec_p"'+(g?'':' disabled')+'>'+P.map(p=>'<option value="'+esc(p.id)+'"'+(p.id===r0.p?' selected':'')+'>'+esc(p.n)+' · '+esc(p.puesto)+'</option>').join('')+'</select></label>'+
+   '<div class="full" id="ec_saldo"></div>'+
+   '<label>Forma<select id="ec_modo"><option value="seg">Días seguidos</option><option value="sep"'+(r0.dias.length>1&&econSiguientes(r0.dias[0],r0.dias.length).join()!==r0.dias.join()?' selected':'')+'>Días separados</option></select></label>'+
+   '<label>Número de días<select id="ec_n">'+Array.from({length:c.porOc},(x,i)=>'<option'+((r0.dias.length||1)===i+1?' selected':'')+'>'+(i+1)+'</option>').join('')+'</select></label>'+
+   '<div class="full ec-fechas" id="ec_fs"></div>'+
+   '<label class="full">Motivo (opcional)<input id="ec_m" maxlength="120" value="'+esc(r0.mot||'')+'"></label>'+
+   '<div class="full" id="ec_val"></div></div>'+
+   '<div class="mfoot"><button class="btn" data-act="closemodal">Cancelar</button><button class="btn pri" id="ec_ok">Registrar solicitud</button></div>',true);
+  const pinta=keep=>{
+    const modo=$('#ec_modo').value,n=Number($('#ec_n').value),prev=keep||[...document.querySelectorAll('.ec-fi')].map(i=>i.value).filter(Boolean);
+    if(modo==='seg'){const ini=prev[0]||addDays(todayISO(),1);$('#ec_fs').innerHTML='<label>Primer día<input type="date" class="ec-fi" value="'+esc(ini)+'"></label><span class="note" id="ec_seq"></span>'}
+    else $('#ec_fs').innerHTML=Array.from({length:n},(x,i)=>'<label>Día '+(i+1)+'<input type="date" class="ec-fi" value="'+esc(prev[i]||'')+'"></label>').join('');
+    valida();
+  };
+  const dias=()=>{const modo=$('#ec_modo').value,n=Number($('#ec_n').value),F=[...document.querySelectorAll('.ec-fi')].map(i=>i.value).filter(Boolean);return modo==='seg'?(F[0]?econSiguientes(F[0],n):[]):[...new Set(F)].sort()};
+  const valida=()=>{
+    const p=$('#ec_p').value,D0=dias(),s=econResta(p,D0[0]),per=econPer(p);
+    if($('#ec_seq'))$('#ec_seq').textContent=D0.length?'Días: '+D0.map(fd).join(', ')+' (se saltan fines de semana y días no hábiles)':'';
+    $('#ec_saldo').innerHTML=per?'<div class="ec-saldo"><b>'+esc(per.n)+'</b><span>Disponibles: <b>'+s.dias+'</b> de '+c.max+' días</span><span>Ocasiones: '+s.u.oc+' de '+c.oc+'</span>'+(s.u.fechas.length?'<span>Ya usó: '+esc(s.u.fechas.map(fd).join(', '))+'</span>':'')+'</div>':'';
+    const v=D0.length?econValidar({p,dias:D0},edit&&edit.id):{err:[],warn:[]};
+    $('#ec_val').innerHTML=(v.err.length?'<div class="warnbox" style="border-color:var(--F)">'+v.err.map(esc).join('<br>')+'</div>':'')+(v.warn.length?'<div class="warnbox">'+v.warn.map(esc).join('<br>')+'</div>':'')+(!v.err.length&&D0.length?(()=>{const qd=Math.max(0,s.dias-D0.length),qo=Math.max(0,s.oc-1);return '<div class="okbox">Después de este permiso le '+(qd===1?'quedará <b>1</b> día':'quedarán <b>'+qd+'</b> días')+' y '+(qo===1?'1 ocasión':qo+' ocasiones')+'.</div>'})():'');
+    $('#ec_ok').disabled=!D0.length||v.err.length>0;
+  };
+  $('#ec_modo').onchange=()=>pinta();$('#ec_n').onchange=()=>pinta();$('#ec_p').onchange=valida;$('#ec_fs').addEventListener('change',valida);
+  pinta(r0.dias);
+  $('#ec_ok').onclick=()=>{
+    const p=$('#ec_p').value,per=econPer(p),D0=dias();if(!per)return;
+    const sol=econSol(),[ra]=econRango(D0[0]),n=sol.filter(r=>r.dias[0]>=ra).length+1;
+    const anios=String(D.cfg.ciclo||'').match(/\d{4}/g)||[ra.slice(0,4)],folioN='PE-'+anios.map(y=>y.slice(2)).join('')+'-'+String(n).padStart(3,'0');
+    const rec=Object.assign({},edit||{},{k:'sol',id:edit?edit.id:'ec'+hexR(6),p,n:per.n,puesto:per.puesto,rol:per.rol,cat:per.cat,dias:D0,mot:$('#ec_m').value.trim(),est:'pendiente',folio:edit?edit.folio:folioN,cre:edit?edit.cre:{u:ME.id,n:ME.nombre,ts:Date.now()}});
+    if(!commit({t:'econ',id:rec.id,rec}))return;
+    bitacora('Permiso económico registrado: '+per.n+' ('+D0.join(', ')+')');
+    openModal('<h2>Solicitud registrada</h2><p><b>'+esc(per.n)+'</b> · '+esc(D0.map(fd).join(', '))+'</p><p>Folio <b>'+esc(rec.folio)+'</b>. Los días quedan apartados en el calendario. El permiso <b>aplica al subir la solicitud firmada por Dirección</b>.</p><div class="mfoot"><button class="btn" data-act="closemodal">Cerrar</button><button class="btn" data-act="ecFormato" data-id="'+rec.id+'">Imprimir formato</button>'+(econGestor()?'<button class="btn pri" data-act="ecSubir" data-id="'+rec.id+'">Subir firmada</button>':'')+'</div>');render();
+  };
+}
+/* --- formato para imprimir --- */
+function econFormatoHTML(r){
+  const c=D.cfg,e=econCfg(),dat=econDat(r.p),u=econUso(r.p,r.dias[0],r.id),antes=u.L.filter(x=>x.dias[0]<r.dias[0]),usadosAntes=antes.reduce((s,x)=>s+x.dias.length,0),oc=antes.length+1,queda=Math.max(0,e.max-usadosAntes-r.dias.length);
+  const lugar=(c.credLugar||c.lugar||'').trim(),hoy=new Date(r.cre&&r.cre.ts||Date.now()),fh=hoy.toLocaleDateString('es-MX',{day:'numeric',month:'long',year:'numeric'});
+  const dir=(c.director||'').trim()||(typeof dirNombre==='function'?dirNombre():'')||'Director(a) de la escuela';
+  return '<div class="ec-fmt"><header>'+(c.logo?'<img src="'+c.logo+'" alt="">':'')+'<div><b>'+esc(c.escuela||'')+'</b><span>'+[c.cct?'C.C.T. '+c.cct:'',c.escZona?'Zona '+c.escZona:'',c.escSector?'Sector '+c.escSector:''].filter(Boolean).map(esc).join(' · ')+'</span>'+(c.escDom?'<span>'+esc(c.escDom)+'</span>':'')+'</div><div class="ec-folio">Folio<b>'+esc(r.folio||'')+'</b></div></header>'+
+   '<h2>Solicitud de permiso económico con goce de sueldo</h2><p class="ec-lf">'+esc(lugar?lugar+', a ':'')+esc(fh)+'</p>'+
+   '<p><b>'+esc(dir.toLocaleUpperCase('es-MX'))+'</b><br>'+esc((c.dirCargo||'Director(a) de la escuela'))+'<br>Presente</p>'+
+   '<p class="ec-body">Quien suscribe, <b>'+esc(r.n)+'</b>'+(dat.rfc?', con R.F.C. <b>'+esc(dat.rfc)+'</b>':'')+(dat.clave?', clave presupuestal <b>'+esc(dat.clave)+'</b>':'')+', con el cargo de <b>'+esc(dat.puesto||r.puesto||'')+'</b>'+(dat.turno?' en el turno '+esc(dat.turno):'')+', solicita de la manera más atenta se le conceda <b>permiso económico con goce de sueldo</b> por <b>'+r.dias.length+' día'+(r.dias.length===1?'':'s')+' hábil'+(r.dias.length===1?'':'es')+'</b>, correspondiente'+(r.dias.length===1?'':'s')+' a:</p>'+
+   '<ul class="ec-dias">'+r.dias.map(d=>'<li>'+esc((x=>x.charAt(0).toUpperCase()+x.slice(1))(new Date(d+'T12:00').toLocaleDateString('es-MX',{weekday:'long',day:'numeric',month:'long',year:'numeric'})))+'</li>').join('')+'</ul>'+
+   (r.mot?'<p>Motivo: '+esc(r.mot)+'.</p>':'')+'<p class="ec-fund2">Con fundamento en el '+esc(ECON_FUND.replace(/:.*/,''))+'.</p>'+
+   '<table class="ec-ctl"><tr><th>Ocasión</th><th>Días ya disfrutados</th><th>Días de esta solicitud</th><th>Días restantes</th></tr><tr><td>'+oc+' de '+e.oc+'</td><td>'+usadosAntes+'</td><td>'+r.dias.length+'</td><td>'+queda+' de '+e.max+'</td></tr></table>'+
+   '<div class="ec-firmas"><div><span></span><b>'+esc(r.n)+'</b><small>Solicitante</small></div><div><span></span><b>'+esc(dir)+'</b><small>Autoriza · '+esc(c.dirCargo||'Dirección')+'</small></div></div>'+
+   '<p class="ec-sello">Sello de la escuela</p><footer>Registrado en SICET por '+esc(r.cre&&r.cre.n||'')+' · el permiso aplica con esta solicitud firmada por Dirección.</footer></div>';
+}
+/* --- acciones --- */
+Object.assign(ACT,{
+  ecNueva:t=>econModal(t.dataset.p||''),
+  ecIr:()=>{closeModal();U.tab='econ';render();window.scrollTo(0,0)},
+  ecMes:t=>{const v=Number(t.dataset.v),[y,m]=U.ec.m.split('-').map(Number),d=new Date(y,m-1+v,1);U.ec.m=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');render()},
+  ecCfgTg:()=>{U.ec.cfg=!U.ec.cfg;render()},
+  ecBenTodos:()=>econCfgSet({ben:Object.values(D.users).filter(u=>u.activo!==false&&u.rol!=='administrador').map(u=>u.id)}),
+  ecExtAdd:()=>{const n=$('#ec_xn').value.trim().replace(/\s+/g,' '),p=$('#ec_xp').value.trim();if(n.length<5)return toast('Escribe el nombre completo.','err');econCfgSet({ext:econCfg().ext.concat([{id:'x'+hexR(5),n,puesto:p||'Personal de apoyo',cat:$('#ec_xc').value||'apoyo',act:true}])})},
+  ecExtBaja:t=>econCfgSet({ext:econCfg().ext.map(x=>x.id===t.dataset.id?Object.assign({},x,{act:x.act===false}):x)}),
+  ecFormato:t=>{const r=(D.econ||{})[t.dataset.id];if(!r)return;const dat=econDat(r.p);
+    openModal('<div class="no-print ec-fbar"><b>Formato · '+esc(r.folio)+'</b>'+(econGestor()?'<button class="btn sm" data-act="ecDatos" data-p="'+esc(r.p)+'" data-id="'+r.id+'">'+(dat.rfc||dat.clave?'Editar datos de la persona':'Agregar RFC y clave presupuestal')+'</button>':'')+'<button class="btn sm pri" data-act="print">Imprimir</button><button class="btn sm" data-act="closemodal">Cerrar</button></div>'+econFormatoHTML(r),true)},
+  ecDatos:t=>{const p=t.dataset.p,d=econDat(p),per=econPer(p)||{};
+    openModal('<h2>Datos para el formato</h2><p class="note">'+esc(per.n||'')+'</p><div class="form"><label>R.F.C.<input id="ed_r" maxlength="13" value="'+esc(d.rfc||'')+'"></label><label>Clave presupuestal<input id="ed_c" maxlength="40" value="'+esc(d.clave||'')+'"></label><label>Cargo o función<input id="ed_p" maxlength="60" value="'+esc(d.puesto||per.puesto||'')+'"></label><label>Turno<input id="ed_t" maxlength="20" value="'+esc(d.turno||'')+'"></label></div><div class="mfoot"><button class="btn" data-act="closemodal">Cancelar</button><button class="btn pri" id="ed_ok">Guardar</button></div>');
+    $('#ed_ok').onclick=()=>{if(commit({t:'econ',id:'pd_'+p,rec:{k:'dat',id:'pd_'+p,rfc:$('#ed_r').value.trim().toUpperCase(),clave:$('#ed_c').value.trim(),puesto:$('#ed_p').value.trim(),turno:$('#ed_t').value.trim()}})){toast('Datos guardados.');if(t.dataset.id)ACT.ecFormato({dataset:{id:t.dataset.id}});else closeModal()}}},
+  ecSubir:t=>{const r=(D.econ||{})[t.dataset.id];if(!r||!econGestor())return;let f=null;
+    openModal('<h2>Subir la solicitud firmada</h2><p><b>'+esc(r.n)+'</b> · '+esc(econFechas(r))+' · folio '+esc(r.folio)+'</p><p class="note">Escaneo en PDF o foto clara del formato firmado por Dirección. Al subirlo, el permiso <b>aplica</b>: se descuentan los días y la persona aparece en «Hoy» como «Permiso económico».</p>'+
+     '<label class="pldrop" id="es_drop"><input type="file" id="es_f" accept="application/pdf,image/*" hidden><b>＋</b><span id="es_t">Elegir archivo (PDF, foto o imagen)<small>Hasta 10 MB</small></span></label>'+
+     '<div class="mfoot"><button class="btn" data-act="closemodal">Cancelar</button><button class="btn pri" id="es_ok" disabled>Aplicar permiso</button></div>');
+    $('#es_f').onchange=e=>{f=e.target.files[0];if(!f)return;if(f.size>(typeof PLA_MAX!=='undefined'?PLA_MAX:10485760)){f=null;return toast('El archivo pesa más de 10 MB.','err')}if(!/pdf|image/.test(f.type))return toast('Sube un PDF o una imagen.','err');$('#es_t').innerHTML=esc(f.name)+'<small>'+Math.round(f.size/1024)+' KB · toca para cambiarlo</small>';$('#es_drop').classList.add('ok');$('#es_ok').disabled=false};
+    $('#es_ok').onclick=async()=>{if(!f)return;$('#es_ok').disabled=true;
+      try{const u8=new Uint8Array(await f.arrayBuffer()),h=await sha256hex(u8),doc={n:String(f.name).slice(0,120),t:f.type||'application/octet-stream',sz:u8.length,h};
+        await plaGuardarArchivo(h,doc,u8);const PP=await plaPend();if(!PP.includes(h)){PP.push(h);await IDB.put('kv','plfPend',PP)}
+        const perIds=[];const per=econPer(r.p)||{};
+        for(const d of r.dias){const id='pe'+hexR(5);perIds.push(id);commit({t:'per',id,rec:{id,u:per.u?r.p:'',n:r.n,rol:per.rol||'',tipo:'Permiso económico',folio:r.folio,a:d,b:d,todo:true,mods:[],sup:'Prefectura',obs:'Registrado desde Permisos económicos',reg:{u:ME.id,n:ME.nombre,ts:Date.now()},ts:Date.now()}},{sys:true})}
+        if(commit({t:'econ',id:r.id,rec:Object.assign({},r,{est:'aplicada',doc,per:perIds,apl:{u:ME.id,n:ME.nombre,ts:Date.now()}})})){bitacora('Permiso económico aplicado: '+r.n+' ('+r.dias.join(', ')+')');plaSubirPend().catch(()=>{});closeModal();toast('Permiso aplicado. Le quedan '+econResta(r.p,r.dias[0]).dias+' días.');render()}
+      }catch(e){toast(e.message||String(e),'err');$('#es_ok').disabled=false}};
+  },
+  ecDoc:async t=>{const r=(D.econ||{})[t.dataset.id];if(!r||!r.doc)return;try{const u8=await plaLeerArchivo({arch:r.doc}),url=URL.createObjectURL(new Blob([u8],{type:r.doc.t}));
+    if(/^image\//.test(r.doc.t))openModal('<h2>Solicitud firmada</h2><p class="note">'+esc(r.n)+' · '+esc(econFechas(r))+'</p><img src="'+url+'" alt="Solicitud firmada" style="max-width:100%;border-radius:10px"><div class="mfoot"><a class="btn" href="'+url+'" download="'+esc(r.doc.n)+'">Descargar</a><button class="btn pri" data-act="closemodal">Cerrar</button></div>',true);
+    else{const a=document.createElement('a');a.href=url;a.download=r.doc.n;document.body.appendChild(a);a.click();a.remove()}}catch(e){toast(e.message||String(e),'err')}},
+  ecCancelar:t=>{const r=(D.econ||{})[t.dataset.id];if(!r)return;
+    confirmDlg('Cancelar permiso','Se cancela el permiso de '+r.n+' ('+econFechas(r)+'). Los días vuelven a quedar disponibles.','Cancelar permiso',()=>{
+      (r.per||[]).forEach(id=>{if((D.per||{})[id])commit({t:'per',id,rec:null},{sys:true})});
+      if(commit({t:'econ',id:r.id,rec:Object.assign({},r,{est:'cancelada',can:{u:ME.id,n:ME.nombre,ts:Date.now()}})})){bitacora('Permiso económico cancelado: '+r.n);toast('Permiso cancelado.');render()}},true)},
+  ecRep:()=>{
+    const P=econPersonas(),c=econCfg(),S=econSol().slice().sort((a,b)=>a.dias[0].localeCompare(b.dias[0]));
+    reportModal({id:'econ',title:'Control de permisos económicos',lines:[(D.cfg.escuela||'')+' · '+(c.periodo==='anio'?'año '+todayISO().slice(0,4):'ciclo '+(D.cfg.ciclo||'')),'Reglas: '+c.max+' días, '+c.oc+' ocasiones de hasta '+c.porOc+' días.'],sheets:[
+      {name:'Por persona',title:'Remanente por persona',cols:[C('Nombre',3),C('Cargo',2),C('Ocasiones',1,'c','n'),C('Días usados',1,'c','n'),C('Por firmar',1,'c','n'),C('Disponibles',1,'c','n'),C('Fechas',3.5)],rows:P.map(p=>{const u=econUso(p.id);return [p.n,p.puesto,u.oc,u.apl,u.pend,Math.max(0,c.max-u.dias),u.fechas.map(fdc).join(', ')]}),foots:[]},
+      {name:'Solicitudes',title:'Solicitudes',cols:[C('Folio',1.3),C('Nombre',3),C('Fechas',3),C('Días',.7,'c','n'),C('Estado',1.2),C('Registró',2),C('Aplicó',2)],rows:S.map(r=>[r.folio,r.n,r.dias.map(fdc).join(', '),r.dias.length,econEst[r.est][1],r.cre&&r.cre.n||'',r.apl?r.apl.n+' · '+new Date(r.apl.ts).toLocaleDateString('es-MX'):'']),foots:[]}]});
+  }
+});
+/* --- agenda escolar: el día aparece ocupado --- */
+if(typeof AG_TIPOS!=='undefined'&&!AG_TIPOS.some(x=>x[0]==='econ'))AG_TIPOS.splice(AG_TIPOS.length-1,0,['econ','Permiso económico del personal','R']);
+const _notasDeEC=notasDe;
+notasDe=function(d){
+  const L=_notasDeEC.apply(this,arguments);
+  try{if(econCfg().on){const O=econOcupados(d);if(O.length){const g=econGestor();L.push({id:'econ:'+d,t:'econ',n:g?'Económico: '+O.map(r=>String(r.n).split(' ').slice(0,2).join(' ')).join(', '):'Día ocupado: permiso económico'+(O.length>1?' ('+O.length+')':''),a:d,b:'',h:''})}}}catch(e){}
+  return L;
+};
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('.agev[data-id^="econ:"]');if(!b)return;const d=b.dataset.id.slice(5),O=econOcupados(d),g=econGestor();
+  openModal('<h2>Permiso económico</h2><p><b>'+esc(fd(d))+'</b></p><p>'+(g?O.map(r=>esc(r.n)+' · '+esc(econEst[r.est][1])).join('<br>'):'Este día ya está ocupado por personal de la escuela con permiso económico.')+'</p><div class="mfoot">'+(econVeo()?'<button class="btn" data-act="ecIr">Ir a Permisos económicos</button>':'')+'<button class="btn pri" data-act="closemodal">Cerrar</button></div>')},true);
+/* --- Ajustes → «Permisos económicos»: límites por día y formato de la escuela (PDF) --- */
+const econTpl=()=>((D.econ||{}).tpl)||null;
+function econAjPanel(){
+  if(EDITION==='movil'||!econCfg().on||!econGestor())return '';const L=econLim(),t=econTpl();
+  return '<div class="panel" id="pEcon"><h3>Permisos económicos</h3><p class="sub">Lo cambia quien gestiona los permisos económicos (o el Administrador).</p><div class="body">'+
+   '<h4 style="margin:0 0 6px">Máximo de personas con permiso el mismo día</h4><div class="form">'+
+   Object.keys(ECON_CAT).map(k=>'<label>'+esc(ECON_CAT[k])+'<input type="number" min="0" max="30" data-eclim="'+k+'" value="'+(L[k]||0)+'"><span class="note">'+(k==='doc'?'Docentes y docentes de tecnología (también coordinadores que dan clase), porque atienden alumnos.':'0 = sin límite.')+'</span></label>').join('')+'</div>'+
+   '<h4 style="margin:14px 0 6px">Formato de solicitud de la escuela</h4>'+
+   (t?'<div class="ec-tpl"><span class="ec-tpli">PDF</span><div><b>'+esc(t.doc.n)+'</b><small>'+Math.round(t.doc.sz/1024)+' KB · subido por '+esc(t.por||'')+' el '+esc(new Date(t.ts).toLocaleDateString('es-MX'))+'</small></div><button class="btn sm" data-act="ecTplVer">Ver</button><button class="btn sm" data-act="ecTplQuitar">Quitar</button></div>':'<p class="note">Todavía no hay formato propio: se usa el que genera SICET con los datos llenos.</p>')+
+   '<label class="pldrop" id="et_drop" style="margin-top:8px"><input type="file" id="et_f" accept="application/pdf" hidden><b>＋</b><span>'+(t?'Reemplazar el formato (PDF)':'Subir el formato de la escuela (PDF)')+'<small>El que usan para pedir el permiso; aparece junto al formato de SICET al imprimir. Hasta 10 MB.</small></span></label>'+
+   '</div></div>';
+}
+const _ajEC=VIEWS.ajustes;
+VIEWS.ajustes=function(){const h=_ajEC.apply(this,arguments),p=econAjPanel();if(!p)return h;const i=h.indexOf('<div class="panel"><h3>Privacidad</h3>');return i>=0?h.slice(0,i)+p+h.slice(i):h+p};
+document.addEventListener('change',async e=>{
+  const t=e.target;if(!t)return;
+  if(t.dataset&&t.dataset.eclim){const L=econLim();L[t.dataset.eclim]=Math.max(0,Math.min(30,Number(t.value)||0));if(commit({t:'cfg',k:'econ',v:Object.assign(econCfg(),{lim:L})})){toast('Límite guardado.');render()}}
+  else if(t.id==='et_f'){const f=t.files[0];if(!f)return;if(!/pdf/i.test(f.type||f.name))return toast('Sube el formato en PDF.','err');if(f.size>10485760)return toast('El PDF pesa más de 10 MB.','err');
+    try{const u8=new Uint8Array(await f.arrayBuffer()),h=await sha256hex(u8),doc={n:String(f.name).slice(0,120),t:'application/pdf',sz:u8.length,h};
+      await plaGuardarArchivo(h,doc,u8);const P=await plaPend();if(!P.includes(h)){P.push(h);await IDB.put('kv','plfPend',P)}
+      if(commit({t:'econ',id:'tpl',rec:{k:'tpl',id:'tpl',doc,por:ME.nombre,u:ME.id,ts:Date.now()}})){bitacora('Subió el formato de permiso económico');plaSubirPend().catch(()=>{});toast('Formato guardado. Ya aparece al imprimir las solicitudes.');render()}}
+    catch(x){toast(x.message||String(x),'err')}}
+});
+async function econTplAbrir(){
+  const t=econTpl();if(!t)return;
+  try{const u8=await plaLeerArchivo({arch:t.doc}),url=URL.createObjectURL(new Blob([u8],{type:'application/pdf'}));
+    const w=window.open(url,'_blank');if(!w){const a=document.createElement('a');a.href=url;a.download=t.doc.n;document.body.appendChild(a);a.click();a.remove()}}
+  catch(e){toast(e.message||String(e),'err')}
+}
+ACT.ecTplVer=()=>econTplAbrir();
+ACT.ecTplQuitar=()=>confirmDlg('Quitar formato','Se dejará de usar el formato de la escuela; seguirá disponible el que genera SICET.','Quitar',()=>{if(commit({t:'econ',id:'tpl',rec:null})){toast('Formato quitado.');render()}},true);
+/* al abrir el formato de una solicitud, también el de la escuela */
+const _ecFormatoT=ACT.ecFormato;
+ACT.ecFormato=function(t){const r=_ecFormatoT.apply(this,arguments);try{const b=document.querySelector('.ec-fbar');if(b&&econTpl()&&!document.getElementById('ec_tplb'))b.querySelector('[data-act=print]').insertAdjacentHTML('beforebegin','<button class="btn sm" id="ec_tplb" data-act="ecTplVer" title="'+esc(econTpl().doc.n)+'">Formato de la escuela (PDF)</button>')}catch(e){}return r};
 
 /* ====== inicio ====== */
 boot();
